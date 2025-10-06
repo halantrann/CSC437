@@ -5,51 +5,73 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>The Melon Bowl</title>
+	<link rel="stylesheet" href="/styles/page.css">
+	<link rel="stylesheet" href="/styles/tokens.css">
 </head>
 
 <body>
 	<header>
-		<h1>The Melon Bowl</h1>
-		<p>Your pocket menu for when you don't know what to eat.</p>
+		<div class="logo-content">
+			<div class="title block">
+				<h1>The Melon Bowl</h1>
+				<p>your pocket menu for when you don't know what to eat</p>
+			</div>
+
+			<section id="search" class="search">
+				<form action="/search" method="GET">
+					<input type="text" name="q" placeholder="search for your favorite meals, tastes, cuisines..." />
+					<button type="submit">Search</button>
+				</form>
+			</section>
 	</header>
 
-	<img src="images/fastfood.jpg" alt="Top-down view of American fast food on a table, including donuts, burgers, pizza, and more."
-		width="300" />
-
 	<main>
-		<section class="meals">
-			<h2>Meals</h2>
-			<nav>
-				<ul>
-					<li><a href="meals/breakfast.html">Breakfast</a></li>
-					<li><a href="meals/lunch.html">Lunch</a></li>
-					<li><a href="meals/dinner.html">Dinner</a></li>
-					<li><a href="meals/dessert.html">Dessert</a></li>
-				</ul>
-			</nav>
+		<!-- MEAL OF THE DAY -->
+		<section id="meal-of-the-day">
+			<h2>Meal of the Day</h2>
+			<p>Not sure what you're feeling?</p>
+			<div class="mealofday-box">
+				<a href="meals/yesterday.html" class="side box-link">Yesterday's</a>
+				<a href="meals/today.html" class="middle box-link">Today's</a>
+				<a href="meals/random.html" class="side box-link">Something Random</a>
+			</div>
+			<p>Choose from today's random selection</p>
 		</section>
 
-		<section class="tastes">
-			<h2>Tastes</h2>
-			<nav>
-				<ul>
-					<li><a href="tastes/sweet.html">Sweet</a></li>
-					<li><a href="tastes/salty.html">Salty</a></li>
-					<li><a href="tastes/umami.html">Umami</a></li>
-				</ul>
-			</nav>
+		<!-- MEALS -->
+		<section id="meals">
+			<h3>Meals For Any Hour</h3>
+			<div class="meals-grid">
+				<a href="meals/breakfast.html" class="square box box-link">Breakfast</a>
+				<a href="meals/lunch.html" class="square box box-link">Lunch</a>
+				<a href="meals/dinner.html" class="square box box-link">Dinner</a>
+				<a href="meals/dessert.html" class="square box box-link">Dessert</a>
+			</div>
 		</section>
+	</main>
 
-		<section class="cuisines">
-			<h2>Cuisines</h2>
-			<nav>
-				<ul>
-					<li><a href="cuisines/american.html">American</a></li>
-					<li><a href="cuisines/asian.html">Asian</a></li>
-					<li><a href="cuisines/european.html">European</a></li>
-				</ul>
-			</nav>
-		</section>
+
+	<section id="tastes" class="tastes">
+		<h2>Tastes</h2>
+		<nav>
+			<ul class="tastes-list">
+				<li><a href="tastes/sweet.html">Sweet</a></li>
+				<li><a href="tastes/salty.html">Salty</a></li>
+				<li><a href="tastes/umami.html">Umami</a></li>
+			</ul>
+		</nav>
+	</section>
+
+	<section id="cuisines" class="cuisines">
+		<h2>Cuisines</h2>
+		<nav>
+			<ul class="cuisines-list">
+				<li class="border"><a href="cuisines/american.html">American</a></li>
+				<li class="border"><a href="cuisines/asian.html">Asian</a></li>
+				<li class="border"><a href="cuisines/european.html">European</a></li>
+			</ul>
+		</nav>
+	</section>
 	</main>
 </body>
 

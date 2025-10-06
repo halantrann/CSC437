@@ -1,0 +1,232 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* STICKY HEADER */
+header {
+	position: fixed; 
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: var(--color-background);
+	color: black;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	z-index: 1000;
+}
+
+/* NAVIGATION LINKS */
+nav a {
+	color: black; 
+	margin-left: 10px; 
+}
+
+nav a:hover {
+	color: var(--color-cambridgeblue);
+}
+
+main { 
+	margin-top: 55px; /* to compensate for header height */
+}
+
+.logo-content{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.title-block{
+	display:flex;
+	flex-direction: column;
+}
+
+.search form {
+	display: flex;
+	gap: 5px; 
+}
+
+.search input {
+	flex: 1; 
+	padding: 3px; 
+	border: 1px solid #ccc; 
+	border-radius: 4px; 
+}
+
+.search button {
+	padding: 8px 12px; 
+	border: none; 
+	background-color: var(--color-cambridgeblue); 
+	color: white; 
+	border-radius: 4px; 
+	cursor: pointer; 
+}
+
+.search button:hover {
+	background-color: var(--color-tearose); 
+}
+
+#meal-of-the-day {
+	background-color: #84A59D;   
+	padding: 50px 20px;
+	text-align: center;   
+}
+
+.meals-list {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	flex-wrap: wrap; 
+	list-style-type: none; 
+	padding: 0; 
+}
+
+.meals-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.tastes-list {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	flex-wrap: wrap; 
+	list-style-type: none; 
+	padding: 0; 
+}
+
+.cuisines-list {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	flex-wrap: wrap;
+	list-style-type: none;
+	padding: 0;
+}
+
+.border{
+	width: 100px;
+	height: 100px; 
+	border: 1px solid  #333;
+}
+
+.mealofday-box {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.box {
+  background-color: var(--color-background);
+  padding: 30px 30px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 10%); /* drop shadow */
+  margin: 10px
+}
+
+.middle.box {
+	flex: 2;
+	min-height: 200px;
+}
+
+.side.box {
+	flex:1;
+	min-height: 100px;
+}
+
+.square.box {
+    width: 200px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: var(--color-background);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.box-link {
+    display: flex;            
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    background-color: var(--color-background);
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    padding: 30px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* size adjustments for meal of day boxes (side vs middle) */
+.side {
+    flex: 1;
+    min-height: 100px;
+}
+
+.middle {
+    flex: 2;
+    min-height: 200px;
+}
+
+.box-link:hover .box {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+.box:hover{
+	transform: translateY(-5px);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+#meals {
+    background-color: #F7EDE2;
+    color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+#tastes {
+	background-color: #F7EDE2;
+	color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;    
+	padding: 20px;
+	text-align: center;     
+	min-height: 150px;      
+	flex-direction: column; 
+}
+
+#cuisines {
+	background-color: #F7EDE2;
+	color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;    
+	padding: 20px;
+	text-align: center;     
+	min-height: 150px;      
+	flex-direction: column; 
+}
