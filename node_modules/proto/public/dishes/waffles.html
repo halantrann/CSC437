@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Waffles</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>The Melon Bowl</title>
+	<link rel="stylesheet" href="/styles/page.css">
+	<link rel="stylesheet" href="/styles/tokens.css">
 </head>
+
 <body>
-  <main>
+    <header>
+      <div class="logo-content">
+        <div class="title-block">
+          <h1>The Melon Bowl</h1>
+          <p>your pocket menu for when you don't know what to eat</p>
+        </div>
+
+        <section id="search" class="search">
+          <form action="/search" method="GET">
+            <input type="text" name="q" placeholder="search for your favorite meals, tastes, cuisines..." />
+            <button type="submit">Search</button>
+          </form>
+        </section>
+        </div>
+    </header>
+
+    <main>
+      <div class="recipe-box">
     <article class="dish">
-      <header>
-        <h1>Waffles</h1>
-      </header>
 
       <figure>
-        <img src="../images/waffleimage.jpg" 
-             alt="Golden waffles garnished with fresh berries and syrup." 
-             width="500" height="600">
+        <img src="../images/waffleimage.jpg" alt="Golden waffles garnished with fresh berries and syrup." width="500"
+          height="600">
         <figcaption>Classic waffles with syrup and berries.</figcaption>
       </figure>
 
@@ -39,8 +56,11 @@
 
           <dt>Time to Cook</dt>
           <dd>20 min</dd>
+        </dl>
+        </section>
 
-          <dt>Ingredients</dt>
+        <section class="ingredients">
+        <h2>Ingredients</h2>
           <dd>
             <ul>
               <li>2 cups all-purpose flour</li>
@@ -54,7 +74,6 @@
               <li>Optional toppings: syrup, berries, whipped cream</li>
             </ul>
           </dd>
-        </dl>
       </section>
 
       <section class="instructions">
@@ -63,7 +82,8 @@
           <li>Preheat your waffle iron according to the manufacturer’s instructions.</li>
           <li>In a large bowl, whisk together flour, sugar, baking powder, and salt.</li>
           <li>In another bowl, beat eggs and then mix in milk, melted butter, and vanilla.</li>
-          <li>Pour wet ingredients into dry ingredients and stir until just combined (batter should be slightly lumpy).</li>
+          <li>Pour wet ingredients into dry ingredients and stir until just combined (batter should be slightly lumpy).
+          </li>
           <li>Grease the waffle iron lightly, then pour in batter and cook until golden brown and crisp.</li>
           <li>Serve warm with syrup, berries, or your favorite toppings.</li>
         </ol>
@@ -71,11 +91,13 @@
 
       <footer>
         <nav>
-          <a href="../meals/breakfast.html">Back to Breakfast</a> |
-          <a href="../index.html">Back to Menu</a>
+          <a href="../index.html">Back to Menu</a> |
+          <a href="../meals/breakfast.html">Back to Breakfast</a>
         </nav>
       </footer>
     </article>
+    </div>
   </main>
 </body>
+
 </html>
