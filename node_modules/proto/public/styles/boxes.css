@@ -81,6 +81,7 @@
 
 .meals.box span {
 	display: block;
+	margin-top: 15px; 
 }
 
 .box-link {
