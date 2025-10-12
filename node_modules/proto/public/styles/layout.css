@@ -37,10 +37,14 @@ nav a:hover {
 }
 
 /* Main Content */
-main {
-	margin-top: 125px;
+main { /* Default (margin for index) */
+	margin-top: 55px;
 }
 
+main.with-header-spacing { /* Extra spacing (e.g. breakfasts page) */
+
+	margin-top: 125px;
+}
 /* Sections */
 #meal-of-the-day {
 	background-color: var(--color-section);

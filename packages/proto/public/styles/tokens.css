@@ -2,12 +2,13 @@
 	/* Primary Colors */
 	--color-background: #e6cbae;
 	--color-background1: #F7EDE2;
+	--color-background2: #6A8EAE;
+
 	--color-header: #1b1905;
 	--color-border: #1b1905;
 	
 	/* Section Backgrounds */
 	--color-section: #709a5c;
-	--color-section1: #6A8EAE;
 	--color-section2: #84BCDA;
 	
 	/* Accent Colors */
@@ -48,8 +49,12 @@
 	--transition-medium: 0.3s ease;
 	
 	/* Typography */
-	--font-family-display: 'Pixelify Sans', sans-serif;
-	--font-family-body: 'Lexend', sans-serif;
+	--font-family-display: 'Pixelify Sans', 'Arial Black', 'Gadget', sans-serif;
+	--font-family-body: 'Lexend', 'Segoe UI', Arial, Helvetica, sans-serif;
+	--font-family-mono: 'Courier New', 'Courier', monospace;
+
 	--font-weight-normal: 400;
 	--font-weight-bold: 700;
+
+
 }

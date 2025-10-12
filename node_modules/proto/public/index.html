@@ -44,7 +44,11 @@
 		<section id="meals">
 			<h3>Meals For Any Hour</h3>
 			<div class="meals-grid">
-				<a href="meals/breakfast.html" class="meals box box-link">breakfast</a>
+				<a href="meals/breakfast.html" class="meals box box-link">breakfast
+					<svg class="icon">
+						<use href="/icons/meals_icons.svg#pancake" />
+					</svg>
+				</a>
 				<a href="meals/lunch.html" class="meals box box-link">lunch</a>
 				<a href="meals/dinner.html" class="meals box box-link">dinner</a>
 				<a href="meals/dessert.html" class="meals box box-link">dessert</a>
@@ -55,11 +59,16 @@
 	<!-- TASTES -->
 	<section id="tastes">
 		<h3>Tastes</h3>
-			<ul class="tastes-box">
-				<li><a href="tastes/sweet.html">sweet</a></li>
-				<li><a href="tastes/salty.html">salty</a></li>
-				<li><a href="tastes/umami.html">umami</a></li>
-			</ul>
+		<div class="tastes-box">
+			<div class="tastes-text">
+				<ul>
+					<li><a href="tastes/sweet.html">sweet</a></li>
+					<li><a href="tastes/salty.html">salty</a></li>
+					<li><a href="tastes/umami.html">umami</a></li>
+				</ul>
+			</div>
+			<div class="tastes-image"></div>
+		</div>
 	</section>
 
 	<!-- CUISINES -->
@@ -69,7 +78,7 @@
 			<!-- Asian -->
 			<div class="cuisine-category box">
 				<h4>Asian</h4>
-				<ul>	
+				<ul>
 					<li><a href="cuisines/vietnamese.html">Vietnamese</a></li>
 					<li><a href="cuisines/chinese.html">Chinese</a></li>
 					<li><a href="cuisines/japanese.html">Japanese</a></li>

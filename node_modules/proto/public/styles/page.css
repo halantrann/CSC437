@@ -450,3 +450,11 @@ main {
 	background-position: center;
 	border-left: 1px solid var(--color-border);
 }
+
+/* ICONS!!! */
+svg.icon {
+    display: block;
+    height: 5em;              /* size */
+    width: auto;              /* aspect ratio */
+    margin-top: 0.5em;        /* space between text and icon */
+}
