@@ -14,17 +14,22 @@
 <body>
 	<header>
 		<div class="logo-content">
-			<div class="title block">
+			<svg class="icon logo-icon">
+				<use href="/icons/logo.svg#melonbowllogo" />
+			</svg>
+
+			<div class="title-block">
 				<h1>The Melon Bowl</h1>
 				<p>your pocket menu for when you don't know what to eat</p>
 			</div>
-
-			<section id="search" class="search">
-				<form action="/search" method="GET">
-					<input type="text" name="q" placeholder="search for your favorite meals, tastes, cuisines..." />
-					<button type="submit">Search</button>
-				</form>
-			</section>
+			<!-- 
+    <section id="search" class="search">
+      <form action="/search" method="GET">
+        <input type="text" name="q" placeholder="search for your favorite meals, tastes, cuisines..." />
+        <button type="submit">Search</button>
+      </form>
+    </section> -->
+		</div>
 	</header>
 
 	<main>
@@ -46,26 +51,26 @@
 			<div class="meals-grid">
 				<a href="meals/breakfast.html" class="meals box">
 					<span>breakfast</span>
-					<svg class="icon">
-						<use href="/icons/meals_icons.svg#pancake"/>
+					<svg class="icon meals-icon">
+						<use href="/icons/meals_icons.svg#pancake" />
 					</svg>
 				</a>
 				<a href="meals/lunch.html" class="meals box">
 					<span>lunch</span>
-					<svg class="icon">
-						<use href="/icons/meals_icons.svg#banhmi"/>
+					<svg class="icon meals-icon">
+						<use href="/icons/meals_icons.svg#banhmi" />
 					</svg>
 				</a>
 				<a href="meals/dinner.html" class="meals box">
 					<span>dinner</span>
-					<svg class="icon">
-						<use href="/icons/meals_icons.svg#niuroumien"/>
+					<svg class="icon meals-icon">
+						<use href="/icons/meals_icons.svg#niuroumien" />
 					</svg>
 				</a>
 				<a href="meals/dessert.html" class="meals box">
 					<span>dessert</span>
-					<svg class="icon">
-						<use href="/icons/meals_icons.svg#pie"/>
+					<svg class="icon meals-icon">
+						<use href="/icons/meals_icons.svg#pie" />
 					</svg>
 				</a>
 			</div>

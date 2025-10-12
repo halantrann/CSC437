@@ -1,4 +1,4 @@
-/* Search Component */
+/* Search Box  
 .search form {
 	display: flex;
 	gap: var(--spacing-xs);
@@ -23,6 +23,7 @@
 .search button:hover {
 	background-color: var(--color-link);
 }
+	*/
 
 /* Box Components */
 .box {
@@ -71,12 +72,21 @@
 }
 
 /* ICONS!!! */
-.meals.box svg.icon {
+.meals.box svg.meals-icon {
     display: block;
 	width: 100px;
 	height: auto; 
     fill: currentColor;
-	transform: translate(25%, 20%);
+	
+}
+
+.logo-icon {
+    display: block;
+	width: 60px;
+	height: 60px;
+    fill: currentColor;
+	transform: scale(1.5,1.5) translateY(5px)
+
 }
 
 .meals.box span {

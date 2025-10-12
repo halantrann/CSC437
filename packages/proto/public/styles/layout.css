@@ -1,4 +1,4 @@
-/* Header */
+/* STICKY HEADER */
 header {
 	position: fixed;
 	top: 0;
@@ -15,10 +15,9 @@ header {
 }
 
 .logo-content {
-	width: 100%;
+	gap: 15px; 
 	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
+	align-items: center ;
 }
 
 .title-block {
