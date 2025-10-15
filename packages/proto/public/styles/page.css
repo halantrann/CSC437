@@ -55,10 +55,10 @@ main {
 	align-items: flex-start;
 }
 
-.title-block {
+/* .title-block {
 	display: flex;
 	flex-direction: column;
-}
+} */
 
 /* 
 .search form {
@@ -86,24 +86,6 @@ main {
 	background-color: var(--color-link);
 } */
 
-.meals-list {
-	display: flex;
-	justify-content: left;
-	align-items: left;
-	gap: 5px;
-	list-style-type: circle;
-	padding: 0;
-	flex-direction: column;
-}
-
-.meals-grid {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 20px;
-	flex-wrap: wrap;
-	margin-top: 20px;
-}
 
 .tastes-box a {
 	font-size: 1.5rem;
@@ -129,7 +111,7 @@ main {
 	box-shadow: none;
 }
 
-.mealofday-box {
+/* .mealofday-box {
 	background-color: inherit;
 	display: flex;
 	justify-content: center;
@@ -137,8 +119,8 @@ main {
 	padding: 20px; 
 	gap: 20px;
 	flex-wrap: wrap;
-}
-
+} */
+/* 
 .box {
 	background-color: var(--color-background);
 	padding: 30px 30px;
@@ -146,9 +128,9 @@ main {
 	border-radius: 10px;
 	box-shadow: 0 8px 16px rgba(0, 0, 0, 10%);
 	margin: 10px;
-}
+} */
 
-.middle.box {
+/* .middle.box {
 	flex: 2;
 	min-height: 200px;
 	background-color: var(--color-section);
@@ -157,13 +139,33 @@ main {
 .side.box {
 	flex: 1;
 	min-height: 100px;
+} */
+
+
+/* .meals-list {
+	display: flex;
+	justify-content: left;
+	align-items: left;
+	gap: 5px;
+	list-style-type: circle;
+	padding: 0;
+	flex-direction: column;
+}
+
+.meals-grid {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	flex-wrap: wrap;
+	margin-top: 20px;
 }
 
 .meals.box {
     display: flex;             
-    flex-direction: column;    /* for text on top, icon below */
-    align-items: center;       /* horizontal centering */
-    justify-content: center;   /* vert centering */
+    flex-direction: column;    
+    align-items: center;       
+    justify-content: center;   
     text-align: center;
     width: 200px;
     height: 200px;
@@ -173,9 +175,10 @@ main {
     font-size: 1.2rem;
     font-weight: bold;
     padding: 15px;            
-}
+} 
+*/
 
-.meals.box span {
+/* .meals.box span {
     display: block;
     margin-bottom: 5px;
 }
@@ -183,9 +186,9 @@ main {
 .meal-text{
 	display:block;
 	margin-bottom: 0.5em;
-}
+} */
 
-.box-link {
+/* .box-link {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -198,25 +201,26 @@ main {
 	text-align: center;
 	font-size: 1.2rem;
 	font-weight: bold;
-}
+} */
 
 
 /* size adjustments for meal of day boxes (side vs middle) */
-.side {
+/* .side {
 	flex: 1;
 	min-height: 100px;
-}
-
+} */
+/* 
 .middle {
 	flex: 2;
 	min-height: 200px;
-}
+} */
 
-.box-link:hover .box {
+/* .box-link:hover .box {
 	transform: translateY(-5px);
 	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-}
+} */
 
+/* 
 .mealofday-box .box-link {
 	border: 1px solid var(--color-border);
 	border-radius: 10px;
@@ -225,12 +229,12 @@ main {
 
 .mealofday-box .box-link:hover {
 	box-shadow: 0 0 15px var(--color-link);
-}
-
+} */
+/* 
 .box:hover {
 	transform: translateY(-5px);
 	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-}
+} */
 
 /* CUISINE NO HOVER/SHADOW
 .cuisine-category,
@@ -240,7 +244,7 @@ main {
 	transform: none !important;
 }
 */
-
+/* 
 .recipe-box {
 	background-color: var(--color-background);
 	border-radius: 12px;
@@ -253,15 +257,9 @@ main {
 	gap: 20px;
 }
 
-.recipe-box img {
-	border-radius: 10px;
-	max-width: 100%;
-	height: auto;
-}
-
 .recipe-box h2 {
 	margin-top: 20px;
-	color: var(--color-cambridgeblue);
+	color: var(--color-cambridgeblue); 
 }
 
 .recipe-box dl,
@@ -271,10 +269,12 @@ main {
 }
 
 .recipe-box footer {
-	border-top: 1px solid var(--color-border);
-	padding-top: 20px;
+	border-top: 0.2px solid var(--color-border);
+	padding-top: 10px;
 	text-align: center;
-}
+} */
+
+/* ACTUAL RECIPE (E.G. WAFFLES) STUFF  */
 
 .dish-properties dl {
 	display: grid;
@@ -292,9 +292,9 @@ main {
 
 .dish-properties dd {
 	margin: 0;
-}
+} 
 
-/* Ingredients list styling */
+Ingredients list styling
 .ingredients ul {
 	list-style-type: disc;
 	padding-left: 25px;
@@ -304,43 +304,43 @@ main {
 
 .ingredients li {
 	margin-bottom: 5px;
-}
+} 
 
-.mealofday-background {
+/* .mealofday-background {
 	background-color: var(--color-section);
-}
-
+} */
+/* 
 #meal-of-the-day {
 	background-color: var(--color-section);
 	padding: 70px 20px;
 	text-align: center;
-}
+} */
 
-#meals {
+/* #meals {
 	background-color: var(--color-background);
 	color: var(--color-header);
 	padding: 20px;
 	text-align: center;
-}
+} */
 
 /* CUISINES-RELEVANT */
-#cuisines {
+/* #cuisines {
 	background-color: var(--color-background);
 	color: var(--color-header);
 	padding: 40px 20px;
 	text-align: center;
-}
+} */
 
-.cuisines-grid {
+/* .cuisines-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 	gap: 30px;
 	justify-items: center;
 	margin-top: 15px;
 	width: 100%;
-}
+} */
 
-.cuisine-category {
+/* .cuisine-category {
 	background-color: var(--color-background);
 	border: 1px solid var(--color-border);
 	padding: 25px;
@@ -349,57 +349,57 @@ main {
 	box-shadow: none;
 	transform: none;
 	transition: none;
-}
+} */
 
 /* make section titles bigger */
-.cuisine-category h4 {
+/* .cuisine-category h4 {
 	font-size: 1.8rem;
 	margin-bottom: 15px;
 	color: var(--color-header);
-}
+} */
 
 /* remove bullets */
-.cuisine-category ul {
+/* .cuisine-category ul {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
-}
+} */
 
-.cuisine-category a {
+/* .cuisine-category a {
 	color: var(--color-header);
 	text-decoration: none;
 	font-size: 1.1rem;
 	font-weight: 500;
 	transition: color 0.2s ease;
-}
+} */
 
-.cuisine-category a:hover {
+/* .cuisine-category a:hover {
 	color: var(--color-link);
-}
+} */
 
 /* --- TASTES --- */
-#tastes {
+/* #tastes {
 	background-color: var(--color-background);
 	color: var(--color-header);
 	display: flex;
-	flex-direction: column; /* stack title above box */
+	flex-direction: column; 
 	align-items: center;
 	justify-content: center;
 	width: 100%;
 	padding: 30px 40px;
 	margin: 0;
 	text-align: center;
-}
-
+} */
+/* 
 #tastes h3 {
 	margin-bottom: 25px;
 	text-align: center;
-}
+} */
 
-.tastes-box {
+/* .tastes-box {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
@@ -410,10 +410,10 @@ main {
 	position: relative;
 	border-radius: 8px;
 	overflow: hidden;
-}
+} */
 
 /* left column: sweet/salty/umami */
-.tastes-box ul {
+/* .tastes-box ul {
 	list-style: none;
 	margin: 0;
 	padding: 60px;
@@ -425,22 +425,22 @@ main {
 	gap: 25px;
 	z-index: 2;
 	text-align: left;
-}
+} */
 
-.tastes-box a {
+/* .tastes-box a {
 	font-size: 1.8rem;
 	font-weight: 700;
 	color: var(--color-header);
 	text-decoration: none;
 	transition: color 0.3s ease;
-}
+} */
 
-.tastes-box a:hover {
+/* .tastes-box a:hover {
 	color: var(--color-link);
-}
+} */
 
 /* image on right 2/3 */
-.tastes-box::after {
+/* .tastes-box::after {
 	content: "";
 	position: absolute;
 	right: 0;
@@ -451,5 +451,5 @@ main {
 	background-size: cover;
 	background-position: center;
 	border-left: 1px solid var(--color-border);
-}
+} */
 

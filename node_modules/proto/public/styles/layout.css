@@ -1,6 +1,6 @@
 /* Layout System - Grid, Header, Main Sections */
 
-/* === HEADER === */
+/* === STICKY HEADER === */
 header {
   position: fixed;
   top: 0;
@@ -15,6 +15,11 @@ header {
   z-index: 1000;
   border-bottom: 0.5px solid var(--color-border);
 }
+
+main {
+  margin-top: 85px; /* index spacing for sticky header */
+}
+
 
 .logo-content {
   gap: 15px;
@@ -35,11 +40,6 @@ nav a {
 
 nav a:hover {
   color: var(--color-link);
-}
-
-/* === MAIN CONTENT === */
-main {
-  margin-top: 85px; /* index spacing for sticky header */
 }
 
 /* === PAGE GRID SYSTEM === */
@@ -120,6 +120,7 @@ main {
 }
 
 .mealofday-box {
+  background-color: inherit;
   display: flex;
   justify-content: center;
   align-items: center;
