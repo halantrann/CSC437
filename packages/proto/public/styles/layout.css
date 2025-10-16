@@ -20,7 +20,6 @@ main {
   margin-top: 85px; /* index spacing for sticky header */
 }
 
-
 .logo-content {
   gap: 15px;
   display: flex;
@@ -151,7 +150,6 @@ nav a:hover {
     padding: var(--spacing-lg) var(--spacing-sm);
   }
 }
-
 
 /* Tablet (768px max) -  8 columns */
 @media (max-width: 768px) {

@@ -60,7 +60,17 @@
   margin-top: 15px;
 }
 
-/* === LOGO ICON === */
+.meals-list {
+	display: flex;
+	justify-content: left;
+	align-items: left;
+	gap: 5px;
+	list-style-type: circle;
+	padding: 0;
+	flex-direction: column;
+}
+
+/* === LOGO ICON  === */
 .logo-icon {
   display: block;
   width: 60px;
@@ -68,6 +78,7 @@
   fill: currentColor;
   transform: scale(1.5) translateY(5px);
 }
+
 
 /* === BOX LINK === */
 .box-link {
@@ -142,8 +153,31 @@
   color: var(--color-link);
 }
 
+/* === DIFFICULTY RATING === */
+.difficulty-rating h2 {
+  color: var(--color-link) !important;
+}
 
-/* === RECIPE BOX ===DEADBEEF */
+/* === CHARACTER BOX === */
+#character-box {
+  background-color: var(--color-cambridgeblue);
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  border: 1px solid var(--color-border);
+}
+
+.character-icon {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  display: block;
+}
+
+/* === RECIPE BOX === */
 .recipe-box {
 	background-color: var(--color-background);
 	border-radius: 12px;
@@ -173,7 +207,27 @@
 	text-align: center;
 }
 
+.recipe-img{
+  width: 100%;
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden; 
+}
+
+.recipe-img img{
+  height: 400px; 
+  width: 100%; 
+  object-fit: cover;
+  display: block; 
+}
+
 /* === DISH PROPERTIES === */
+
+.dish-properties {
+  display:grid; 
+}
+
 .dish-properties dl {
   display: grid;
   grid-template-columns: 150px 1fr;
@@ -185,7 +239,7 @@
 
 .dish-properties dt {
   font-weight: var(--font-weight-bold);
-  color: var(--color-cambridgeblue);
+  color: black;
 }
 
 .dish-properties dd {
@@ -202,6 +256,15 @@
 
 .ingredients li {
   margin-bottom: var(--spacing-xs);
+}
+
+/* === INGREDIENTS === */
+.instructions {
+    margin-bottom: var(--spacing-md);
+}
+
+.instructions ol {
+  list-style-type: decimal; 
 }
 
 /* === TASTES BOX === */
