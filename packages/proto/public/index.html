@@ -23,6 +23,20 @@
 				<h1>The Melon Bowl</h1>
 				<p>your pocket menu for when you don't know what to eat</p>
 			</div>
+
+			<label>
+				<input type="checkbox" autocomplete="off" />
+				Dark Mode!
+			</label>
+
+			<script>
+				const page = document.body; 
+				
+				page.addEventListener("change", (event) => {
+					const checked = event.target.checked;
+					page.classList.toggle("dark-mode", checked)
+				})
+			</script> 
 			<!-- 
     <section id="search" class="search">
       <form action="/search" method="GET">

@@ -9,9 +9,22 @@
   --color-background2: #84A59D;
   --color-header2: #67807a;
 
-
   --color-header: #1b1905;
   --color-border: #1b1905;
+
+  /* Dark Mode Color Pallette */
+  body.dark-mode {
+    --color-background: #271a14;
+     --color-section: #3E4245;
+    --color-header: #a8947f; 
+    --color-link: #a6797f;
+    --color-border: #e6cbae;
+    /* --color-background: #232946; */
+    /* --color-section: #eebbc3; */
+    /* --color-header: #b8c1ec; 
+    --color-link: #b8c1ec;
+    --color-border: #b8c1ec; */
+  } 
   
   /* Section Backgrounds */
   --color-section: #709a5c;
