@@ -173,8 +173,7 @@
   border: 1px solid var(--color-border);
   overflow: hidden;
   min-height: 120px;
-    background-color: var(--color-cambridgeblue);
-
+  background-color: var(--color-cambridgeblue);
 }
 
 .character-icon-container {
