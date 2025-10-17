@@ -3,7 +3,6 @@
 :root {
   /* Primary Colors */
   --color-background: #e6cbae;
-
   --color-background2: #F7EDE2;
   --color-background3: #6A8EAE;
 
@@ -22,6 +21,7 @@
   --color-link: #CA3C25;
   --color-hyundaiyellow: #F6BD60;
   --color-cambridgeblue: #84A59D;
+  --color-charbackground: #76948c;
   --color-tearose: #F5CAC3;
   --color-lightcoral: #F28482;
   --color-lemonchiffon: #FFFBBD;

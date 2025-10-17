@@ -61,13 +61,18 @@
 }
 
 .meals-list {
-	display: flex;
-	justify-content: left;
-	align-items: left;
-	gap: 5px;
-	list-style-type: circle;
-	padding: 0;
-	flex-direction: column;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  list-style-type: circle;
+  margin-left: 30px;
+  flex-direction: column;
+}
+
+.meals-list a {
+  color: inherit; 
+  text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
 /* === LOGO ICON  === */
@@ -103,13 +108,13 @@
 
 /* === MEAL OF DAY === */
 .mealofday-box {
-	background-color: inherit;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 20px; 
-	gap: 20px;
-	flex-wrap: wrap;
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 
@@ -157,75 +162,100 @@
 .difficulty-rating h2 {
   color: var(--color-link) !important;
 }
-
 /* === CHARACTER BOX === */
 #character-box {
-  background-color: var(--color-cambridgeblue);
   margin-top: var(--spacing-sm);
   margin-bottom: var(--spacing-md);
   border-radius: var(--radius-md);
   display: flex;
-  flex-direction: column;
-  align-items: left;
+  flex-direction: row;
+  align-items: stretch;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  min-height: 120px;
+    background-color: var(--color-cambridgeblue);
+
+}
+
+.character-icon-container {
+  width: 30%;
+  background-color: var(--color-cambridgeblue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
   border: 1px solid var(--color-border);
 }
 
 .character-icon {
   width: 100%;
-  max-width: 200px;
+  max-width: 100%;
   height: auto;
   display: block;
+  transform: scale(1.27); 
+}
+
+.character-dialogue {
+  width: 66.67%;
+  background-color: var(--color-cambridgeblue);
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-lg);
+}
+
+.character-dialogue p {
+  margin: 0;
+  font-family: var(--font-family-heading);
 }
 
 /* === RECIPE BOX === */
 .recipe-box {
-	background-color: var(--color-background);
-	border-radius: 12px;
-	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-	padding: 20px;
-	max-width: 700px;
-	margin: 40px auto;
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
+  background-color: var(--color-background);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 700px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .recipe-box h2 {
-	margin-top: 20px;
-	color: var(--color-cambridgeblue); 
+  color: var(--color-cambridgeblue);
 }
 
 .recipe-box dl,
 .recipe-box ol {
-	text-align: left;
-	margin-left: 20px;
+  text-align: left;
+  margin-left: 20px;
 }
 
 .recipe-box footer {
-	border-top: 0.2px solid var(--color-border);
-	padding-top: 10px;
-	text-align: center;
+  border-top: 0.2px solid var(--color-border);
+  padding-top: 10px;
+  text-align: center;
 }
 
-.recipe-img{
+.recipe-img {
   width: 100%;
   object-fit: cover;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  overflow: hidden; 
+  overflow: hidden;
 }
 
-.recipe-img img{
-  height: 400px; 
-  width: 100%; 
+.recipe-img img {
+  height: 400px;
+  width: 100%;
   object-fit: cover;
-  display: block; 
+  display: block;
 }
 
 /* === DISH PROPERTIES === */
 
 .dish-properties {
-  display:grid; 
+  display: grid;
 }
 
 .dish-properties dl {
@@ -260,11 +290,11 @@
 
 /* === INGREDIENTS === */
 .instructions {
-    margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
 }
 
 .instructions ol {
-  list-style-type: decimal; 
+  list-style-type: decimal;
 }
 
 /* === TASTES BOX === */
@@ -320,6 +350,27 @@
   background-position: center;
   border-left: 1px solid var(--color-border);
 }
+
+/* === MISCELLANEOUS === */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 0.5px solid var(--color-border);
+  margin: 1em 0;
+  padding: 0;
+}
+
+footer nav a:first-child:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  background-color: var(--color-link);
+  margin: 0 20px 0 30px;
+  vertical-align: middle;
+}
+
 
 /* === RESPONSIVE ADJUSTMENTS === */
 @media (max-width: 768px) {
