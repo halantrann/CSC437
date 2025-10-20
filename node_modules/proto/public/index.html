@@ -24,19 +24,32 @@
 				<p>your pocket menu for when you don't know what to eat</p>
 			</div>
 
-			<label>
-				<input type="checkbox" autocomplete="off" />
+			<label onchange = "relayDarkMode(event)"">
+				<input type="checkbox" />
 				Dark Mode!
-			</label>
+			</label> 
 
 			<script>
+				function relayDarkMode(event){
+					event.stopPropagation(); // prevent bubbling 
+
+					const checked = event.target.checked; 
+					const customEvent = new CustomEvent(
+						"dark-mode:toggle", {
+						bubbles: true,
+						detail: { checked },
+  					});
+
+					event.target.dispatchEvent(customEvent);
+				}
+				
 				const page = document.body; 
 				
-				page.addEventListener("change", (event) => {
-					const checked = event.target.checked;
+				page.addEventListener("dark-mode:toggle", (event) => {
+					const checked = event.detail.checked;
 					page.classList.toggle("dark-mode", checked)
 				})
-			</script> 
+			</script>
 			<!-- 
     <section id="search" class="search">
       <form action="/search" method="GET">
