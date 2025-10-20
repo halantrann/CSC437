@@ -66,6 +66,7 @@
   align-items: left;
   list-style-type: circle;
   margin-left: 30px;
+  margin-bottom: 10px;
   flex-direction: column;
 }
 
@@ -221,7 +222,7 @@
 }
 
 .recipe-box h2 {
-  color: var(--color-cambridgeblue);
+  color: var(--color-header2);
 }
 
 .recipe-box dl,
@@ -268,7 +269,7 @@
 
 .dish-properties dt {
   font-weight: var(--font-weight-bold);
-  color: black;
+  color: var(--color-emphasistext);
 }
 
 .dish-properties dd {

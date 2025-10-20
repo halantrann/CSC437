@@ -7,18 +7,29 @@
   --color-background3: #6A8EAE;
 
   --color-background2: #84A59D;
-  --color-header2: #67807a;
+  --color-header2: #84A59D; 
 
   --color-header: #1b1905;
   --color-border: #1b1905;
+  --color-emphasistext: black; 
+
+  /* --darkmode-text: "Dark Mode!"; */
 
   /* Dark Mode Color Pallette */
   body.dark-mode {
     --color-background: #271a14;
      --color-section: #3E4245;
+
     --color-header: #a8947f; 
-    --color-link: #a6797f;
+    --color-header2: #6c7177;
+    --color-link: #b7606d;
+    --color-emphasistext: #a8947f; 
+
+
     --color-border: #e6cbae;
+    --color-cambridgeblue: #3E4245; 
+    --shadow-glow: 0 0 15px #b7606d;
+    /* --darkmode-text: "Light Mode!";  */
     /* --color-background: #232946; */
     /* --color-section: #eebbc3; */
     /* --color-header: #b8c1ec; 
@@ -62,7 +73,7 @@
   --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.2);
-  --shadow-glow: 0 0 15px var(--color-link);
+  --shadow-glow: 0 0 15px #CA3C25;
   
   /* Transitions */
   --transition-fast: 0.2s ease;

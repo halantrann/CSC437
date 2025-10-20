@@ -24,6 +24,11 @@ main {
   gap: 15px;
   display: flex;
   align-items: center;
+  width: 100%; 
+}
+
+header label{
+  margin-left: auto; 
 }
 
 .title-block {
