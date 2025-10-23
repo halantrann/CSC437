@@ -16,119 +16,79 @@
 <body>
   <header>
     <div class="logo-content">
-			<svg class="icon logo-icon">
-				<use href="/icons/logo.svg#melonbowllogo" />
-			</svg>
+      <svg class="icon logo-icon">
+        <use href="/icons/logo.svg#melonbowllogo" />
+      </svg>
       <div class="title-block">
         <h1>The Melon Bowl</h1>
         <p>your pocket menu for when you don't know what to eat</p>
       </div>
 
-      
-			<label onchange = "relayDarkMode(event)">
-				<input type="checkbox" />
-				Dark Mode!
-			</label> 
 
-			<script>
-				function relayDarkMode(event){
-					event.stopPropagation(); // prevent bubbling 
+      <label onchange="relayDarkMode(event)">
+        <input type="checkbox" />
+        Dark Mode!
+      </label>
 
-					const checked = event.target.checked; 
-					const customEvent = new CustomEvent(
-						"dark-mode:toggle", {
-						bubbles: true,
-						detail: { checked },
-  					});
+      <script>
+        function relayDarkMode(event) {
+          event.stopPropagation(); // prevent bubbling 
 
-					event.target.dispatchEvent(customEvent);
-				}
-				
-				const page = document.body; 
-				
-				page.addEventListener("dark-mode:toggle", (event) => {
-					const checked = event.detail.checked;
-					page.classList.toggle("dark-mode", checked)
-				})
-			</script>
+          const checked = event.target.checked;
+          const customEvent = new CustomEvent(
+            "dark-mode:toggle", {
+            bubbles: true,
+            detail: { checked },
+          });
+
+          event.target.dispatchEvent(customEvent);
+        }
+
+        const page = document.body;
+
+        page.addEventListener("dark-mode:toggle", (event) => {
+          const checked = event.detail.checked;
+          page.classList.toggle("dark-mode", checked)
+        })
+      </script>
+
+      <script type="module">
+        import { define } from "@calpoly/mustang";
+        import { DishElement } from "/src/dish.js";
+
+        define({
+          "mbowl-dish": DishElement
+        })
+      </script>
   </header>
-  
 
   <main>
-    <div class="recipe-box">
-     
-      <article class="dish">
-        <section class="recipe-img">
-          <img src="../images/waffleimage.jpg" alt="Golden waffles garnished with fresh berries and syrup.">
-        </section>
+    <mbowl-dish name="Waffles" image="/images/waffleimage.jpg" difficulty="easy" meal-type="Breakfast"
+      cuisine="American" taste="Sweet" calories="350 kcal per serving" cook-time="20 min">
+      <span slot="ingredients">
+        <li>2 cups all-purpose flour</li>
+        <li>2 tablespoons sugar</li>
+        <li>1 tablespoon baking powder</li>
+        <li>½ teaspoon salt</li>
+        <li>2 large eggs</li>
+        <li>1¾ cups milk</li>
+        <li>½ cup melted butter (or vegetable oil)</li>
+        <li>1 teaspoon vanilla extract</li>
+        <li>Optional toppings: syrup, berries, whipped cream</li>
+      </span>
 
-        <section class="difficulty-rating">
-          <h2>Cooking Difficulty: </h2>
-          <svg class="icon meals-icon">
-					</svg>
-          <hr>
+      <span slot="instructions">
+        <li>Preheat your waffle iron according to the manufacturer’s instructions.</li>
+        <li>In a large bowl, whisk together flour, sugar, baking powder, and salt.</li>
+        <li>In another bowl, beat eggs and then mix in milk, melted butter, and vanilla.</li>
+        <li>Pour wet ingredients into dry ingredients and stir until just combined (batter should be slightly
+          lumpy).
+        </li>
+        <li>Grease the waffle iron lightly, then pour in batter and cook until golden brown and crisp.</li>
+        <li>Serve warm with syrup, berries, or your favorite toppings.</li>
+      </span>
 
-        </section>
-
-        <section class="dish-properties">
-          <h2>Dish</h2>
-          <dl>
-            <dt>Type of Meal</dt>
-            <dd>Breakfast</dd>
-
-            <dt>Cuisine</dt>
-            <dd>American</dd>
-
-            <dt>Taste</dt>
-            <dd>Sweet</dd>
-
-            <dt>Calories</dt>
-            <dd>350 kcal per serving</dd>
-
-            <dt>Time to Cook</dt>
-            <dd>20 min</dd>
-          </dl>
-        </section>
-
-        <section class="ingredients">
-          <h2>Ingredients</h2>
-          <dd>
-            <ul>
-              <li>2 cups all-purpose flour</li>
-              <li>2 tablespoons sugar</li>
-              <li>1 tablespoon baking powder</li>
-              <li>½ teaspoon salt</li>
-              <li>2 large eggs</li>
-              <li>1¾ cups milk</li>
-              <li>½ cup melted butter (or vegetable oil)</li>
-              <li>1 teaspoon vanilla extract</li>
-              <li>Optional toppings: syrup, berries, whipped cream</li>
-            </ul>
-          </dd>
-        </section>
-
-        <section class="instructions">
-          <h2>Instructions</h2>
-          <ol>
-            <li>Preheat your waffle iron according to the manufacturer’s instructions.</li>
-            <li>In a large bowl, whisk together flour, sugar, baking powder, and salt.</li>
-            <li>In another bowl, beat eggs and then mix in milk, melted butter, and vanilla.</li>
-            <li>Pour wet ingredients into dry ingredients and stir until just combined (batter should be slightly
-              lumpy).
-            </li>
-            <li>Grease the waffle iron lightly, then pour in batter and cook until golden brown and crisp.</li>
-            <li>Serve warm with syrup, berries, or your favorite toppings.</li>
-          </ol>
-        </section>
-
-        <footer>
-          <nav>
-            <a href="../meals/breakfast.html">Back to Breakfast</a>
-            <a href="../index.html">Back to Menu</a>
-          </nav>
-        </footer>
-      </article>
-    </div>
+    </mbowl-dish>
   </main>
 </body>
 
