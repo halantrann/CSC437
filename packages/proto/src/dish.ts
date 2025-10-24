@@ -80,7 +80,7 @@ export class DishElement extends LitElement {
       </div>
 		`;
   }
-  static styles = [ reset.styles, css`
+  static styles = [reset.styles, css`
       
     .dish-properties {
       display: grid;
@@ -150,6 +150,20 @@ export class DishElement extends LitElement {
       text-align: center;
     }
 
+    footer nav a {
+      color: var(--color-link);
+    }
+    
+    footer nav a:first-child:not(:last-child)::after {
+      content: "";
+      display: inline-block;
+      width: 1px;
+      height: 1em;
+      background-color: var(--color-link);
+      margin: 0 20px 0 30px;
+      vertical-align: middle;
+    }
+
     .recipe-img {
       width: 100%;
       object-fit: cover;
@@ -163,6 +177,19 @@ export class DishElement extends LitElement {
       width: 100%;
       object-fit: cover;
       display: block;
+    }
+
+    hr {
+      display: block;
+      height: 1px;
+      border: 0;
+      border-top: 0.5px solid var(--color-border);
+      margin: 1em 0;
+      padding: 0;
+    }
+
+    .difficulty-rating h2 {
+      color: var(--color-link) !important;
     }
 
   `];
