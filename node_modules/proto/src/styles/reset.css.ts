@@ -3,7 +3,6 @@ import { css } from "lit";
 const styles = css`
   * {
     margin: 0;
-    padding: 0;
     box-sizing: border-box;
   }
 
@@ -25,13 +24,13 @@ const styles = css`
     font-weight: var(--font-weight-bold);
   }
 
-  ul, ol {
-    list-style: none;
-  }
-
   a {
     text-decoration: none;
     color: inherit;
+  }
+
+  ul, ol {
+    padding-left: 20px;
   }
 `;
 

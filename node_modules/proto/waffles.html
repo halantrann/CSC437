@@ -64,17 +64,18 @@
   </header>
 
   <main>
+      <mbowl-dish
+        name="Pandan Waffles" 
+        img-src="/images/pandanwaffles.jpg"
+        mealType="Breakfast"
+        cuisine="American"
+        taste="Sweet"
+        calories="350 kcal per serving"
+        prepTime="25 min"
+        cookTime="10 min"
+      >
 
-  <mbowl-dish
-    name="Pandan Waffles" 
-    img-src="/images/pandanwaffles.jpg"
-    meal-type="Breakfast"
-    cuisine="American"
-    taste="Sweet"
-    calories="350 kcal per serving"
-    cook-time="20 min"
-  >
-      <span slot="ingredients">
+      <ul slot="ingredients">
         <li>2 cups all-purpose flour</li>
         <li>2 tablespoons sugar</li>
         <li>1 tablespoon baking powder</li>
@@ -84,20 +85,17 @@
         <li>½ cup melted butter (or vegetable oil)</li>
         <li>1 teaspoon vanilla extract</li>
         <li>Optional toppings: syrup, berries, whipped cream</li>
-      </span>
+      </ul>
 
-      <span slot="instructions">
+      <ol slot="instructions">
         <li>Preheat your waffle iron according to the manufacturer’s instructions.</li>
         <li>In a large bowl, whisk together flour, sugar, baking powder, and salt.</li>
         <li>In another bowl, beat eggs and then mix in milk, melted butter, and vanilla.</li>
-        <li>Pour wet ingredients into dry ingredients and stir until just combined (batter should be slightly
-          lumpy).
-        </li>
+        <li>Pour wet ingredients into dry ingredients and stir until just combined (batter should be slightly lumpy).</li>
         <li>Grease the waffle iron lightly, then pour in batter and cook until golden brown and crisp.</li>
         <li>Serve warm with syrup, berries, or your favorite toppings.</li>
-      </span>
-
-    </mbowl-dish>
+      </ol>
+      </mbowl-dish>
   </main>
 </body>
 

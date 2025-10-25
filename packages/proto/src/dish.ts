@@ -11,7 +11,8 @@ export class DishElement extends LitElement {
   @property() accessor cuisine: string | undefined;
   @property() accessor taste: string | undefined;
   @property() accessor calories: string | undefined;
-  @property() accessor timeToCook: string | undefined;
+  @property() accessor prepTime: string | undefined;
+  @property() accessor cookTime: string | undefined;
 
   override render() {
     return html`
@@ -44,40 +45,30 @@ export class DishElement extends LitElement {
               <dt>Calories</dt>
               <dd>${this.calories}</dd>
 
+              <dt>Prep Time</dt>
+              <dd>${this.prepTime}</dd>
+
               <dt>Time to Cook</dt>
-              <dd>${this.timeToCook}</dd>
+              <dd>${this.cookTime}</dd>
             </dl>
           </section>
 
           <section class="ingredients">
             <h2>Ingredients</h2>
-            <dd>
+            <slot name="ingredients"> 
               <ul>
-                <li>2 cups all-purpose flour</li>
-                <li>2 tablespoons sugar</li>
-                <li>1 tablespoon baking powder</li>
-                <li>½ teaspoon salt</li>
-                <li>2 large eggs</li>
-                <li>1¾ cups milk</li>
-                <li>½ cup melted butter (or vegetable oil)</li>
-                <li>1 teaspoon vanilla extract</li>
-                <li>Optional toppings: syrup, berries, whipped cream</li>
+                <li>No ingredients specified.</li>
               </ul>
-            </dd>
+            </slot>
           </section>
 
           <section class="instructions">
             <h2>Instructions</h2>
+            <slot name="instructions"> 
             <ol>
-              <li>Preheat your waffle iron according to the manufacturer’s instructions.</li>
-              <li>In a large bowl, whisk together flour, sugar, baking powder, and salt.</li>
-              <li>In another bowl, beat eggs and then mix in milk, melted butter, and vanilla.</li>
-              <li>Pour wet ingredients into dry ingredients and stir until just combined (batter should be slightly
-                lumpy).
-              </li>
-              <li>Grease the waffle iron lightly, then pour in batter and cook until golden brown and crisp.</li>
-              <li>Serve warm with syrup, berries, or your favorite toppings.</li>
+              <li>No instructions specified.</li>
             </ol>
+            </slot> 
           </section>
 
           <footer>
@@ -115,23 +106,34 @@ export class DishElement extends LitElement {
     }
 
     .ingredients ul {
-      list-style-type: disc;
-      padding-left: 25px;
-      margin-top: var(--spacing-sm);
-      text-align: left;
-    }
+    list-style-type: disc;
+    padding-left: 25px;
+    margin-top: var(--spacing-sm);
+    text-align: left;
+  }
 
-    .ingredients li {
-      margin-bottom: var(--spacing-xs);
-    }
+  .ingredients li {
+    margin-bottom: var(--spacing-xs);
+  }
 
-    .instructions {
-      margin-bottom: var(--spacing-md);
-    }
+  .instructions ol {
+    list-style-type: decimal;
+    padding-left: 25px;
+    margin-top: var(--spacing-sm);
+    text-align: left;
+  }
 
-    .instructions ol {
-      list-style-type: decimal;
-    }
+  .instructions li {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .ingredients ::slotted(ul),
+  .instructions ::slotted(ol) {
+    list-style-position: outside;
+    padding-left: 25px;
+    margin-top: var(--spacing-sm);
+    text-align: left;
+  }
 
     .recipe-box {
       background-color: var(--color-background);
@@ -201,9 +203,11 @@ export class DishElement extends LitElement {
       border-top: 0.5px solid var(--color-border);
       margin: 1em 0;
       padding: 0;
+    }   
+       
+    section {
+      margin-bottom: var(--spacing-md, 24px);
     }
-
-   
 
   `];
 
