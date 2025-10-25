@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Cantonese Minced Beef and Eggs - The Melon Bowl</title>
+	<link rel="stylesheet" href="/styles/reset.css">
+	<link rel="stylesheet" href="/styles/tokens.css">
+	<link rel="stylesheet" href="/styles/base.css">
+	<link rel="stylesheet" href="/styles/boxes.css">
+	<link rel="stylesheet" href="/styles/layout.css">
+	<link rel="stylesheet" href="/styles/recipes.css">
+</head>
+
+<body>
+	<header>
+		<div class="logo-content">
+			<svg class="icon logo-icon">
+				<use href="/icons/logo.svg#melonbowllogo" />
+			</svg>
+			<div class="title-block">
+				<h1>The Melon Bowl</h1>
+				<p>your pocket menu for when you don't know what to eat</p>
+			</div>
+
+			<label onchange="relayDarkMode(event)">
+				<input type="checkbox" />
+				Dark Mode!
+			</label>
+
+			<script>
+				function relayDarkMode(event) {
+					event.stopPropagation();
+					const checked = event.target.checked;
+					const customEvent = new CustomEvent(
+						"dark-mode:toggle", {
+						bubbles: true,
+						detail: { checked },
+					});
+					event.target.dispatchEvent(customEvent);
+				}
+
+				const page = document.body;
+				page.addEventListener("dark-mode:toggle", (event) => {
+					const checked = event.detail.checked;
+					page.classList.toggle("dark-mode", checked)
+				})
+			</script>
+
+			<script type="module">
+				import { define } from "@calpoly/mustang";
+				import { DishElement } from "/src/dish.js";
+
+				define({
+					"mbowl-dish": DishElement
+				})
+			</script>
+		</div>
+	</header>
+
+	<main>
+		<mbowl-dish 
+			name="Greek Yogurt Bowl" 
+			img-src="/images/greekyogurtbowl.jpg" 
+			mealType="Dessert" 
+			cuisine="American"
+			taste="Sweet" 
+			calories="1300 kcal per serving" 
+			prepTime="5 min" 
+			cookTime="1 min">
+
+			<ul slot="ingredients">
+				<li>15g powdered peanut butter (PB2)</li>
+				<li>30g oat powder (blended oats)</li>
+				<li>8g honey (or non-sugar syrup)</li>
+				<li>150g non-fat greek yogurt</li>
+				<li>30g berries (e.g., raspberries, strawberries)</li>
+				<li>Dark chocolate square (optional)</li>
+			</ul>
+
+			<ol slot="instructions">
+				<li>Measure all ingredients and put in bowl.</li>
+				<li>Mix.</li>
+				<li>Top with berries of choice and chocolate!</li>
+			</ol>
+		</mbowl-dish>
+	</main>
+</body>
+
+</html>
