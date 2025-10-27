@@ -1,0 +1,455 @@
+/* ORIGINAL: DON'T USE THIS FROM NOW ON, HERE JUST AS BACKUP  */
+
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap');
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Pixelify Sans', sans-serif !important;
+	font-weight: 700;
+}
+
+/* STICKY HEADER */
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: var(--color-background);
+	color: var(--color-header);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 20px;
+	z-index: 1000;
+	border: 0.5px solid var(--color-border);
+}
+
+a {
+	color: var(--color-header);
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+a:hover {
+	color: var(--color-link);
+}
+
+/* NAVIGATION LINKS */
+nav a {
+	color: var(--color-link);
+	margin-left: 10px;
+}
+
+nav a:hover {
+	color: var(--color-link);
+}
+
+main {
+	margin-top: 125px; /* to compensate for header height */
+}
+
+.logo-content {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+/* .title-block {
+	display: flex;
+	flex-direction: column;
+} */
+
+/* 
+.search form {
+	display: flex;
+	gap: 5px;
+}
+
+.search input {
+	flex: 1;
+	padding: 3px;
+	border: 1px solid var(--color-header);
+	border-radius: 4px;
+}
+
+.search button {
+	padding: 8px 12px;
+	border: none;
+	background-color: var(--color-link);
+	color: white; 
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.search button:hover {
+	background-color: var(--color-link);
+} */
+
+
+.tastes-box a {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--color-header);
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+
+.cuisine-category {
+	background-color: var(--color-background);
+	border: 1px solid var(--color-border);
+	padding: 20px;
+	width: 100%;
+	max-width: 300px;
+	box-shadow: none; /* remove shadows */
+	transition: none; /* disable hover motion */
+}
+
+.cuisine-category:hover {
+	transform: none;
+	box-shadow: none;
+}
+
+/* .mealofday-box {
+	background-color: inherit;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px; 
+	gap: 20px;
+	flex-wrap: wrap;
+} */
+/* 
+.box {
+	background-color: var(--color-background);
+	padding: 30px 30px;
+	text-align: center;
+	border-radius: 10px;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 10%);
+	margin: 10px;
+} */
+
+/* .middle.box {
+	flex: 2;
+	min-height: 200px;
+	background-color: var(--color-section);
+}
+
+.side.box {
+	flex: 1;
+	min-height: 100px;
+} */
+
+
+/* .meals-list {
+	display: flex;
+	justify-content: left;
+	align-items: left;
+	gap: 5px;
+	list-style-type: circle;
+	padding: 0;
+	flex-direction: column;
+}
+
+.meals-grid {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	flex-wrap: wrap;
+	margin-top: 20px;
+}
+
+.meals.box {
+    display: flex;             
+    flex-direction: column;    
+    align-items: center;       
+    justify-content: center;   
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-section);
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px;            
+} 
+*/
+
+/* .meals.box span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.meal-text{
+	display:block;
+	margin-bottom: 0.5em;
+} */
+
+/* .box-link {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	color: inherit;
+	background-color: var(--color-background);
+	border-radius: 10px;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+	padding: 30px;
+	text-align: center;
+	font-size: 1.2rem;
+	font-weight: bold;
+} */
+
+
+/* size adjustments for meal of day boxes (side vs middle) */
+/* .side {
+	flex: 1;
+	min-height: 100px;
+} */
+/* 
+.middle {
+	flex: 2;
+	min-height: 200px;
+} */
+
+/* .box-link:hover .box {
+	transform: translateY(-5px);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+} */
+
+/* 
+.mealofday-box .box-link {
+	border: 1px solid var(--color-border);
+	border-radius: 10px;
+	transition: transform 0.2s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.mealofday-box .box-link:hover {
+	box-shadow: 0 0 15px var(--color-link);
+} */
+/* 
+.box:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+} */
+
+/* CUISINE NO HOVER/SHADOW
+.cuisine-category,
+.cuisine-category:hover,
+.cuisine-category.box:hover {
+	box-shadow: none !important;
+	transform: none !important;
+}
+*/
+/* 
+.recipe-box {
+	background-color: var(--color-background);
+	border-radius: 12px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	max-width: 700px;
+	margin: 40px auto;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.recipe-box h2 {
+	margin-top: 20px;
+	color: var(--color-cambridgeblue); 
+}
+
+.recipe-box dl,
+.recipe-box ol {
+	text-align: left;
+	margin-left: 20px;
+}
+
+.recipe-box footer {
+	border-top: 0.2px solid var(--color-border);
+	padding-top: 10px;
+	text-align: center;
+} */
+
+/* ACTUAL RECIPE (E.G. WAFFLES) STUFF  */
+
+.dish-properties dl {
+	display: grid;
+	grid-template-columns: 150px 1fr;
+	row-gap: 8px;
+	column-gap: 20px;
+	margin-top: 10px;
+	text-align: left;
+}
+
+.dish-properties dt {
+	font-weight: bold;
+	color: var(--color-cambridgeblue);
+}
+
+.dish-properties dd {
+	margin: 0;
+} 
+
+Ingredients list styling
+.ingredients ul {
+	list-style-type: disc;
+	padding-left: 25px;
+	margin-top: 10px;
+	text-align: left;
+}
+
+.ingredients li {
+	margin-bottom: 5px;
+} 
+
+/* .mealofday-background {
+	background-color: var(--color-section);
+} */
+/* 
+#meal-of-the-day {
+	background-color: var(--color-section);
+	padding: 70px 20px;
+	text-align: center;
+} */
+
+/* #meals {
+	background-color: var(--color-background);
+	color: var(--color-header);
+	padding: 20px;
+	text-align: center;
+} */
+
+/* CUISINES-RELEVANT */
+/* #cuisines {
+	background-color: var(--color-background);
+	color: var(--color-header);
+	padding: 40px 20px;
+	text-align: center;
+} */
+
+/* .cuisines-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 30px;
+	justify-items: center;
+	margin-top: 15px;
+	width: 100%;
+} */
+
+/* .cuisine-category {
+	background-color: var(--color-background);
+	border: 1px solid var(--color-border);
+	padding: 25px;
+	width: 100%;
+	max-width: 300px;
+	box-shadow: none;
+	transform: none;
+	transition: none;
+} */
+
+/* make section titles bigger */
+/* .cuisine-category h4 {
+	font-size: 1.8rem;
+	margin-bottom: 15px;
+	color: var(--color-header);
+} */
+
+/* remove bullets */
+/* .cuisine-category ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+} */
+
+/* .cuisine-category a {
+	color: var(--color-header);
+	text-decoration: none;
+	font-size: 1.1rem;
+	font-weight: 500;
+	transition: color 0.2s ease;
+} */
+
+/* .cuisine-category a:hover {
+	color: var(--color-link);
+} */
+
+/* --- TASTES --- */
+/* #tastes {
+	background-color: var(--color-background);
+	color: var(--color-header);
+	display: flex;
+	flex-direction: column; 
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 30px 40px;
+	margin: 0;
+	text-align: center;
+} */
+/* 
+#tastes h3 {
+	margin-bottom: 25px;
+	text-align: center;
+} */
+
+/* .tastes-box {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+	height: 350px; 
+	background-color: var(--color-section);
+	border: 1px solid var(--color-border);
+	position: relative;
+	border-radius: 8px;
+	overflow: hidden;
+} */
+
+/* left column: sweet/salty/umami */
+/* .tastes-box ul {
+	list-style: none;
+	margin: 0;
+	padding: 60px;
+	width: 33%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	gap: 25px;
+	z-index: 2;
+	text-align: left;
+} */
+
+/* .tastes-box a {
+	font-size: 1.8rem;
+	font-weight: 700;
+	color: var(--color-header);
+	text-decoration: none;
+	transition: color 0.3s ease;
+} */
+
+/* .tastes-box a:hover {
+	color: var(--color-link);
+} */
+
+/* image on right 2/3 */
+/* .tastes-box::after {
+	content: "";
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 67%;
+	height: 100%;
+	background-image: url("/images/waffleimage.jpg");
+	background-size: cover;
+	background-position: center;
+	border-left: 1px solid var(--color-border);
+} */
+

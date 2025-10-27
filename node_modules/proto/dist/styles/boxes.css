@@ -1,0 +1,414 @@
+/* Boxes, Cards, Buttons, etc. */
+
+/* === BASE BOX === */
+.box {
+  background-color: var(--color-background);
+  padding: var(--spacing-lg);
+  text-align: center;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  margin: var(--spacing-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-medium);
+}
+
+.box:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* meal of the day boxes */
+.box.middle,
+.middle {
+  flex: 2;
+  min-height: 200px;
+  background-color: var(--color-section);
+}
+
+.box.side,
+.side {
+  flex: 1;
+  min-height: 100px;
+}
+
+/* === MEALS BOX === */
+.meals.box {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-section);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-bold);
+  padding: 15px;
+}
+
+.meals.box svg.meals-icon {
+  display: block;
+  width: 100px;
+  height: auto;
+  fill: currentColor;
+}
+
+.meals.box span {
+  display: block;
+  margin-top: 15px;
+}
+
+.meals-list {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  list-style-type: circle;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  flex-direction: column;
+}
+
+.meals-list a {
+  color: inherit; 
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+/* === LOGO ICON  === */
+.logo-icon {
+  display: block;
+  width: 60px;
+  height: 60px;
+  fill: currentColor;
+  transform: scale(1.5) translateY(5px);
+}
+
+
+/* === BOX LINK === */
+.box-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  background-color: var(--color-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.box-link:hover .box {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* === MEAL OF DAY === */
+.mealofday-box {
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+
+.mealofday-box .box-link {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition-fast), box-shadow var(--transition-medium);
+}
+
+.mealofday-box .box-link:hover {
+  box-shadow: var(--shadow-glow);
+}
+
+/* === CUISINE CATEGORY === */
+.cuisine-category {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  padding: 25px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.cuisine-category h4 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.cuisine-category ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cuisine-category a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.cuisine-category a:hover {
+  color: var(--color-link);
+}
+
+/* === DIFFICULTY RATING === */
+.difficulty-rating h2 {
+  color: var(--color-link) !important;
+}
+/* === CHARACTER BOX === */
+#character-box {
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  min-height: 120px;
+  background-color: var(--color-cambridgeblue);
+}
+
+.character-icon-container {
+  width: 30%;
+  background-color: var(--color-cambridgeblue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border);
+}
+
+.character-icon {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  transform: scale(1.27); 
+}
+
+.character-dialogue {
+  width: 66.67%;
+  background-color: var(--color-cambridgeblue);
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-lg);
+}
+
+.character-dialogue p {
+  margin: 0;
+  font-family: var(--font-family-heading);
+}
+
+/* === RECIPE BOX === */
+.recipe-box {
+  background-color: var(--color-background);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 700px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.recipe-box h2 {
+  color: var(--color-header2);
+}
+
+.recipe-box dl,
+.recipe-box ol {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.recipe-box footer {
+  border-top: 0.2px solid var(--color-border);
+  padding-top: 10px;
+  text-align: center;
+}
+
+.recipe-img {
+  width: 100%;
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.recipe-img img {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* === DISH PROPERTIES === */
+
+.dish-properties {
+  display: grid;
+}
+
+.dish-properties dl {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  row-gap: 8px;
+  column-gap: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  text-align: left;
+}
+
+.dish-properties dt {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-emphasistext);
+}
+
+.dish-properties dd {
+  margin: 0;
+}
+
+/* === INGREDIENTS === */
+.ingredients ul {
+  list-style-type: disc;
+  padding-left: 25px;
+  margin-top: var(--spacing-sm);
+  text-align: left;
+}
+
+.ingredients li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* === INGREDIENTS === */
+.instructions {
+  margin-bottom: var(--spacing-md);
+}
+
+.instructions ol {
+  list-style-type: decimal;
+}
+
+/* === TASTES BOX === */
+.tastes-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 350px;
+  background-color: var(--color-section);
+  border: 1px solid var(--color-border);
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.tastes-box ul {
+  margin: 0;
+  padding: 60px;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 25px;
+  z-index: 2;
+  text-align: left;
+}
+
+.tastes-box li {
+  font-size: 1.8rem;
+}
+
+.tastes-box a {
+  font-size: 1.8rem;
+  font-weight: var(--font-weight-bold);
+  transition: color var(--transition-medium);
+}
+
+.tastes-box a:hover {
+  color: var(--color-link);
+}
+
+.tastes-box::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 67%;
+  height: 100%;
+  background-image: url("/images/waffleimage.jpg");
+  background-size: cover;
+  background-position: center;
+  border-left: 1px solid var(--color-border);
+}
+
+/* === MISCELLANEOUS === */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 0.5px solid var(--color-border);
+  margin: 1em 0;
+  padding: 0;
+}
+
+footer nav a:first-child:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  background-color: var(--color-link);
+  margin: 0 20px 0 30px;
+  vertical-align: middle;
+}
+
+
+/* === RESPONSIVE ADJUSTMENTS === */
+@media (max-width: 768px) {
+  .tastes-box {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .tastes-box ul {
+    width: 100%;
+    padding: var(--spacing-lg);
+  }
+
+  .tastes-box::after {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .recipe-box {
+    padding: var(--spacing-sm);
+  }
+
+  .meals.box {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cuisine-category {
+    max-width: 100%;
+  }
+
+  .tastes-box a,
+  .tastes-box li {
+    font-size: 1.4rem;
+  }
+}

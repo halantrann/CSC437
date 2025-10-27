@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>The Melon Bowl</title>
+	<link rel="stylesheet" href="/styles/reset.css">
+	<link rel="stylesheet" href="/styles/tokens.css">
+	<link rel="stylesheet" href="/styles/base.css">
+	<link rel="stylesheet" href="/styles/layout.css">
+	<link rel="stylesheet" href="/styles/boxes.css">
+</head>
+
+<body>
+	<header>
+		<div class="logo-content">
+			<svg class="icon logo-icon">
+				<use href="/icons/logo.svg#melonbowllogo" />
+			</svg>
+
+			<div class="title-block">
+				<h1>The Melon Bowl</h1>
+				<p>your pocket menu for when you don't know what to eat</p>
+			</div>
+
+			<label onchange = "relayDarkMode(event)">
+				<input type="checkbox" />
+				Dark Mode!
+			</label> 
+
+			<script>
+				function relayDarkMode(event){
+					event.stopPropagation(); // prevent bubbling 
+
+					const checked = event.target.checked; 
+					const customEvent = new CustomEvent(
+						"dark-mode:toggle", {
+						bubbles: true,
+						detail: { checked },
+  					});
+
+					event.target.dispatchEvent(customEvent);
+				}
+				
+				const page = document.body; 
+				
+				page.addEventListener("dark-mode:toggle", (event) => {
+					const checked = event.detail.checked;
+					page.classList.toggle("dark-mode", checked)
+				})
+			</script>
+			<!-- 
+    <section id="search" class="search">
+      <form action="/search" method="GET">
+        <input type="text" name="q" placeholder="search for your favorite meals, tastes, cuisines..." />
+        <button type="submit">Search</button>
+      </form>
+    </section> -->
+		</div>
+	</header>
+
+	<main>
+		<!-- MEAL OF THE DAY -->
+		<section id="meal-of-the-day">
+			<h2>Meal of the Day</h2>
+			<p>hungry but not sure what you're feeling?</p>
+			<div class="mealofday-box">
+				<a href="/pandanwaffles.html" class="side box-link">?</a>
+				<a href="/pandanwaffles.html" class="middle box-link">???</a>
+				<a href="/pandanwaffles.html" class="side box-link">?</a>
+			</div>
+			<p>then choose from a random selection</p>
+		</section>
+
+		<!-- MEALS -->
+		<section id="meals">
+			<h3>Meals For Any Hour</h3>
+			<div class="meals-grid">
+				<a href="/meals/breakfast.html" class="meals box">
+					<span>breakfast</span>
+					<svg class="icon meals-icon">
+						<use href="/icons/meals_icons.svg#pancake" />
+					</svg>
+				</a>
+				<a href="/meals/lunch.html" class="meals box">
+					<span>lunch</span>
+					<svg class="icon meals-icon">
+						<use href="/icons/meals_icons.svg#banhmi" />
+					</svg>
+				</a>
+				<a href="/meals/dinner.html" class="meals box">
+					<span>dinner</span>
+					<svg class="icon meals-icon">
+						<use href="/icons/meals_icons.svg#niuroumien" />
+					</svg>
+				</a>
+				<a href="/meals/dessert.html" class="meals box">
+					<span>dessert</span>
+					<svg class="icon meals-icon">
+						<use href="/icons/meals_icons.svg#pie" />
+					</svg>
+				</a>
+			</div>
+		</section>
+	</main>
+
+	<!-- TASTES -->
+	<section id="tastes">
+		<h3>Tastes</h3>
+		<div class="tastes-box">
+			<div>
+				<ul>
+					<li><a href="tastes/sweet.html">sweet</a></li>
+					<li><a href="tastes/salty.html">salty</a></li>
+					<li><a href="tastes/umami.html">umami</a></li>
+				</ul>
+			</div>
+			<div class="tastes-image"></div>
+		</div>
+	</section>
+
+	<!-- CUISINES -->
+	<section id="cuisines">
+		<h3>Cuisines</h3>
+		<div class="cuisines-grid">
+			<!-- Asian -->
+			<div class="cuisine-category box">
+				<h4>Asian</h4>
+				<ul>
+					<li><a href="cuisines/vietnamese.html">Vietnamese</a></li>
+					<li><a href="cuisines/chinese.html">Chinese</a></li>
+					<li><a href="cuisines/japanese.html">Japanese</a></li>
+					<li><a href="cuisines/thai.html">Thai</a></li>
+				</ul>
+			</div>
+
+			<!-- European -->
+			<div class="cuisine-category box">
+				<h4>European</h4>
+				<ul>
+					<li><a href="cuisines/italian.html">Italian</a></li>
+					<li><a href="cuisines/french.html">French</a></li>
+				</ul>
+			</div>
+
+			<!-- American -->
+			<div class="cuisine-category box">
+				<h4>American</h4>
+				<ul>
+					<li><a href="cuisines/southern.html">Southern</a></li>
+					<li><a href="cuisines/californian.html">Californian</a></li>
+				</ul>
+			</div>
+
+		</div>
+	</section>
+	</main>
+</body>
+
+</html>

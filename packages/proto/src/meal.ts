@@ -5,9 +5,9 @@ import reset from "./styles/reset.css.ts";
 
 
 export class DishElement extends LitElement {
-  @property() accessor name: string | undefined;
-  @property( {attribute: "character"} )  accessor imgSrc: string | undefined; ;
+  @property() 
 
+  
   override render() {
 	return html`
 		`;

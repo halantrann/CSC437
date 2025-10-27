@@ -1,0 +1,25 @@
+/* Base Styles - Typography, Links, Body */
+
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap');
+
+body {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-normal);
+  background-color: var(--color-background);
+  color: var(--color-header);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+}
+
+a {
+  color: var(--color-header);
+  transition: color var(--transition-medium);
+}
+
+a:hover {
+  color: var(--color-link);
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Breakfast</title>
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/layout.css">
+  <link rel="stylesheet" href="/styles/boxes.css">
+  <link rel="stylesheet" href="/styles/breakfast.css">
+</head>
+
+<body>
+  <header>
+    <div class="logo-content">
+      <svg class="icon logo-icon">
+        <use href="/icons/logo.svg#melonbowllogo" />
+      </svg>
+      <div class="title-block">
+        <h1>The Melon Bowl</h1>
+        <p>your pocket menu for when you don't know what to eat</p>
+      </div>
+
+    
+			<label onchange = "relayDarkMode(event)">
+				<input type="checkbox" />
+				Dark Mode!
+			</label> 
+
+			<script>
+				function relayDarkMode(event){
+					event.stopPropagation(); // prevent bubbling 
+
+					const checked = event.target.checked; 
+					const customEvent = new CustomEvent(
+						"dark-mode:toggle", {
+						bubbles: true,
+						detail: { checked },
+  					});
+
+					event.target.dispatchEvent(customEvent);
+				}
+				
+				const page = document.body; 
+				
+				page.addEventListener("dark-mode:toggle", (event) => {
+					const checked = event.detail.checked;
+					page.classList.toggle("dark-mode", checked)
+				})
+			</script>
+
+      <!-- <section id="search" class="search">
+        <form action="/search" method="GET">
+          <input type="text" name="q" placeholder="search for your favorite meals, tastes, cuisines..." />
+          <button type="submit">Search</button>
+        </form>
+      </section> -->
+    </div>
+  </header>
+
+  <main class="with-header-spacing">
+    <div class="recipe-box">
+      <article class="dish">
+         <section id="character-box">
+          <div class="character-icon-container box">
+            <svg class="character-icon">
+              <use href="/icons/halan_character.svg#halan" />
+            </svg>
+          </div>
+          <div class="character-dialogue">
+            <p>Seems like you've woken up early enough to eat breakfast today!</p>
+          </div>
+        </section>
+        <section>
+          <h2>Breakfast Recipes:</h2>
+
+          <nav>
+            <ul class="meals-list">
+              <li><a href="/pandanwaffles.html">Pandan Waffles</a></li>
+              <li><a href="/pandanwaffles.html">Waffles</a></li>
+              <li><a href="/pandanwaffles.html">Waffles</a></li>
+              <li><a href="/pandanwaffles.html">Waffles</a></li>
+            </ul>
+          </nav>
+        </section>
+
+        <footer>
+          <nav>
+            <a href="/index.html">Back to Menu</a>
+          </nav>
+        </footer>
+      </article>
+    </div>
+  </main>
+</body>
+
+</html>

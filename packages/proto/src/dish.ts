@@ -4,15 +4,30 @@ import reset from "./styles/reset.css.ts";
 // DEADBEEF: template alt text later? 
 
 export class DishElement extends LitElement {
-  @property() accessor name: string | undefined;
-  @property( {attribute: "img-src"} )  accessor imgSrc: string | undefined; 
-  @property() accessor mealType: string | undefined;
-  @property() accessor cuisine: string | undefined;
-  @property() accessor taste: string | undefined;
-  @property() accessor calories: string | undefined;
-  @property() accessor prepTime: string | undefined;
-  @property() accessor cookTime: string | undefined;
+  @property() 
+  name?: string;
 
+  @property( {attribute: "img-src"} )  
+  imgSrc?: string; 
+
+  @property()
+  mealType?: string;
+
+  @property()
+  cuisine?: string;
+
+  @property() 
+  taste?: string;
+
+  @property()
+  calories?: string;
+
+  @property()
+  prepTime?: string;
+
+  @property()
+  cookTime?: string;
+  
   override render() {
     return html`
      <div class="recipe-box">

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Melon Bowl</title>
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/boxes.css">
+  <link rel="stylesheet" href="/styles/layout.css">
+  <link rel="stylesheet" href="/styles/recipes.css">
+</head>
+
+<body>
+  <header>
+    <div class="logo-content">
+      <svg class="icon logo-icon">
+        <use href="/icons/logo.svg#melonbowllogo" />
+      </svg>
+      <div class="title-block">
+        <h1>The Melon Bowl</h1>
+        <p>your pocket menu for when you don't know what to eat</p>
+      </div>
+
+
+      <label onchange="relayDarkMode(event)">
+        <input type="checkbox" />
+        Dark Mode!
+      </label>
+
+      <script>
+        function relayDarkMode(event) {
+          event.stopPropagation(); // prevent bubbling 
+
+          const checked = event.target.checked;
+          const customEvent = new CustomEvent(
+            "dark-mode:toggle", {
+            bubbles: true,
+            detail: { checked },
+          });
+
+          event.target.dispatchEvent(customEvent);
+        }
+
+        const page = document.body;
+
+        page.addEventListener("dark-mode:toggle", (event) => {
+          const checked = event.detail.checked;
+          page.classList.toggle("dark-mode", checked)
+        })
+      </script>
+
+      <script type="module">
+        import { define } from "@calpoly/mustang";
+        import { DishElement } from "/src/dish.js";
+
+        define({
+          "mbowl-dish": DishElement
+        })
+      </script>
+  </header>
+
+  <main>
+    <mbowl-dish name="Waffles" image="/images/waffleimage.jpg" difficulty="easy" meal-type="Breakfast"
+      cuisine="American" taste="Sweet" calories="350 kcal per serving" cook-time="20 min">
+      <span slot="ingredients">
+        <li>2 cups all-purpose flour</li>
+        <li>2 tablespoons sugar</li>
+        <li>1 tablespoon baking powder</li>
+        <li>½ teaspoon salt</li>
+        <li>2 large eggs</li>
+        <li>1¾ cups milk</li>
+        <li>½ cup melted butter (or vegetable oil)</li>
+        <li>1 teaspoon vanilla extract</li>
+        <li>Optional toppings: syrup, berries, whipped cream</li>
+      </span>
+
+      <span slot="instructions">
+        <li>Preheat your waffle iron according to the manufacturer’s instructions.</li>
+        <li>In a large bowl, whisk together flour, sugar, baking powder, and salt.</li>
+        <li>In another bowl, beat eggs and then mix in milk, melted butter, and vanilla.</li>
+        <li>Pour wet ingredients into dry ingredients and stir until just combined (batter should be slightly
+          lumpy).
+        </li>
+        <li>Grease the waffle iron lightly, then pour in batter and cook until golden brown and crisp.</li>
+        <li>Serve warm with syrup, berries, or your favorite toppings.</li>
+      </span>
+
+    </mbowl-dish>
+  </main>
+</body>
+
+</html>
