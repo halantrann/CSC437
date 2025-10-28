@@ -23,17 +23,17 @@
         <h1>The Melon Bowl</h1>
         <p>your pocket menu for when you don't know what to eat</p>
       </div>
-
+    
       <label onchange="relayDarkMode(event)">
         <input type="checkbox" />
         Dark Mode!
-      </label>
+      </label> 
 
       <script>
-        function relayDarkMode(event) {
+        function relayDarkMode(event){
           event.stopPropagation(); // prevent bubbling 
 
-          const checked = event.target.checked;
+          const checked = event.target.checked; 
           const customEvent = new CustomEvent(
             "dark-mode:toggle", {
             bubbles: true,
@@ -42,9 +42,9 @@
 
           event.target.dispatchEvent(customEvent);
         }
-
-        const page = document.body;
-
+        
+        const page = document.body; 
+        
         page.addEventListener("dark-mode:toggle", (event) => {
           const checked = event.detail.checked;
           page.classList.toggle("dark-mode", checked)
@@ -52,24 +52,32 @@
       </script>
 
       <script type="module">
-        import { define } from "@calpoly/mustang";
-        import { MealElement } from "/src/meal.js";
+				import { define } from "@calpoly/mustang";
+				import { MealElement } from "/src/meal.js";
 
-        define({
-          "mbowl-meal": MealElement
-        })
-      </script>
+				define({
+					"mbowl-meal": MealElement
+				})
+			</script>
     </div>
   </header>
 
   <main class="with-header-spacing">
-    <mbowl-meal 
-      dialogue="Seems like you woke up early enough for breakfast today." 
-      mealType="Breakfast"
-      recipeLink="/meals/breakfast.html" 
-      recipeName="Pandan Pancakes"></mbowl-meal>
+    <mbowl-meal
+      dialogue="Seems like you woke up early enough for breakfast today."
+      meal-type="Breakfast"
+      recipe-link="/meals/breakfast.html"
+      recipe-name="Pandan Pancakes"
+     ></mbowl-meal>
   </main>
 
+  <footer>
+    <nav>
+      <a href="/index.html">Back to Menu</a>
+    </nav>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
 </body>
 
 </html>
