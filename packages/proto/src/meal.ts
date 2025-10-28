@@ -10,12 +10,6 @@ export class MealElement extends LitElement {
 
   @property()
   mealType?: string;
-
-  @property()
-  recipeLink?: string;
-
-  @property()
-  recipeName?: string;
   
   override render() {
 	return html`
@@ -31,14 +25,14 @@ export class MealElement extends LitElement {
             <p>${this.dialogue}</p>
           </div>
         </section>
-        <section>
-          <h2>${this.mealType} Recipes:</h2>
 
-          <nav>
-            <ul class="meals-list">
-              <li><a href="${this.recipeLink}">${this.recipeName}</a></li>
-            </ul>
-          </nav>
+        <section class="recipe-links">
+          <h2>${this.mealType} Recipes:</h2>
+          <ul class="meals-list">
+            <slot name="recipe-links">
+              <li>No recipes yet!</li>
+          </slot>
+          </ul>
         </section>
 
         <footer>
@@ -51,6 +45,11 @@ export class MealElement extends LitElement {
 		`;
   }
   static styles = [reset.styles, css`
+    a:hover {
+      color: var(--color-link);
+    }
+
+ 
     .recipe-box {
       background-color: var(--color-background);
       border-radius: 12px;
@@ -66,6 +65,29 @@ export class MealElement extends LitElement {
     .recipe-box h2 {
       color: var(--color-header2);
     }
+
+    .recipe-box footer {
+      border-top: 0.2px solid var(--color-border);
+      padding-top: 10px;
+      text-align: center;
+      color: var(--color-link);
+    }
+
+    .box {
+      background-color: var(--color-background);
+      padding: var(--spacing-lg);
+      text-align: center;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      margin: var(--spacing-sm);
+      transition: transform var(--transition-fast), box-shadow var(--transition-medium);
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+      
 
     #character-box {
       margin-top: var(--spacing-sm);
@@ -109,41 +131,6 @@ export class MealElement extends LitElement {
     .character-dialogue p {
       margin: 0;
       font-family: var(--font-family-heading);
-    }
-
-    .box {
-      background-color: var(--color-background);
-      padding: var(--spacing-lg);
-      text-align: center;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      margin: var(--spacing-sm);
-      transition: transform var(--transition-fast), box-shadow var(--transition-medium);
-    }
-
-    .box:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .meals-list {
-      display: flex;
-      justify-content: left;
-      align-items: left;
-      list-style-type: circle;
-      margin-left: 30px;
-      margin-bottom: 10px;
-      flex-direction: column;
-    }
-
-    .meals-list a {
-      color: inherit; 
-      text-decoration: none;
-      transition: color var(--transition-fast);
-    }
-
-    .meals-list a:hover {
-      color: var(--color-link);
     }
 
   `];
