@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="/styles/boxes.css">
   <link rel="stylesheet" href="/styles/layout.css">
   <link rel="stylesheet" href="/styles/recipes.css">
-  <script type="module" crossorigin src="/assets/breakfast_dish1-CPuI6jyK.js"></script>
+  <script type="module" crossorigin src="/assets/breakfast_dish1-DdxiZCg5.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/reset.css-Dtz69L4r.js">
 </head>
 
 <body>
@@ -25,62 +26,38 @@
         <p>your pocket menu for when you don't know what to eat</p>
       </div>
 
-
       <label onchange="relayDarkMode(event)">
         <input type="checkbox" />
         Dark Mode!
       </label>
-
-      <script>
-        function relayDarkMode(event) {
-          event.stopPropagation(); // prevent bubbling 
-
-          const checked = event.target.checked;
-          const customEvent = new CustomEvent(
-            "dark-mode:toggle", {
-            bubbles: true,
-            detail: { checked },
-          });
-
-          event.target.dispatchEvent(customEvent);
-        }
-
-        const page = document.body;
-
-        page.addEventListener("dark-mode:toggle", (event) => {
-          const checked = event.detail.checked;
-          page.classList.toggle("dark-mode", checked)
-        })
-      </script>
-
+    </div>
   </header>
 
+  <script>
+    function relayDarkMode(event) {
+      event.stopPropagation();
+
+      const checked = event.target.checked;
+      const customEvent = new CustomEvent(
+        "dark-mode:toggle", {
+        bubbles: true,
+        detail: { checked },
+      });
+
+      event.target.dispatchEvent(customEvent);
+    }
+
+    const page = document.body;
+
+    page.addEventListener("dark-mode:toggle", (event) => {
+      const checked = event.detail.checked;
+      page.classList.toggle("dark-mode", checked)
+    })
+  </script>
+
+
   <main>
-    <mbowl-dish name="Pandan Waffles" img-src="/images/pandanwaffles.jpg" mealType="Breakfast" cuisine="Vietnamese"
-      taste="Sweet" calories="350 kcal per serving" prepTime="25 min" cookTime="10 min">
-
-      <ul slot="ingredients">
-        <li>1 egg</li>
-        <li>1 1/4 cup coconut milk</li>
-        <li>1/2 tsp pandan extract</li>
-        <li>½ teaspoon salt</li>
-        <li>1 cup all-purpose flour</li>
-        <li>2 tbsp corn starch</li>
-        <li>1/4 (plus a little more) cup sugar</li>
-        <li>1 tsp baking powder</li>
-        <li>1/4 tsp salt</li>
-        <li>2 tbsp butter (melted)</li>
-      </ul>
-
-      <ol slot="instructions">
-        <li>Beat the egg until fluffy. Add coconut milk and pandan extract. Stir well.</li>
-        <li>In a separate bowl, mix together all the dry ingredients: all-purpose flour, corn starch, sugar, baking
-          powder, coconut flakes, and salt.</li>
-        <li>Combine the dry ingredients with the wet ingredients. Let the batter rest for 15 minutes.</li>
-        <li>Preheat the waffle iron and grease with butter. Add one ladleful of the batter into the waffle iron. Press
-          and hold for a few seconds. Then cook until golden brown.</li>
-      </ol>
-    </mbowl-dish>
+    <mbowl-recipes src="/data/pandanwaffles.json"></mbowl-recipes>
   </main>
 </body>
 

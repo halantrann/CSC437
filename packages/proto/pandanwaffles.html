@@ -24,70 +24,48 @@
         <p>your pocket menu for when you don't know what to eat</p>
       </div>
 
-
       <label onchange="relayDarkMode(event)">
         <input type="checkbox" />
         Dark Mode!
       </label>
-
-      <script>
-        function relayDarkMode(event) {
-          event.stopPropagation(); // prevent bubbling 
-
-          const checked = event.target.checked;
-          const customEvent = new CustomEvent(
-            "dark-mode:toggle", {
-            bubbles: true,
-            detail: { checked },
-          });
-
-          event.target.dispatchEvent(customEvent);
-        }
-
-        const page = document.body;
-
-        page.addEventListener("dark-mode:toggle", (event) => {
-          const checked = event.detail.checked;
-          page.classList.toggle("dark-mode", checked)
-        })
-      </script>
-
-      <script type="module">
-        import { define } from "@calpoly/mustang";
-        import { DishElement } from "/src/dish.js";
-
-        define({
-          "mbowl-dish": DishElement
-        })
-      </script>
+    </div>
   </header>
 
+  <script>
+    function relayDarkMode(event) {
+      event.stopPropagation();
+
+      const checked = event.target.checked;
+      const customEvent = new CustomEvent(
+        "dark-mode:toggle", {
+        bubbles: true,
+        detail: { checked },
+      });
+
+      event.target.dispatchEvent(customEvent);
+    }
+
+    const page = document.body;
+
+    page.addEventListener("dark-mode:toggle", (event) => {
+      const checked = event.detail.checked;
+      page.classList.toggle("dark-mode", checked)
+    })
+  </script>
+
+  <script type="module">
+    import { define } from "@calpoly/mustang";
+    import { DishElement } from "/src/dish.js";
+    import { RecipeCollectionElement } from "/src/recipe-collection.js";
+
+    define({
+      "mbowl-dish": DishElement,
+      "mbowl-recipes": RecipeCollectionElement
+    })
+  </script>
+
   <main>
-    <mbowl-dish name="Pandan Waffles" img-src="/images/pandanwaffles.jpg" mealType="Breakfast" cuisine="Vietnamese"
-      taste="Sweet" calories="350 kcal per serving" prepTime="25 min" cookTime="10 min">
-
-      <ul slot="ingredients">
-        <li>1 egg</li>
-        <li>1 1/4 cup coconut milk</li>
-        <li>1/2 tsp pandan extract</li>
-        <li>½ teaspoon salt</li>
-        <li>1 cup all-purpose flour</li>
-        <li>2 tbsp corn starch</li>
-        <li>1/4 (plus a little more) cup sugar</li>
-        <li>1 tsp baking powder</li>
-        <li>1/4 tsp salt</li>
-        <li>2 tbsp butter (melted)</li>
-      </ul>
-
-      <ol slot="instructions">
-        <li>Beat the egg until fluffy. Add coconut milk and pandan extract. Stir well.</li>
-        <li>In a separate bowl, mix together all the dry ingredients: all-purpose flour, corn starch, sugar, baking
-          powder, coconut flakes, and salt.</li>
-        <li>Combine the dry ingredients with the wet ingredients. Let the batter rest for 15 minutes.</li>
-        <li>Preheat the waffle iron and grease with butter. Add one ladleful of the batter into the waffle iron. Press
-          and hold for a few seconds. Then cook until golden brown.</li>
-      </ol>
-    </mbowl-dish>
+    <mbowl-recipes src="/data/pandanwaffles.json"></mbowl-recipes>
   </main>
 </body>
 

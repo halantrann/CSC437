@@ -37,13 +37,6 @@ export class DishElement extends LitElement {
             <img src="${this.imgSrc}" alt="Recipe image">
           </section>
 
-          <section class="difficulty-rating">
-            <h2>Cooking Difficulty: </h2>
-            <svg class="icon meals-icon">
-            </svg>
-            <hr>
-          </section>
-
           <section class="dish-properties">
             <h2>Dish</h2>
             <dl>

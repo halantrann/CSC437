@@ -1,31 +1,79 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8"/>		 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>Lunch</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Breakfast - The Melon Bowl</title>
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/layout.css">
+  <link rel="stylesheet" href="/styles/boxes.css">
+  <link rel="stylesheet" href="/styles/breakfast.css">
 </head>
+
 <body>
-	<header>
-		<h1>Lunch</h1>
-	</header>
+  <header>
+    <div class="logo-content">
+      <svg class="icon logo-icon">
+        <use href="/icons/logo.svg#melonbowllogo" />
+      </svg>
+      <div class="title-block">
+        <h1>The Melon Bowl</h1>
+        <p>your pocket menu for when you don't know what to eat</p>
+      </div>
 
-	<main>
-		 <section>
-			<p><em>Feeling hungry for something not too heavy nor too light.</em></p>
-			<p><strong>Time of Day:</strong> 12:00 - 15:00</p>
-		</section>	
+      <label onchange="relayDarkMode(event)">
+        <input type="checkbox" />
+        Dark Mode!
+      </label>
 
-		<section class="lunch-options">
-			<h2>Lunch Options</h2>
-			<ul>
-				<li><a href="/tamagosando.html">Tamago Sando 	</a></li>
-			</ul>
-		</section>
-	</main>
+      <script>
+        function relayDarkMode(event) {
+          event.stopPropagation(); // prevent bubbling 
 
-	<footer>
-		<p><a href="/index.html">Back to Menu</a></p>
-	</footer>
+          const checked = event.target.checked;
+          const customEvent = new CustomEvent(
+            "dark-mode:toggle", {
+            bubbles: true,
+            detail: { checked },
+          });
+
+          event.target.dispatchEvent(customEvent);
+        }
+
+        const page = document.body;
+
+        page.addEventListener("dark-mode:toggle", (event) => {
+          const checked = event.detail.checked;
+          page.classList.toggle("dark-mode", checked)
+        })
+      </script>
+
+      <script type="module">
+        import { define } from "@calpoly/mustang";
+        import { MealElement } from "/src/meal.js";
+
+        define({
+          "mbowl-meal": MealElement
+        })
+      </script>
+    </div>
+  </header>
+
+  <main class="with-header-spacing">
+    <mbowl-meal 
+      dialogue="Lunchie time :^)" 
+      mealType="Lunch">
+      <li slot="recipe-links"><a href="/tamagosando.html">Tamago Sando</a></li>
+      <li slot="recipe-links"><a href="/tamagosando.html">Placeholder</a></li>
+    
+
+    
+    </mbowl-meal>
+  </main>
+
+</body>
 
 </html>

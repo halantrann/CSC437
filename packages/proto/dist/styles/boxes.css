@@ -163,7 +163,6 @@
 .difficulty-rating h2 {
   color: var(--color-link) !important;
 }
-
 /* === CHARACTER BOX === */
 #character-box {
   margin-top: var(--spacing-sm);
@@ -223,7 +222,7 @@
 }
 
 .recipe-box h2 {
-  color: var(--color-link);
+  color: var(--color-header2);
 }
 
 .recipe-box dl,

@@ -1,35 +1,8 @@
-import { html, css, LitElement } from "lit";
-import { property } from "lit/decorators.js";
-import reset from "./styles/reset.css.ts";
-// DEADBEEF: template alt text later? 
-
-export class DishElement extends LitElement {
-  @property() 
-  name?: string;
-
-  @property( {attribute: "img-src"} )  
-  imgSrc?: string; 
-
-  @property()
-  mealType?: string;
-
-  @property()
-  cuisine?: string;
-
-  @property() 
-  taste?: string;
-
-  @property()
-  calories?: string;
-
-  @property()
-  prepTime?: string;
-
-  @property()
-  cookTime?: string;
-  
-  override render() {
-    return html`
+import{n as o,i as m,x as n,r as f,a as u,d as x}from"./reset.css-Dtz69L4r.js";/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */function b(s){return o({...s,state:!0,attribute:!1})}var v=Object.defineProperty,a=(s,e,i,h)=>{for(var t=void 0,l=s.length-1,d;l>=0;l--)(d=s[l])&&(t=d(e,i,t)||t);return t&&v(e,i,t),t};const p=class p extends m{render(){return n`
      <div class="recipe-box">
       <article class="dish">
           <h1>${this.name}</h1> 
@@ -86,9 +59,7 @@ export class DishElement extends LitElement {
           </footer>
         </article>
       </div>
-		`;
-  }
-  static styles = [reset.styles, css`
+		`}};p.styles=[f.styles,u`
       
     .dish-properties {
       display: grid;
@@ -216,6 +187,26 @@ export class DishElement extends LitElement {
       margin-bottom: var(--spacing-md, 24px);
     }
 
-  `];
-
-}
+  `];let r=p;a([o()],r.prototype,"name");a([o({attribute:"img-src"})],r.prototype,"imgSrc");a([o()],r.prototype,"mealType");a([o()],r.prototype,"cuisine");a([o()],r.prototype,"taste");a([o()],r.prototype,"calories");a([o()],r.prototype,"prepTime");a([o()],r.prototype,"cookTime");var y=Object.defineProperty,g=(s,e,i,h)=>{for(var t=void 0,l=s.length-1,d;l>=0;l--)(d=s[l])&&(t=d(e,i,t)||t);return t&&y(e,i,t),t};class c extends m{constructor(){super(...arguments),this.recipes=[]}connectedCallback(){super.connectedCallback(),this.src&&this.hydrate(this.src)}hydrate(e){fetch(e).then(i=>i.json()).then(i=>{Array.isArray(i)?this.recipes=i:this.recipes=[i]}).catch(i=>console.error("Failed to load recipes:",i))}render(){return n`
+			<div class="recipes-collection">
+				${this.recipes.map(e=>this.renderRecipe(e))} 
+			</div> 
+		`}renderRecipe(e){return n`
+		<mbowl-dish
+        name=${e.name}
+        img-src=${e.imgSrc}
+        mealType=${e.mealType}
+        cuisine=${e.cuisine}
+        taste=${e.taste}
+        calories=${e.calories}
+        prepTime=${e.prepTime}
+        cookTime=${e.cookTime}
+      >
+        <ul slot="ingredients">
+          ${e.ingredients.map(i=>n`<li>${i}</li>`)}
+        </ul>
+        <ol slot="instructions">
+          ${e.instructions.map(i=>n`<li>${i}</li>`)}
+        </ol>
+      </mbowl-dish>
+    `}}g([o()],c.prototype,"src");g([b()],c.prototype,"recipes");x({"mbowl-dish":r,"mbowl-recipes":c});
