@@ -18,7 +18,7 @@ export class MealElement extends LitElement {
          <section id="character-box">
           <div class="character-icon-container box">
             <svg class="character-icon">
-              <use href="/icons/halan_character.svg#halan" />
+              <use href="/icons/characters.svg#halan" />
             </svg>
           </div>
           <div class="character-dialogue">

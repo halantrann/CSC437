@@ -4,11 +4,11 @@ import reset from "./styles/reset.css.ts";
 // DEADBEEF: template alt text later? 
 
 export class DishElement extends LitElement {
-  @property() 
+  @property()
   name?: string;
 
-  @property( {attribute: "img-src"} )  
-  imgSrc?: string; 
+  @property({ attribute: "img-src" })
+  imgSrc?: string;
 
   @property()
   mealType?: string;
@@ -16,7 +16,7 @@ export class DishElement extends LitElement {
   @property()
   cuisine?: string;
 
-  @property() 
+  @property()
   taste?: string;
 
   @property()
@@ -27,7 +27,10 @@ export class DishElement extends LitElement {
 
   @property()
   cookTime?: string;
-  
+
+  @property()
+  dialogue?: string;
+
   override render() {
     return html`
      <div class="recipe-box">
@@ -35,29 +38,6 @@ export class DishElement extends LitElement {
           <h1>${this.name}</h1> 
           <section class="recipe-img">
             <img src="${this.imgSrc}" alt="Recipe image">
-          </section>
-
-          <section class="dish-properties">
-            <h2>Dish</h2>
-            <dl>
-              <dt>Type of Meal</dt>
-              <dd>${this.mealType}</dd>
-
-              <dt>Cuisine</dt>
-              <dd>${this.cuisine}</dd>
-
-              <dt>Taste</dt>
-              <dd>${this.taste}</dd>
-
-              <dt>Calories</dt>
-              <dd>${this.calories}</dd>
-
-              <dt>Prep Time</dt>
-              <dd>${this.prepTime}</dd>
-
-              <dt>Time to Cook</dt>
-              <dd>${this.cookTime}</dd>
-            </dl>
           </section>
 
           <section class="ingredients">
@@ -78,6 +58,41 @@ export class DishElement extends LitElement {
             </slot> 
           </section>
 
+          <section class="dish-properties">
+          <h2>Nutrition Facts</h2>
+            <section id="character-box">
+              <div class="character-icon-container box">
+                <svg class="character-icon">
+                  <use href="/icons/characters.svg#wilson" />
+                </svg>
+              </div>
+              
+              <div class="character-dialogue">
+                <div>
+                  <dl>
+                    <dt>Type of Meal</dt>
+                    <dd>${this.mealType}</dd>
+
+                    <dt>Cuisine</dt>
+                    <dd>${this.cuisine}</dd>
+
+                    <dt>Taste</dt>
+                    <dd>${this.taste}</dd>
+
+                    <dt>Calories</dt>
+                    <dd>${this.calories}</dd>
+
+                    <dt>Prep Time</dt>
+                    <dd>${this.prepTime}</dd>
+
+                    <dt>Time to Cook</dt>
+                    <dd>${this.cookTime}</dd>
+                  </dl>
+                </div>
+              </div>
+            </section>
+          </section>
+
           <footer>
             <nav>
               <a href="../meals/breakfast.html">Back to Breakfast</a>
@@ -92,12 +107,14 @@ export class DishElement extends LitElement {
       
     .dish-properties {
       display: grid;
-  }
+      margin-top: 40px;
+      color: var(--color-background);
+    }
 
     .dish-properties dl {
       display: grid;
       grid-template-columns: 150px 1fr;
-      row-gap: 8px;
+      row-gap: 0px;
       column-gap: var(--spacing-md);
       margin-top: var(--spacing-sm);
       text-align: left;
@@ -105,42 +122,45 @@ export class DishElement extends LitElement {
 
     .dish-properties dt {
       font-weight: var(--font-weight-bold);
-      color: var(--color-emphasistext);
     }
 
     .dish-properties dd {
       margin: 0;
     }
 
+    .dish-properties h2 {
+      text-align: center; 
+    }
+    
     .ingredients ul {
-    list-style-type: disc;
-    padding-left: 25px;
-    margin-top: var(--spacing-sm);
-    text-align: left;
-  }
+      list-style-type: disc;
+      padding-left: 25px;
+      margin-top: var(--spacing-sm);
+      text-align: left;
+    }
 
-  .ingredients li {
-    margin-bottom: var(--spacing-xs);
-  }
+    .ingredients li {
+      margin-bottom: var(--spacing-xs);
+    }
 
-  .instructions ol {
-    list-style-type: decimal;
-    padding-left: 25px;
-    margin-top: var(--spacing-sm);
-    text-align: left;
-  }
+    .instructions ol {
+      list-style-type: decimal;
+      padding-left: 25px;
+      margin-top: var(--spacing-sm);
+      text-align: left;
+    }
 
-  .instructions li {
-    margin-bottom: var(--spacing-xs);
-  }
+    .instructions li {
+      margin-bottom: var(--spacing-xs);
+    }
 
-  .ingredients ::slotted(ul),
-  .instructions ::slotted(ol) {
-    list-style-position: outside;
-    padding-left: 25px;
-    margin-top: var(--spacing-sm);
-    text-align: left;
-  }
+    .ingredients ::slotted(ul),
+    .instructions ::slotted(ol) {
+      list-style-position: outside;
+      padding-left: 25px;
+      margin-top: var(--spacing-sm);
+      text-align: left;
+    }
 
     .recipe-box {
       background-color: var(--color-background);
@@ -214,6 +234,66 @@ export class DishElement extends LitElement {
        
     section {
       margin-bottom: var(--spacing-md, 24px);
+    }
+
+    .box {
+      background-color: var(--color-background);
+      padding: var(--spacing-lg);
+      text-align: center;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      margin: var(--spacing-sm);
+      transition: transform var(--transition-fast), box-shadow var(--transition-medium);
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+      
+
+    #character-box {
+      margin-top: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      min-height: 120px;
+      background-color: var(--color-link);
+    }
+
+    .character-icon-container {
+      width: 30%;
+      background-color: var(--color-link);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .character-icon {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      transform: scale(1.27); 
+    }
+
+    .character-dialogue {
+      width: 66.67%;
+      background-color: var(--color-link);
+      display: flex;
+      align-items: center;
+      padding: var(--spacing-lg);
+    }
+
+    .character-dialogue p {
+      margin: 0;
+      font-family: var(--font-family-heading);
     }
 
   `];
