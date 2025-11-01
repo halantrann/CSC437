@@ -49,6 +49,8 @@ export class DishElement extends LitElement {
             </slot>
           </section>
 
+          <hr>
+
           <section class="instructions">
             <h2>Instructions</h2>
             <slot name="instructions"> 
@@ -57,6 +59,8 @@ export class DishElement extends LitElement {
             </ol>
             </slot> 
           </section>
+
+          <hr>
 
           <section class="dish-properties">
           <h2>Nutrition Facts</h2>
@@ -107,7 +111,8 @@ export class DishElement extends LitElement {
       
     .dish-properties {
       display: grid;
-      margin-top: 40px;
+      margin-top: 20px;
+      margin-bottom: 20px;
       color: var(--color-background);
     }
 
