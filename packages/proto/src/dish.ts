@@ -28,9 +28,6 @@ export class DishElement extends LitElement {
   @property()
   cookTime?: string;
 
-  @property()
-  dialogue?: string;
-
   override render() {
     return html`
      <div class="recipe-box">

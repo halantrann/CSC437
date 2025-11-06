@@ -71,10 +71,11 @@
 }
 
 .meals-list a {
-  color: inherit; 
+  color: inherit;
   text-decoration: none;
   transition: color var(--transition-fast);
 }
+
 
 /* === LOGO ICON  === */
 .logo-icon {
@@ -163,6 +164,7 @@
 .difficulty-rating h2 {
   color: var(--color-link) !important;
 }
+
 /* === CHARACTER BOX === */
 #character-box {
   margin-top: var(--spacing-sm);
@@ -192,7 +194,7 @@
   max-width: 100%;
   height: auto;
   display: block;
-  transform: scale(1.27); 
+  transform: scale(1.27);
 }
 
 .character-dialogue {
@@ -250,6 +252,123 @@
   width: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* === CUISINE BOX === */
+.cuisine-box {
+  background-color: var(--color-background);
+  border-radius: var(--radius-lg);
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.cuisine-header-box {
+  margin: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  min-height: 400px;
+  background-color: inherit;
+}
+
+.cuisine-header-text {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: var(--spacing-lg);
+}
+
+.cuisine-header-text h1 {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  text-align: left;
+  font-size: 3.5rem; 
+  line-height: 1.0;
+}
+
+.cuisine-header-text p {
+  margin-top: var(--spacing-sm);
+  font-family: var(--font-family-heading);
+  font-size: 1.0rem;
+  text-align: left;
+}
+
+.cuisine-header-image {
+  height: 400px;
+  width: 50%;
+  background-color: var(--color-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 40px;
+}
+
+.cuisine-header-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cuisine-boxes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+  margin: var(--spacing-lg) 0;
+  padding: 30px; 
+}
+
+.cuisine-box-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--transition-fast);
+}
+
+.cuisine-box-link:hover .cuisine-box-image {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.cuisine-box-image {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  background-color: var(--color-section);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-medium);
+}
+
+.cuisine-box-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cuisine-box-description {
+  margin-top: var(--spacing-sm);
+  text-align: left;
+  line-height: 0.8; 
+}
+
+.cuisine-box-description h3 {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.cuisine-box-description p {
+  font-size: 0.9rem;
+  margin-top: var(--spacing-xs);
+  color: var(--color-text);
 }
 
 /* === DISH PROPERTIES === */
@@ -371,7 +490,6 @@ footer nav a:first-child:not(:last-child)::after {
   vertical-align: middle;
 }
 
-
 /* === RESPONSIVE ADJUSTMENTS === */
 @media (max-width: 768px) {
   .tastes-box {
@@ -410,5 +528,38 @@ footer nav a:first-child:not(:last-child)::after {
   .tastes-box a,
   .tastes-box li {
     font-size: 1.4rem;
+  }
+
+  @media (max-width: 768px) {
+    .cuisine-header-box {
+      flex-direction: column;
+      margin: var(--spacing-sm);
+    }
+
+    .cuisine-header-text,
+    .cuisine-header-image {
+      width: 100%;
+    }
+
+    .cuisine-header-text {
+      border-right: none;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .cuisine-header-image {
+      min-height: 250px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cuisine-boxes-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cuisine-boxes-grid {
+      grid-template-columns: 1fr;
+    }
   }
 }

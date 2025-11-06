@@ -9,7 +9,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        meals: resolve(__dirname, 'meals/breakfast.html'),
+        meals: resolve(__dirname, 'breakfast.html'),
         breakfast_dish1: resolve(__dirname, 'pandanwaffles.html'),
       },
     },
