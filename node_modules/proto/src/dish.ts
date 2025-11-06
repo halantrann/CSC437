@@ -1,11 +1,13 @@
 import { html, css, LitElement } from "lit";
 import { property } from "lit/decorators.js";
 import reset from "./styles/reset.css.ts";
-// DEADBEEF: template alt text later? 
 
 export class DishElement extends LitElement {
   @property()
   name?: string;
+
+  @property()
+  imgAlt?: string;
 
   @property({ attribute: "img-src" })
   imgSrc?: string;
@@ -34,7 +36,7 @@ export class DishElement extends LitElement {
       <article class="dish">
           <h1>${this.name}</h1> 
           <section class="recipe-img">
-            <img src="${this.imgSrc}" alt="Recipe image">
+            <img src="${this.imgSrc}" alt="${this.imgAlt}">
           </section>
 
           <section class="ingredients">
@@ -96,7 +98,6 @@ export class DishElement extends LitElement {
 
           <footer>
             <nav>
-              <a href="../meals/breakfast.html">Back to Breakfast</a>
               <a href="../index.html">Back to Menu</a>
             </nav>
           </footer>
@@ -198,16 +199,6 @@ export class DishElement extends LitElement {
 
     footer nav a {
       color: var(--color-link);
-    }
-    
-    footer nav a:first-child:not(:last-child)::after {
-      content: "";
-      display: inline-block;
-      width: 1px;
-      height: 1em;
-      background-color: var(--color-link);
-      margin: 0 20px 0 30px;
-      vertical-align: middle;
     }
 
     .recipe-img {

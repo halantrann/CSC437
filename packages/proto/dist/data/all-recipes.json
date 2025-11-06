@@ -1,0 +1,45 @@
+{
+  "recipes": [
+    {
+      "id": "pandan-waffles",
+      "name": "Pandan Waffles",
+      "time": "35 min",
+      "img": "/images/pandanwaffles.jpg",
+      "link": "/pandanwaffles.html",
+      "tags": ["vietnamese", "breakfast", "sweet"]
+    },
+    {
+      "id": "greek-yogurt-bowl",
+      "name": "Greek Yogurt Bowl",
+      "time": "6 min",
+      "img": "/images/greekyogurtbowl.jpg",
+      "link": "/greekyogurtbowl.html",
+      "tags": ["american", "dessert", "breakfast", "sweet"]
+    },
+    {
+      "id": "tamago-sando",
+      "name": "Tamago Sando",
+      "time": "30 min",
+      "img": "/images/tamagosando.jpg",
+      "link": "/tamagosando.html",
+      "tags": ["japanese", "lunch", "salty"]
+    },
+    {
+      "id": "minced-beef-eggs",
+      "name": "Cantonese Minced Beef and Eggs",
+      "time": "60 min",
+      "img": "/images/minzi.jpg",
+      "link": "/minzi.html",
+      "tags": ["chinese", "dinner", "umami"]
+    },
+    {
+      "id": "pho",
+      "name": "Pho",
+      "time": "3 days",
+      "img": "/images/pho.jpg",
+      "link": "/pho.html",
+      "tags": ["vietnamese", "dinner", "umami"]
+    }
+
+  ]
+}

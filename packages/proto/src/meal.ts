@@ -3,8 +3,6 @@ import { property } from "lit/decorators.js";
 import reset from "./styles/reset.css.ts";
 
 export class MealElement extends LitElement {
-  // DEADBEEF: CHARACTER ICON PROPERTY 
-
   @property()
   dialogue?: string; 
 
@@ -48,18 +46,16 @@ export class MealElement extends LitElement {
     a:hover {
       color: var(--color-link);
     }
-
  
     .recipe-box {
       background-color: var(--color-background);
       border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      padding: 20px;
+      padding: 50px;
       max-width: 700px;
       margin: 40px auto;
       display: flex;
       flex-direction: column;
-      gap: 20px;
     }
 
     .recipe-box h2 {
@@ -71,6 +67,7 @@ export class MealElement extends LitElement {
       padding-top: 10px;
       text-align: center;
       color: var(--color-link);
+      margin-top: 20px;
     }
 
     .box {

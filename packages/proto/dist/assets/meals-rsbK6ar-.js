@@ -32,18 +32,16 @@ import{i as n,x as p,r as g,a as h,n as l,d as v}from"./reset.css-Dtz69L4r.js";v
     a:hover {
       color: var(--color-link);
     }
-
  
     .recipe-box {
       background-color: var(--color-background);
       border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      padding: 20px;
+      padding: 50px;
       max-width: 700px;
       margin: 40px auto;
       display: flex;
       flex-direction: column;
-      gap: 20px;
     }
 
     .recipe-box h2 {
@@ -55,6 +53,7 @@ import{i as n,x as p,r as g,a as h,n as l,d as v}from"./reset.css-Dtz69L4r.js";v
       padding-top: 10px;
       text-align: center;
       color: var(--color-link);
+      margin-top: 20px;
     }
 
     .box {

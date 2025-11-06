@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Vietnamese Cuisine</title>
+
+	<link rel="stylesheet" href="/styles/reset.css">
+	<link rel="stylesheet" href="/styles/tokens.css">
+	<link rel="stylesheet" href="/styles/base.css">
+	<link rel="stylesheet" href="/styles/layout.css">
+	<link rel="stylesheet" href="/styles/boxes.css">
+	<link rel="stylesheet" href="/styles/cuisine.css">
+
+	<script type="module" src="/src/cuisine.js"></script>
+</head>
+
+<body>
+	<header>
+		<div class="logo-content">
+			<svg class="icon logo-icon">
+				<use href="/icons/logo.svg#melonbowllogo" />
+			</svg>
+			<div class="title-block">
+				<h1>The Melon Bowl</h1>
+				<p>your pocket menu for when you don't know what to eat</p>
+			</div>
+
+			<label onchange="relayDarkMode(event)">
+				<input type="checkbox" />
+				Dark Mode!
+			</label>
+
+			<script>
+				function relayDarkMode(event) {
+					event.stopPropagation();
+					const checked = event.target.checked;
+					event.target.dispatchEvent(
+						new CustomEvent("dark-mode:toggle", { bubbles: true, detail: { checked } })
+					);
+				}
+
+				document.body.addEventListener("dark-mode:toggle", (event) => {
+					document.body.classList.toggle("dark-mode", event.detail.checked);
+				});
+			</script>
+		</div>
+	</header>
+
+	<main class="with-header-spacing">
+		<cuisine-element 
+			category="vietnamese" 
+			cuisineType="Vietnamese Cuisine"
+			tagline="fresh, bold flavors straight into your own melon bowl" 
+			img-src="/images/greekyogurtbowl.jpg"
+			imgAlt="Vietnamese Dish Featuring Vermicelli Noodles">
+		</cuisine-element>
+	</main>
+
+</body>
+
+</html>

@@ -1,13 +1,13 @@
-import{n as o,i as g,x as l,r as v,a as x,d as u}from"./reset.css-Dtz69L4r.js";/**
+import{n as o,i as g,x as l,r as v,a as u,d as x}from"./reset.css-Dtz69L4r.js";/**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */function b(a){return o({...a,state:!0,attribute:!1})}var f=Object.defineProperty,s=(a,i,r,h)=>{for(var e=void 0,n=a.length-1,d;n>=0;n--)(d=a[n])&&(e=d(i,r,e)||e);return e&&f(i,r,e),e};const p=class p extends g{render(){return l`
+ */function b(s){return o({...s,state:!0,attribute:!1})}var f=Object.defineProperty,a=(s,i,r,h)=>{for(var e=void 0,n=s.length-1,d;n>=0;n--)(d=s[n])&&(e=d(i,r,e)||e);return e&&f(i,r,e),e};const p=class p extends g{render(){return l`
      <div class="recipe-box">
       <article class="dish">
           <h1>${this.name}</h1> 
           <section class="recipe-img">
-            <img src="${this.imgSrc}" alt="Recipe image">
+            <img src="${this.imgSrc}" alt="${this.imgAlt}">
           </section>
 
           <section class="ingredients">
@@ -69,13 +69,12 @@ import{n as o,i as g,x as l,r as v,a as x,d as u}from"./reset.css-Dtz69L4r.js";/
 
           <footer>
             <nav>
-              <a href="../meals/breakfast.html">Back to Breakfast</a>
               <a href="../index.html">Back to Menu</a>
             </nav>
           </footer>
         </article>
       </div>
-		`}};p.styles=[v.styles,x`
+		`}};p.styles=[v.styles,u`
       
     .dish-properties {
       display: grid;
@@ -170,16 +169,6 @@ import{n as o,i as g,x as l,r as v,a as x,d as u}from"./reset.css-Dtz69L4r.js";/
     footer nav a {
       color: var(--color-link);
     }
-    
-    footer nav a:first-child:not(:last-child)::after {
-      content: "";
-      display: inline-block;
-      width: 1px;
-      height: 1em;
-      background-color: var(--color-link);
-      margin: 0 20px 0 30px;
-      vertical-align: middle;
-    }
 
     .recipe-img {
       width: 100%;
@@ -269,7 +258,7 @@ import{n as o,i as g,x as l,r as v,a as x,d as u}from"./reset.css-Dtz69L4r.js";/
       font-family: var(--font-family-heading);
     }
 
-  `];let t=p;s([o()],t.prototype,"name");s([o({attribute:"img-src"})],t.prototype,"imgSrc");s([o()],t.prototype,"mealType");s([o()],t.prototype,"cuisine");s([o()],t.prototype,"taste");s([o()],t.prototype,"calories");s([o()],t.prototype,"prepTime");s([o()],t.prototype,"cookTime");var y=Object.defineProperty,m=(a,i,r,h)=>{for(var e=void 0,n=a.length-1,d;n>=0;n--)(d=a[n])&&(e=d(i,r,e)||e);return e&&y(i,r,e),e};class c extends g{constructor(){super(...arguments),this.recipes=[]}connectedCallback(){super.connectedCallback(),this.src&&this.hydrate(this.src)}hydrate(i){fetch(i).then(r=>r.json()).then(r=>{Array.isArray(r)?this.recipes=r:this.recipes=[r]}).catch(r=>console.error("Failed to load recipes:",r))}render(){return l`
+  `];let t=p;a([o()],t.prototype,"name");a([o()],t.prototype,"imgAlt");a([o({attribute:"img-src"})],t.prototype,"imgSrc");a([o()],t.prototype,"mealType");a([o()],t.prototype,"cuisine");a([o()],t.prototype,"taste");a([o()],t.prototype,"calories");a([o()],t.prototype,"prepTime");a([o()],t.prototype,"cookTime");var y=Object.defineProperty,m=(s,i,r,h)=>{for(var e=void 0,n=s.length-1,d;n>=0;n--)(d=s[n])&&(e=d(i,r,e)||e);return e&&y(i,r,e),e};class c extends g{constructor(){super(...arguments),this.recipes=[]}connectedCallback(){super.connectedCallback(),this.src&&this.hydrate(this.src)}hydrate(i){fetch(i).then(r=>r.json()).then(r=>{Array.isArray(r)?this.recipes=r:this.recipes=[r]}).catch(r=>console.error("Failed to load recipes:",r))}render(){return l`
 			<div class="recipes-collection">
 				${this.recipes.map(i=>this.renderRecipe(i))} 
 			</div> 
@@ -291,4 +280,4 @@ import{n as o,i as g,x as l,r as v,a as x,d as u}from"./reset.css-Dtz69L4r.js";/
           ${i.instructions.map(r=>l`<li>${r}</li>`)}
         </ol>
       </mbowl-dish>
-    `}}m([o()],c.prototype,"src");m([b()],c.prototype,"recipes");u({"mbowl-dish":t,"mbowl-recipes":c});
+    `}}m([o()],c.prototype,"src");m([b()],c.prototype,"recipes");x({"mbowl-dish":t,"mbowl-recipes":c});
