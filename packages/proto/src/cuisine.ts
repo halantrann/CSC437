@@ -87,11 +87,11 @@ export class CuisineElement extends LitElement {
           </div>
         </section>
 
-		<footer class="footer-nav">
-        <nav>
-          <a href="/index.html">Back to Menu</a>
-        </nav>
-      </footer>
+        <footer class="footer-nav">
+            <nav>
+              <a href="/index.html">Back to Menu</a>
+            </nav>
+        </footer>
       </div>
     `;
 	}

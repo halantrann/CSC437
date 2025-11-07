@@ -379,6 +379,7 @@
   max-width: 1250px;
   margin: 0 auto;
   padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
 } 
 
 .tasteUSS-header-box {
