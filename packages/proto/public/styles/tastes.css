@@ -1,0 +1,7 @@
+main {
+	margin-top: var(--spacing-header); 
+}
+
+body {
+	background-color: var(--color-background4)
+}

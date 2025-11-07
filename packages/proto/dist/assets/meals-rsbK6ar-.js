@@ -60,7 +60,7 @@ import{i as n,x as p,r as g,a as h,n as l,d as v}from"./reset.css-Dtz69L4r.js";v
       background-color: var(--color-background);
       padding: var(--spacing-lg);
       text-align: center;
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-md);
       box-shadow: var(--shadow-md);
       margin: var(--spacing-sm);
       transition: transform var(--transition-fast), box-shadow var(--transition-medium);

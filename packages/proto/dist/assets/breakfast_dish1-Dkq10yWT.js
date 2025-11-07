@@ -202,7 +202,7 @@ import{n as o,i as g,x as l,r as v,a as u,d as x}from"./reset.css-Dtz69L4r.js";/
       background-color: var(--color-background);
       padding: var(--spacing-lg);
       text-align: center;
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-md);
       box-shadow: var(--shadow-md);
       margin: var(--spacing-sm);
       transition: transform var(--transition-fast), box-shadow var(--transition-medium);

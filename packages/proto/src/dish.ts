@@ -233,7 +233,7 @@ export class DishElement extends LitElement {
       background-color: var(--color-background);
       padding: var(--spacing-lg);
       text-align: center;
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-md);
       box-shadow: var(--shadow-md);
       margin: var(--spacing-sm);
       transition: transform var(--transition-fast), box-shadow var(--transition-medium);

@@ -101,7 +101,7 @@ export class CuisineElement extends LitElement {
       background-color: var(--color-background);
       padding: var(--spacing-lg);
       text-align: center;
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-md);
       box-shadow: var(--shadow-md);
       margin: var(--spacing-sm);
       transition: transform var(--transition-fast), box-shadow var(--transition-medium);
@@ -114,7 +114,7 @@ export class CuisineElement extends LitElement {
 
     .cuisine-box {
       background-color: var(--color-background);
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-md);
       max-width: 1250px;
       margin: 0 auto;
       padding: var(--spacing-lg);
@@ -123,7 +123,7 @@ export class CuisineElement extends LitElement {
 
     .cuisine-header-box {
       margin: var(--spacing-md) var(--spacing-lg);
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-md);
       display: flex;
       flex-direction: row;
       align-items: stretch;
@@ -200,7 +200,7 @@ export class CuisineElement extends LitElement {
       width: 100%;
       background-color: var(--color-section);
       border: 1px solid var(--color-border);
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-md);
       overflow: hidden;
       transition: transform var(--transition-fast), box-shadow var(--transition-medium);
     }
