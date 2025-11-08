@@ -2,46 +2,89 @@ import { html, css, LitElement } from "lit";
 import { property } from "lit/decorators.js";
 import reset from "./styles/reset.css.ts";
 
+interface Recipe {
+  name: string;
+  time: string;
+  img: string;
+  link: string;
+  tags: string[];
+}
+
 export class MealElement extends LitElement {
   @property()
   dialogue?: string; 
 
   @property()
   mealType?: string;
+
+  @property({ type: Array })
+  recipes: Recipe[] = [];
+
+  @property()
+  category?: string;
   
-  override render() {
-	return html`
-      <div class="recipe-box">
-      <article class="dish">
-         <section id="character-box">
-          <div class="character-icon-container box">
-            <svg class="character-icon">
-              <use href="/icons/characters.svg#halan" />
-            </svg>
-          </div>
-          <div class="character-dialogue">
-            <p>${this.dialogue}</p>
-          </div>
-        </section>
-
-        <section class="recipe-links">
-          <h2>${this.mealType} Recipes:</h2>
-          <ul class="meals-list">
-            <slot name="recipe-links">
-              <li>No recipes yet!</li>
-          </slot>
-          </ul>
-        </section>
-
-        <footer>
-          <nav>
-            <a href="/index.html">Back to Menu</a>
-          </nav>
-        </footer>
-      </article>
-    </div>
-		`;
+  override connectedCallback() {
+    super.connectedCallback();
+    if (this.category) {
+      this.loadRecipes();
+    }
   }
+
+  async loadRecipes() {
+    try {
+      const response = await fetch('/data/all-recipes.json');
+      const data = await response.json();
+
+      // filter recipes by category (meal type tag)
+      if (this.category) {
+        this.recipes = data.recipes.filter((recipe: Recipe) =>
+          recipe.tags.includes(this.category!.toLowerCase())
+        );
+      }
+    } catch (error) {
+      console.error('Failed to load recipes:', error);
+    }
+  }
+
+  override render() {
+    return html`
+      <div class="recipe-box">
+        <article class="dish">
+          <section id="character-box">
+            <div class="character-icon-container box">
+              <svg class="character-icon">
+                <use href="/icons/characters.svg#halan" />
+              </svg>
+            </div>
+            <div class="character-dialogue">
+              <p>${this.dialogue}</p>
+            </div>
+          </section>
+
+          <section class="recipe-links">
+            <h2>${this.mealType} Recipes:</h2>
+            <ul class="meals-list">
+              ${this.recipes.length > 0
+                ? this.recipes.map(
+                    (r) => html`
+                      <li><a href="${r.link}">${r.name}</a></li>
+                    `
+                  )
+                : html`<li>No recipes yet!</li>`
+              }
+            </ul>
+          </section>
+
+          <footer>
+            <nav>
+              <a href="/index.html">Back to Menu</a>
+            </nav>
+          </footer>
+        </article>
+      </div>
+    `;
+  }
+
   static styles = [reset.styles, css`
     a:hover {
       color: var(--color-link);
@@ -85,7 +128,6 @@ export class MealElement extends LitElement {
       box-shadow: var(--shadow-lg);
     }
       
-
     #character-box {
       margin-top: var(--spacing-sm);
       margin-bottom: var(--spacing-md);
@@ -130,6 +172,20 @@ export class MealElement extends LitElement {
       font-family: var(--font-family-heading);
     }
 
-  `];
+    .meals-list {
+      list-style: disc;
+      padding-left: var(--spacing-lg);
+    }
 
+  
+    .meals-list a {
+      text-decoration: none;
+      color: var(--color-text);
+      transition: color var(--transition-fast);
+    }
+
+    .meals-list a:hover {
+      color: var(--color-link);
+    }
+  `];
 }

@@ -160,7 +160,7 @@ export class TastesElement extends LitElement {
 	.tasteUSS-box-image {
 		aspect-ratio: 3 / 4;
 		width: 100%;
-		background-color: var(--color-section);
+		background-color: var(--color-background4);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-md);
 		overflow: hidden;

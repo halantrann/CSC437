@@ -198,7 +198,7 @@ export class CuisineElement extends LitElement {
     .cuisine-box-image {
       aspect-ratio: 1 / 1;
       width: 100%;
-      background-color: var(--color-section);
+      background-color: var(--color-background3);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-md);
       overflow: hidden;
