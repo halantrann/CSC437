@@ -41,4 +41,17 @@ router.get("/:name", (req, res) => {
   const { name } = req.params;
   import_dish_svc.default.get(name).then((dish) => res.json(dish)).catch((err) => res.status(404).send(err));
 });
+router.post("/", (req, res) => {
+  const newDish = req.body;
+  import_dish_svc.default.create(newDish).then((dish) => res.status(201).json(dish)).catch((err) => res.status(500).send(err));
+});
+router.put("/:name", (req, res) => {
+  const { name } = req.params;
+  const newDish = req.body;
+  import_dish_svc.default.update(name, newDish).then((dish) => res.json(dish)).catch((err) => res.status(404).end());
+});
+router.delete("/:name", (req, res) => {
+  const { name } = req.params;
+  import_dish_svc.default.remove(name).then(() => res.status(204).end()).catch((err) => res.status(404).send(err));
+});
 var dishes_default = router;

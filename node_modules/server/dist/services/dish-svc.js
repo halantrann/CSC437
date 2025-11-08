@@ -49,4 +49,19 @@ function get(name) {
     throw `${name} Not Found`;
   });
 }
-var dish_svc_default = { index, get };
+function create(json) {
+  const d = new DishModel(json);
+  return d.save();
+}
+function update(name, dish) {
+  return DishModel.findOneAndUpdate({ name }, dish, { new: true }).then((updated) => {
+    if (!updated) throw `${name} Not Found`;
+    else return updated;
+  });
+}
+function remove(name) {
+  return DishModel.findOneAndDelete({ name }).then((deleted) => {
+    if (!deleted) throw `${name} Not Removed`;
+  });
+}
+var dish_svc_default = { index, get, create, update, remove };
