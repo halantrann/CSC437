@@ -1,6 +1,6 @@
 // src/models/dish.ts
 
-export interface DishElement  {
+export interface DishElement {
   name?: string;
   imgSrc?: string;
   mealType?: string;
@@ -11,4 +11,8 @@ export interface DishElement  {
   cookTime?: string;
   ingredients?: string[];
   instructions?: string[];
+  link?: string;        //  recipe page links
+  time?: string;        // total time display
 }
+
+export type Dish = DishElement; // alias to use either name 

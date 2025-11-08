@@ -3,59 +3,72 @@ import { property } from "lit/decorators.js";
 import reset from "./styles/reset.css.ts";
 
 interface Recipe {
-	name: string;
-	time: string;
-	img: string;
-	link: string;
-	tags: string[];
+  name: string;
+  prepTime?: string;
+  cookTime?: string;
+  time?: string;
+  imgSrc: string;
+  link?: string;
+  cuisine?: string;
 }
 
 export class CuisineElement extends LitElement {
-	@property()
-	cuisineType?: string;
+  @property()
+  cuisineType?: string;
 
-	@property()
-	imgAlt?: string;
+  @property()
+  imgAlt?: string;
 
-	@property()
-	tagline?: string;
+  @property()
+  tagline?: string;
 
-	@property({ attribute: "img-src" })
-	imgSrc?: string;
+  @property({ attribute: "img-src" })
+  imgSrc?: string;
 
-	@property({ type: Array })
-	recipes: Recipe[] = [];
+  @property({ type: Array })
+  recipes: Recipe[] = [];
 
-	@property()
-	category?: string;
+  @property()
+  category?: string;
 
-	override connectedCallback() {
-		super.connectedCallback();
-		if (this.category) {
-			this.loadRecipes();
-		}
-	}
+  override connectedCallback() {
+    super.connectedCallback();
+    if (this.category) {
+      this.loadRecipes();
+    }
+  }
 
-	async loadRecipes() {
-		try {
-			const response = await fetch('/data/all-recipes.json');
-			const data = await response.json();
+  async loadRecipes() {
+    try {
+      // Updated to use REST API
+      const response = await fetch('/api/dishes');
+      const data = await response.json();
 
-			// filter recipes by category
-			if (this.category) {
-				this.recipes = data.recipes.filter((recipe: Recipe) =>
-					recipe.tags.includes(this.category!.toLowerCase())
-				);
-			}
-		} catch (error) {
-			console.error('Failed to load recipes:', error);
-		}
-	}
+      // Filter recipes by cuisine
+      if (this.category) {
+        this.recipes = data.filter((recipe: Recipe) =>
+          recipe.cuisine?.toLowerCase() === this.category!.toLowerCase()
+        );
+      }
+    } catch (error) {
+      console.error('Failed to load recipes:', error);
+    }
+  }
 
-	override render() {
-		return html`
+  // helper function to calculate total time
+  getTotalTime(recipe: Recipe): string {
+    if (recipe.time) return recipe.time;
+    
+    const prepMinutes = parseInt(recipe.prepTime || '0');
+    const cookMinutes = parseInt(recipe.cookTime || '0');
+    const total = prepMinutes + cookMinutes;
+    
+    return total > 0 ? `${total} min` : 'N/A';
+  }
+
+  override render() {
+    return html`
       <div class="cuisine-box">
-
         <section class="cuisine-header-box">
           <div class="cuisine-header-text">
             <div>
@@ -72,31 +85,31 @@ export class CuisineElement extends LitElement {
         <section>
           <div class="cuisine-boxes-grid">
             ${this.recipes.map(
-			(r) => html`
-                <a href="${r.link}" class="cuisine-box-link">
+              (r) => html`
+                <a href="${r.link || '#'}" class="cuisine-box-link">
                   <div class="cuisine-box-image">
-                    <img src="${r.img}" alt="${r.name}">
+                    <img src="${r.imgSrc}" alt="${r.name}">
                   </div>
                   <div class="cuisine-box-description">
                     <h3>${r.name}</h3>
-                    <p>${r.time}</p>
+                    <p>${this.getTotalTime(r)}</p>
                   </div>
                 </a>
               `
-		)}
+            )}
           </div>
         </section>
 
         <footer class="footer-nav">
-            <nav>
-              <a href="/index.html">Back to Menu</a>
-            </nav>
+          <nav>
+            <a href="/index.html">Back to Menu</a>
+          </nav>
         </footer>
       </div>
     `;
-	}
+  }
 
-	static styles = [reset.styles, css`
+  static styles = [reset.styles, css`
     .box {
       background-color: var(--color-background);
       padding: var(--spacing-lg);
@@ -230,10 +243,10 @@ export class CuisineElement extends LitElement {
     }
 
     .footer-nav {
-		border-top: 0.2px solid var(--color-border);
-		color: var(--color-link);
-		padding-top: var(--spacing-md);
-      	text-align: center;
+      border-top: 0.2px solid var(--color-border);
+      color: var(--color-link);
+      padding-top: var(--spacing-md);
+      text-align: center;
     }
 
     .footer-nav nav {

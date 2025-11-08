@@ -1,4 +1,4 @@
-// src/recipe-collection.ts
+// proto/public/src/recipe-collection.ts
 
 import { html, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';

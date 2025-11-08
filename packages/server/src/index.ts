@@ -3,6 +3,7 @@
 import Dishes from "./services/dish-svc";
 import express, { Request, Response } from "express";
 import { connect } from "./services/mongo";
+import dishes from "./routes/dishes";
 
 connect("melonbowl");
 const app = express();
@@ -10,6 +11,10 @@ const port = process.env.PORT || 3000;
 const staticDir = process.env.STATIC || "public";
 
 app.use(express.static(staticDir));
+// Middleware:
+app.use(express.json());
+
+app.use("/api/dishes", dishes);
 
 app.get("/hello", (req: Request, res: Response) => {
     res.send("Hello, World");

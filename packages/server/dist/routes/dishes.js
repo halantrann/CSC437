@@ -5,6 +5,10 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
@@ -21,27 +25,20 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var import_dish_svc = __toESM(require("./services/dish-svc"));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var dishes_exports = {};
+__export(dishes_exports, {
+  default: () => dishes_default
+});
+module.exports = __toCommonJS(dishes_exports);
 var import_express = __toESM(require("express"));
-var import_mongo = require("./services/mongo");
-var import_dishes = __toESM(require("./routes/dishes"));
-(0, import_mongo.connect)("melonbowl");
-const app = (0, import_express.default)();
-const port = process.env.PORT || 3e3;
-const staticDir = process.env.STATIC || "public";
-app.use(import_express.default.static(staticDir));
-app.use(import_express.default.json());
-app.use("/api/dishes", import_dishes.default);
-app.get("/hello", (req, res) => {
-  res.send("Hello, World");
+var import_dish_svc = __toESM(require("../services/dish-svc"));
+const router = import_express.default.Router();
+router.get("/", (_, res) => {
+  import_dish_svc.default.index().then((list) => res.json(list)).catch((err) => res.status(500).send(err));
 });
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
-app.get("/dishes/:name", (req, res) => {
+router.get("/:name", (req, res) => {
   const { name } = req.params;
-  import_dish_svc.default.get(name).then((data) => {
-    if (data) res.set("Content-Type", "application/json").send(JSON.stringify(data));
-    else res.status(404).send();
-  });
+  import_dish_svc.default.get(name).then((dish) => res.json(dish)).catch((err) => res.status(404).send(err));
 });
+var dishes_default = router;

@@ -4,10 +4,14 @@ import reset from "./styles/reset.css.ts";
 
 interface Recipe {
   name: string;
-  time: string;
-  img: string;
-  link: string;
-  tags: string[];
+  prepTime?: string;
+  cookTime?: string;
+  time?: string;        // For display
+  imgSrc: string;
+  link?: string;
+  mealType?: string;
+  cuisine?: string;
+  taste?: string;
 }
 
 export class MealElement extends LitElement {
@@ -32,13 +36,14 @@ export class MealElement extends LitElement {
 
   async loadRecipes() {
     try {
-      const response = await fetch('/data/all-recipes.json');
+      // Updated to use REST API instead of static JSON
+      const response = await fetch('/api/dishes');
       const data = await response.json();
 
-      // filter recipes by category (meal type tag)
+      // Filter recipes by mealType
       if (this.category) {
-        this.recipes = data.recipes.filter((recipe: Recipe) =>
-          recipe.tags.includes(this.category!.toLowerCase())
+        this.recipes = data.filter((recipe: Recipe) =>
+          recipe.mealType?.toLowerCase() === this.category!.toLowerCase()
         );
       }
     } catch (error) {
@@ -67,7 +72,7 @@ export class MealElement extends LitElement {
               ${this.recipes.length > 0
                 ? this.recipes.map(
                     (r) => html`
-                      <li><a href="${r.link}">${r.name}</a></li>
+                      <li><a href="${r.link || '#'}">${r.name}</a></li>
                     `
                   )
                 : html`<li>No recipes yet!</li>`
@@ -177,7 +182,6 @@ export class MealElement extends LitElement {
       padding-left: var(--spacing-lg);
     }
 
-  
     .meals-list a {
       text-decoration: none;
       color: var(--color-text);
