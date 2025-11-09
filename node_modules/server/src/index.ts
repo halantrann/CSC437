@@ -4,6 +4,7 @@ import Dishes from "./services/dish-svc";
 import express, { Request, Response } from "express";
 import { connect } from "./services/mongo";
 import dishes from "./routes/dishes";
+import auth from ".routes/auth";
 
 connect("melonbowl");
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.static(staticDir));
 app.use(express.json());
 
 app.use("/api/dishes", dishes);
+app.use("/auth", auth);
 
 app.get("/hello", (req: Request, res: Response) => {
     res.send("Hello, World");
