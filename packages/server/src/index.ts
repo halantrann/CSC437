@@ -4,7 +4,7 @@ import Dishes from "./services/dish-svc";
 import express, { Request, Response } from "express";
 import { connect } from "./services/mongo";
 import dishes from "./routes/dishes";
-import auth from ".routes/auth";
+import auth from "./routes/auth";
 
 connect("melonbowl");
 const app = express();
