@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up - The Melon Bowl</title>
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  
+  <script type="module">
+    import { define, Auth } from "@calpoly/mustang";
+    import { LoginFormElement } from "/src/auth/login-form.ts";
+
+    define({
+      "mu-auth": Auth.Provider,
+      "registration-form": LoginFormElement  // Reuse LoginFormElement
+    });
+  </script>
+  
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: var(--color-background);
+    }
+    
+    .registration-container {
+      max-width: 400px;
+      width: 100%;
+      padding: var(--spacing-xl);
+    }
+    
+    h2 {
+      text-align: center;
+      font-family: var(--font-family-heading);
+      color: var(--color-header);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .card {
+      background-color: var(--color-section);
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+    }
+    
+    label {
+      display: block;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    label span {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-header);
+    }
+    
+    input {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-family-body);
+      font-size: 1rem;
+    }
+    
+    button {
+      width: 100%;
+      padding: var(--spacing-sm);
+      background-color: var(--color-link);
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: var(--font-weight-bold);
+      cursor: pointer;
+      margin-top: var(--spacing-md);
+      transition: background-color var(--transition-fast);
+    }
+    
+    button:hover:not(:disabled) {
+      background-color: var(--color-emphasistext);
+    }
+    
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .login-link {
+      text-align: center;
+      margin-top: var(--spacing-lg);
+      color: var(--color-header);
+    }
+    
+    .login-link a {
+      color: var(--color-link);
+      font-weight: var(--font-weight-bold);
+    }
+    
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <mu-auth provides="melonbowl:auth">
+    <div class="registration-container">
+      <h2>New User</h2>
+      <main class="card">
+        <registration-form api="/auth/register">
+          <label>
+            <span>Username:</span>
+            <input name="username" autocomplete="off" />
+          </label>
+          <label>
+            <span>Password:</span>
+            <input type="password" name="password" />
+          </label>
+          <button slot="button" type="submit">
+            Register
+          </button>
+        </registration-form>
+      </main>
+      <p class="login-link">
+        Already have an account?
+        <a href="/login.html">Sign in</a>
+      </p>
+    </div>
+  </mu-auth>
+</body>
+</html>

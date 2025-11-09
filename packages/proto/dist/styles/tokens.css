@@ -4,8 +4,10 @@
   /* Primary Colors */
   --color-background: #e6cbae;
   /* --color-background3: #6A8EAE; */
-  --color-background2: #84A59D;
   --color-background3: #AD6D6E; 
+  --color-background4: #A09AB4; 
+
+  --color-background2: #84A59D;
   --color-header2: #84A59D; 
 
   --color-header: #1b1905;
@@ -17,7 +19,8 @@
   /* Dark Mode Color Pallette */
   body.dark-mode {
     --color-background: #271a14;
-    --color-background3: #704849; 
+    --color-background3: #4d3233; 
+    --color-background4: #322d43;
     --color-section: #3E4245;
 
     --color-header: #a8947f; 
@@ -62,10 +65,11 @@
   --spacing-lg: 30px;
   --spacing-xl: 40px;
   --spacing-xxl: 70px;
+  --spacing-header: 125px; /* to compensate for header height */
   
   /* Border Radius */
   --radius-sm: 4px;
-  --radius-md: 12px;
+  --radius-md: 8px;
   --radius-lg: 20px;
   
   /* Shadows */

@@ -1,34 +1,34 @@
-import{i as n,x as p,r as g,a as h,n as l,d as v}from"./reset.css-Dtz69L4r.js";var b=Object.defineProperty,d=(i,c,s,x)=>{for(var r=void 0,o=i.length-1,t;o>=0;o--)(t=i[o])&&(r=t(c,s,r)||r);return r&&b(c,s,r),r};const e=class e extends n{render(){return p`
+import{i as h,x as c,r as g,a as v,n as i,d as m}from"./reset.css-Dtz69L4r.js";var b=Object.defineProperty,t=(n,r,e,d)=>{for(var o=void 0,s=n.length-1,p;s>=0;s--)(p=n[s])&&(o=p(r,e,o)||o);return o&&b(r,e,o),o};const l=class l extends h{constructor(){super(...arguments),this.recipes=[]}connectedCallback(){super.connectedCallback(),this.category&&this.loadRecipes()}async loadRecipes(){try{const e=await(await fetch("/api/dishes")).json();this.category&&(this.recipes=e.filter(d=>d.mealType?.toLowerCase()===this.category.toLowerCase()))}catch(r){console.error("Failed to load recipes:",r)}}render(){return c`
       <div class="recipe-box">
-      <article class="dish">
-         <section id="character-box">
-          <div class="character-icon-container box">
-            <svg class="character-icon">
-              <use href="/icons/characters.svg#halan" />
-            </svg>
-          </div>
-          <div class="character-dialogue">
-            <p>${this.dialogue}</p>
-          </div>
-        </section>
+        <article class="dish">
+          <section id="character-box">
+            <div class="character-icon-container box">
+              <svg class="character-icon">
+                <use href="/icons/characters.svg#halan" />
+              </svg>
+            </div>
+            <div class="character-dialogue">
+              <p>${this.dialogue}</p>
+            </div>
+          </section>
 
-        <section class="recipe-links">
-          <h2>${this.mealType} Recipes:</h2>
-          <ul class="meals-list">
-            <slot name="recipe-links">
-              <li>No recipes yet!</li>
-          </slot>
-          </ul>
-        </section>
+          <section class="recipe-links">
+            <h2>${this.mealType} Recipes:</h2>
+            <ul class="meals-list">
+              ${this.recipes.length>0?this.recipes.map(r=>c`
+                      <li><a href="${r.link||"#"}">${r.name}</a></li>
+                    `):c`<li>No recipes yet!</li>`}
+            </ul>
+          </section>
 
-        <footer>
-          <nav>
-            <a href="/index.html">Back to Menu</a>
-          </nav>
-        </footer>
-      </article>
-    </div>
-		`}};e.styles=[g.styles,h`
+          <footer>
+            <nav>
+              <a href="/index.html">Back to Menu</a>
+            </nav>
+          </footer>
+        </article>
+      </div>
+    `}};l.styles=[g.styles,v`
     a:hover {
       color: var(--color-link);
     }
@@ -71,7 +71,6 @@ import{i as n,x as p,r as g,a as h,n as l,d as v}from"./reset.css-Dtz69L4r.js";v
       box-shadow: var(--shadow-lg);
     }
       
-
     #character-box {
       margin-top: var(--spacing-sm);
       margin-bottom: var(--spacing-md);
@@ -100,7 +99,7 @@ import{i as n,x as p,r as g,a as h,n as l,d as v}from"./reset.css-Dtz69L4r.js";v
       max-width: 100%;
       height: auto;
       display: block;
-      transform: scale(1.27); 
+      transform: scale(1.38); 
     }
 
     .character-dialogue {
@@ -116,4 +115,18 @@ import{i as n,x as p,r as g,a as h,n as l,d as v}from"./reset.css-Dtz69L4r.js";v
       font-family: var(--font-family-heading);
     }
 
-  `];let a=e;d([l()],a.prototype,"dialogue");d([l()],a.prototype,"mealType");v({"mbowl-meal":a});
+    .meals-list {
+      list-style: disc;
+      padding-left: var(--spacing-lg);
+    }
+
+    .meals-list a {
+      text-decoration: none;
+      color: var(--color-text);
+      transition: color var(--transition-fast);
+    }
+
+    .meals-list a:hover {
+      color: var(--color-link);
+    }
+  `];let a=l;t([i()],a.prototype,"dialogue");t([i()],a.prototype,"mealType");t([i({type:Array})],a.prototype,"recipes");t([i()],a.prototype,"category");m({"mbowl-meal":a});

@@ -21,7 +21,6 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var import_dish_svc = __toESM(require("./services/dish-svc"));
 var import_express = __toESM(require("express"));
 var import_mongo = require("./services/mongo");
 var import_dishes = __toESM(require("./routes/dishes"));
@@ -32,18 +31,8 @@ const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
 app.use(import_express.default.static(staticDir));
 app.use(import_express.default.json());
-app.use("/api/dishes", import_dishes.default);
 app.use("/auth", import_auth.default);
-app.get("/hello", (req, res) => {
-  res.send("Hello, World");
-});
+app.use("/api/dishes", import_auth.authenticateUser, import_dishes.default);
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
-});
-app.get("/dishes/:name", (req, res) => {
-  const { name } = req.params;
-  import_dish_svc.default.get(name).then((data) => {
-    if (data) res.set("Content-Type", "application/json").send(JSON.stringify(data));
-    else res.status(404).send();
-  });
 });
