@@ -38,7 +38,7 @@ router.post("/register", (req: Request, res: Response) => {
 router.post("/login", (req: Request, res: Response) => {
 	const { username, password } = req.body; // from form 
 
-	if (~username || ~password) {
+	if (!username || !password) {
 		res.status(400).send("Bad request: Invalid input data.");
 	} else {
 		credentials
