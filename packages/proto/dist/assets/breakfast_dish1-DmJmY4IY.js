@@ -1,8 +1,4 @@
-import{n as o,i as g,x as l,r as v,a as u,d as x}from"./reset.css-Dtz69L4r.js";/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */function b(s){return o({...s,state:!0,attribute:!1})}var f=Object.defineProperty,a=(s,i,r,h)=>{for(var e=void 0,n=s.length-1,d;n>=0;n--)(d=s[n])&&(e=d(i,r,e)||e);return e&&f(i,r,e),e};const p=class p extends g{render(){return l`
+import{i as g,x as l,a as v,n as o,r as x,d as u}from"./state-BPDrD376.js";import{r as b}from"./reset.css-CF66ewkI.js";var f=Object.defineProperty,a=(d,i,r,h)=>{for(var e=void 0,s=d.length-1,n;s>=0;s--)(n=d[s])&&(e=n(i,r,e)||e);return e&&f(i,r,e),e};const p=class p extends g{render(){return l`
      <div class="recipe-box">
       <article class="dish">
           <h1>${this.name}</h1> 
@@ -74,7 +70,7 @@ import{n as o,i as g,x as l,r as v,a as u,d as x}from"./reset.css-Dtz69L4r.js";/
           </footer>
         </article>
       </div>
-		`}};p.styles=[v.styles,u`
+		`}};p.styles=[b.styles,v`
       
     .dish-properties {
       display: grid;
@@ -258,7 +254,7 @@ import{n as o,i as g,x as l,r as v,a as u,d as x}from"./reset.css-Dtz69L4r.js";/
       font-family: var(--font-family-heading);
     }
 
-  `];let t=p;a([o()],t.prototype,"name");a([o()],t.prototype,"imgAlt");a([o({attribute:"img-src"})],t.prototype,"imgSrc");a([o()],t.prototype,"mealType");a([o()],t.prototype,"cuisine");a([o()],t.prototype,"taste");a([o()],t.prototype,"calories");a([o()],t.prototype,"prepTime");a([o()],t.prototype,"cookTime");var y=Object.defineProperty,m=(s,i,r,h)=>{for(var e=void 0,n=s.length-1,d;n>=0;n--)(d=s[n])&&(e=d(i,r,e)||e);return e&&y(i,r,e),e};class c extends g{constructor(){super(...arguments),this.recipes=[]}connectedCallback(){super.connectedCallback(),this.src&&this.hydrate(this.src)}hydrate(i){fetch(i).then(r=>r.json()).then(r=>{Array.isArray(r)?this.recipes=r:this.recipes=[r]}).catch(r=>console.error("Failed to load recipes:",r))}render(){return l`
+  `];let t=p;a([o()],t.prototype,"name");a([o()],t.prototype,"imgAlt");a([o({attribute:"img-src"})],t.prototype,"imgSrc");a([o()],t.prototype,"mealType");a([o()],t.prototype,"cuisine");a([o()],t.prototype,"taste");a([o()],t.prototype,"calories");a([o()],t.prototype,"prepTime");a([o()],t.prototype,"cookTime");var y=Object.defineProperty,m=(d,i,r,h)=>{for(var e=void 0,s=d.length-1,n;s>=0;s--)(n=d[s])&&(e=n(i,r,e)||e);return e&&y(i,r,e),e};class c extends g{constructor(){super(...arguments),this.recipes=[]}connectedCallback(){super.connectedCallback(),this.src&&this.hydrate(this.src)}hydrate(i){fetch(i).then(r=>r.json()).then(r=>{Array.isArray(r)?this.recipes=r:this.recipes=[r]}).catch(r=>console.error("Failed to load recipes:",r))}render(){return l`
 			<div class="recipes-collection">
 				${this.recipes.map(i=>this.renderRecipe(i))} 
 			</div> 
@@ -280,4 +276,4 @@ import{n as o,i as g,x as l,r as v,a as u,d as x}from"./reset.css-Dtz69L4r.js";/
           ${i.instructions.map(r=>l`<li>${r}</li>`)}
         </ol>
       </mbowl-dish>
-    `}}m([o()],c.prototype,"src");m([b()],c.prototype,"recipes");x({"mbowl-dish":t,"mbowl-recipes":c});
+    `}}m([o()],c.prototype,"src");m([x()],c.prototype,"recipes");u({"mbowl-dish":t,"mbowl-recipes":c});

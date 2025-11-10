@@ -1,4 +1,15 @@
-import{i as h,x as c,r as g,a as v,n as i,d as m}from"./reset.css-Dtz69L4r.js";var b=Object.defineProperty,t=(n,r,e,d)=>{for(var o=void 0,s=n.length-1,p;s>=0;s--)(p=n[s])&&(o=p(r,e,o)||o);return o&&b(r,e,o),o};const l=class l extends h{constructor(){super(...arguments),this.recipes=[]}connectedCallback(){super.connectedCallback(),this.category&&this.loadRecipes()}async loadRecipes(){try{const e=await(await fetch("/api/dishes")).json();this.category&&(this.recipes=e.filter(d=>d.mealType?.toLowerCase()===this.category.toLowerCase()))}catch(r){console.error("Failed to load recipes:",r)}}render(){return c`
+import{i as g,O as v,x as o,a as u,n as s,r as h,d as m}from"./state-BPDrD376.js";import{r as b}from"./reset.css-CF66ewkI.js";var f=Object.defineProperty,i=(n,r,t,d)=>{for(var a=void 0,c=n.length-1,p;c>=0;c--)(p=n[c])&&(a=p(r,t,a)||a);return a&&f(r,t,a),a};const l=class l extends g{constructor(){super(...arguments),this.recipes=[],this.loading=!1,this._authObserver=new v(this,"melonbowl:auth")}connectedCallback(){super.connectedCallback(),this._authObserver.observe(r=>{this._user=r.user,this._user?.authenticated&&this.category&&this.loadRecipes()}),this.category&&this._user?.authenticated&&this.loadRecipes()}get authorization(){return this._user?.authenticated&&{Authorization:`Bearer ${this._user.token}`}}async loadRecipes(){if(!this._user?.authenticated){this.error="Please log in to view recipes";return}this.loading=!0,this.error=void 0;try{const r=await fetch("/api/dishes",{headers:this.authorization||{}});if(!r.ok)throw r.status===401?new Error("Please log in to view recipes"):new Error(`Failed to load recipes: ${r.statusText}`);const t=await r.json();this.category&&(this.recipes=t.filter(d=>d.mealType?.toLowerCase()===this.category.toLowerCase()))}catch(r){console.error("Failed to load recipes:",r),this.error=r instanceof Error?r.message:"Failed to load recipes"}finally{this.loading=!1}}render(){return this.loading?o`
+        <div class="recipe-box">
+          <div class="loading-message">Loading recipes...</div>
+        </div>
+      `:this.error?o`
+        <div class="recipe-box">
+          <div class="error-message">
+            <p>${this.error}</p>
+            ${this._user?.authenticated?null:o`<a href="/login.html" class="login-link">Login to view recipes</a>`}
+          </div>
+        </div>
+      `:o`
       <div class="recipe-box">
         <article class="dish">
           <section id="character-box">
@@ -15,9 +26,9 @@ import{i as h,x as c,r as g,a as v,n as i,d as m}from"./reset.css-Dtz69L4r.js";v
           <section class="recipe-links">
             <h2>${this.mealType} Recipes:</h2>
             <ul class="meals-list">
-              ${this.recipes.length>0?this.recipes.map(r=>c`
+              ${this.recipes.length>0?this.recipes.map(r=>o`
                       <li><a href="${r.link||"#"}">${r.name}</a></li>
-                    `):c`<li>No recipes yet!</li>`}
+                    `):o`<li>No ${this.mealType} recipes yet!</li>`}
             </ul>
           </section>
 
@@ -28,7 +39,32 @@ import{i as h,x as c,r as g,a as v,n as i,d as m}from"./reset.css-Dtz69L4r.js";v
           </footer>
         </article>
       </div>
-    `}};l.styles=[g.styles,v`
+    `}};l.styles=[b.styles,u`
+    .loading-message,
+    .error-message {
+      padding: var(--spacing-xl);
+      text-align: center;
+      margin: var(--spacing-lg);
+    }
+
+    .error-message {
+      color: var(--color-link);
+      border: 1px solid var(--color-link);
+      border-radius: var(--radius-md);
+      background-color: rgba(202, 60, 37, 0.1);
+    }
+
+    .error-message .login-link {
+      display: inline-block;
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-sm) var(--spacing-md);
+      background-color: var(--color-link);
+      color: white;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      font-weight: var(--font-weight-bold);
+    }
+
     a:hover {
       color: var(--color-link);
     }
@@ -129,4 +165,4 @@ import{i as h,x as c,r as g,a as v,n as i,d as m}from"./reset.css-Dtz69L4r.js";v
     .meals-list a:hover {
       color: var(--color-link);
     }
-  `];let a=l;t([i()],a.prototype,"dialogue");t([i()],a.prototype,"mealType");t([i({type:Array})],a.prototype,"recipes");t([i()],a.prototype,"category");m({"mbowl-meal":a});
+  `];let e=l;i([s()],e.prototype,"dialogue");i([s()],e.prototype,"mealType");i([s({type:Array})],e.prototype,"recipes");i([s()],e.prototype,"category");i([h()],e.prototype,"loading");i([h()],e.prototype,"error");m({"mbowl-meal":e});

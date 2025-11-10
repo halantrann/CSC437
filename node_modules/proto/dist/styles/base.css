@@ -3,6 +3,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap');
 
+header,
+header * {
+  font-family: var(--font-family-heading);
+}
+
+header h1, 
+header h2, 
+header h3, 
+header h4, 
+header h5, 
+header h6,
+header .title-block {
+  font-family: var(--font-family-heading);
+}
+
 body {
   font-family: var(--font-family-body);
   font-weight: var(--font-weight-normal);
