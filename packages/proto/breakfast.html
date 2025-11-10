@@ -11,65 +11,51 @@
   <link rel="stylesheet" href="/styles/layout.css">
   <link rel="stylesheet" href="/styles/boxes.css">
   <link rel="stylesheet" href="/styles/breakfast.css">
+
+  <script type="module">
+    import { define, Auth } from "@calpoly/mustang";
+    import { MealElement } from "/src/meal.js";
+    import { HeaderElement } from "/src/header.ts";
+
+    define({
+      "mbowl-meal": MealElement,
+      "melon-header": HeaderElement,
+      "mu-auth": Auth.Provider
+    });
+
+    // Dark mode handler
+    window.relayDarkMode = function(event) {
+      event.stopPropagation();
+      const checked = event.target.checked;
+      const customEvent = new CustomEvent("dark-mode:toggle", {
+        bubbles: true,
+        detail: { checked },
+      });
+      event.target.dispatchEvent(customEvent);
+    }
+
+    const page = document.body;
+    page.addEventListener("dark-mode:toggle", (event) => {
+      const checked = event.detail.checked;
+      page.classList.toggle("dark-mode", checked);
+    });
+  </script>
 </head>
 
 <body>
-  <header>
-    <div class="logo-content">
-      <svg class="icon logo-icon">
-        <use href="/icons/logo.svg#melonbowllogo" />
-      </svg>
-      <div class="title-block">
-        <h1>The Melon Bowl</h1>
-        <p>your pocket menu for when you don't know what to eat</p>
-      </div>
+  <mu-auth provides="melonbowl:auth">
+    <header>
+      <melon-header></melon-header>
+    </header>
 
-      <label onchange="relayDarkMode(event)">
-        <input type="checkbox" />
-        Dark Mode!
-      </label>
-
-      <script>
-        function relayDarkMode(event) {
-          event.stopPropagation(); // prevent bubbling 
-
-          const checked = event.target.checked;
-          const customEvent = new CustomEvent(
-            "dark-mode:toggle", {
-            bubbles: true,
-            detail: { checked },
-          });
-
-          event.target.dispatchEvent(customEvent);
-        }
-
-        const page = document.body;
-
-        page.addEventListener("dark-mode:toggle", (event) => {
-          const checked = event.detail.checked;
-          page.classList.toggle("dark-mode", checked)
-        })
-      </script>
-
-      <script type="module">
-        import { define } from "@calpoly/mustang";
-        import { MealElement } from "/src/meal.js";
-
-        define({
-          "mbowl-meal": MealElement
-        })
-      </script>
-    </div>
-  </header>
-
-  <main class="with-header-spacing">
-    <mbowl-meal 
-      dialogue="Seems like you woke up early enough for breakfast today." 
-      mealType="Breakfast"
-      category="breakfast">
-    </mbowl-meal>
-  </main>
-
+    <main class="with-header-spacing">
+      <mbowl-meal 
+        dialogue="Seems like you woke up early enough for breakfast today." 
+        mealType="Breakfast"
+        category="breakfast">
+      </mbowl-meal>
+    </main>
+  </mu-auth>
 </body>
 
 </html>

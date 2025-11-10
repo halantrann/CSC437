@@ -13,51 +13,47 @@
 	<link rel="stylesheet" href="/styles/boxes.css">
 	<link rel="stylesheet" href="/styles/cuisine.css">
 
-	<script type="module" src="/src/cuisine.js"></script>
+	<script type="module">
+		import { define, Auth } from "@calpoly/mustang";
+		import { CuisineElement } from "/src/cuisine.js";
+		import { HeaderElement } from "/src/header.ts";
+
+		define({
+			"cuisine-element": CuisineElement,
+			"melon-header": HeaderElement,
+			"mu-auth": Auth.Provider
+		});
+
+		window.relayDarkMode = function(event) {
+			event.stopPropagation();
+			const checked = event.target.checked;
+			event.target.dispatchEvent(
+				new CustomEvent("dark-mode:toggle", { bubbles: true, detail: { checked } })
+			);
+		}
+
+		document.body.addEventListener("dark-mode:toggle", (event) => {
+			document.body.classList.toggle("dark-mode", event.detail.checked);
+		});
+	</script>
 </head>
 
 <body>
-	<header>
-		<div class="logo-content">
-			<svg class="icon logo-icon">
-				<use href="/icons/logo.svg#melonbowllogo" />
-			</svg>
-			<div class="title-block">
-				<h1>The Melon Bowl</h1>
-				<p>your pocket menu for when you don't know what to eat</p>
-			</div>
+	<mu-auth provides="melonbowl:auth">
+		<header>
+			<melon-header></melon-header>
+		</header>
 
-			<label onchange="relayDarkMode(event)">
-				<input type="checkbox" />
-				Dark Mode!
-			</label>
-
-			<script>
-				function relayDarkMode(event) {
-					event.stopPropagation();
-					const checked = event.target.checked;
-					event.target.dispatchEvent(
-						new CustomEvent("dark-mode:toggle", { bubbles: true, detail: { checked } })
-					);
-				}
-
-				document.body.addEventListener("dark-mode:toggle", (event) => {
-					document.body.classList.toggle("dark-mode", event.detail.checked);
-				});
-			</script>
-		</div>
-	</header>
-
-	<main class="with-header-spacing">
-		<cuisine-element 
-			category="vietnamese" 
-			cuisineType="Vietnamese Cuisine"
-			tagline="fresh, bold flavors straight into your own melon bowl" 
-			img-src="/images/greekyogurtbowl.jpg"
-			imgAlt="Vietnamese Dish Featuring Vermicelli Noodles">
-		</cuisine-element>
-	</main>
-
+		<main class="with-header-spacing">
+			<cuisine-element 
+				category="vietnamese" 
+				cuisineType="Vietnamese Cuisine"
+				tagline="fresh, bold flavors straight into your own melon bowl" 
+				img-src="/images/greekyogurtbowl.jpg"
+				imgAlt="Vietnamese Dish Featuring Vermicelli Noodles">
+			</cuisine-element>
+		</main>
+	</mu-auth>
 </body>
 
 </html>
