@@ -153,7 +153,7 @@ export class MealElement extends LitElement {
                       <li><a href="${r.link || '#'}">${r.name}</a></li>
                     `
                   )
-                : html`<li>No ${this.mealType} recipes yet!</li>`
+                : html`<li>Sign in to see ${this.mealType} recipes!</li>`
               }
             </ul>
           </section>

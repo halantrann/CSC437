@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>The Melon Bowl</title>
+	<link rel="stylesheet" href="/styles/reset.css">
+	<link rel="stylesheet" href="/styles/tokens.css">
+	<link rel="stylesheet" href="/styles/base.css">
+	<link rel="stylesheet" href="/styles/layout.css">
+	<link rel="stylesheet" href="/styles/boxes.css">
+	<link rel="stylesheet" href="/styles/tastes.css">
+
+	<script type="module">
+		import { define, Auth } from "@calpoly/mustang";
+		import { TastesElement } from "/src/tastes.js";
+		import { HeaderElement } from "/src/header.ts";
+
+		define({
+			"tastes-element": TastesElement,
+			"melon-header": HeaderElement,
+			"mu-auth": Auth.Provider
+		});
+
+		// Get taste type from URL parameter
+		const params = new URLSearchParams(window.location.search);
+		const tasteType = params.get('type') || 'umami';
+		
+		// Capitalize first letter for display
+		const tasteName = tasteType.charAt(0).toUpperCase() + tasteType.slice(1);
+		
+		// Update page title
+		document.title = `${tasteName} - The Melon Bowl`;
+		
+		// Taglines for each taste
+		const taglines = {
+			'umami': 'umami salami',
+			'sweet': 'sweet treat',
+			'salty': 'salty sensation'
+		};
+		
+		// Set taste on element when DOM loads
+		window.addEventListener('DOMContentLoaded', () => {
+			const tastesElement = document.querySelector('tastes-element');
+			tastesElement.setAttribute('category', tasteType);
+			tastesElement.setAttribute('tastesType', tasteName);
+			tastesElement.setAttribute('tagline', taglines[tasteType] || `${tasteName} dishes`);
+		});
+
+		window.relayDarkMode = function(event) {
+			event.stopPropagation();
+			const checked = event.target.checked;
+			const customEvent = new CustomEvent("dark-mode:toggle", {
+				bubbles: true,
+				detail: { checked },
+			});
+			event.target.dispatchEvent(customEvent);
+		}
+
+		const page = document.body;
+		page.addEventListener("dark-mode:toggle", (event) => {
+			const checked = event.detail.checked;
+			page.classList.toggle("dark-mode", checked);
+		});
+	</script>
+</head>
+
+<body>
+	<mu-auth provides="melonbowl:auth">
+		<header>
+			<melon-header></melon-header>
+		</header>
+		
+		<main class="with-header-spacing">
+			<tastes-element 
+				category="" 
+				tastesType=""
+				tagline="">
+			</tastes-element>
+		</main>
+	</mu-auth>
+</body>
+
+</html>

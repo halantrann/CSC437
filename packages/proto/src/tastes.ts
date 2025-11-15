@@ -43,7 +43,7 @@ export class TastesElement extends LitElement {
     // Observe auth state
     this._authObserver.observe((auth: Auth.Model) => {
       this._user = auth.user;
-      
+
       // Load recipes when authenticated
       if (this._user?.authenticated && this.category) {
         this.loadRecipes();
@@ -75,9 +75,15 @@ export class TastesElement extends LitElement {
     this.error = undefined;
 
     try {
-      // USE AUTHORIZATION HEADER HERE
+      const headers: HeadersInit = {};
+
+      if (this._user?.authenticated) {
+        const token = (this._user as Auth.AuthenticatedUser).token;
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
       const response = await fetch('/api/dishes', {
-        headers: this.authorization || {}
+        headers
       });
 
       if (!response.ok) {
@@ -106,11 +112,11 @@ export class TastesElement extends LitElement {
   // Helper to calculate total cook time
   getTotalTime(recipe: Recipe): string {
     if (recipe.time) return recipe.time;
-    
+
     const prepMinutes = parseInt(recipe.prepTime || '0');
     const cookMinutes = parseInt(recipe.cookTime || '0');
     const total = prepMinutes + cookMinutes;
-    
+
     return total > 0 ? `${total} min` : 'N/A';
   }
 
@@ -130,10 +136,10 @@ export class TastesElement extends LitElement {
         <div class="tasteUSS-box">
           <div class="error-message">
             <p>${this.error}</p>
-            ${!this._user?.authenticated ? 
-              html`<a href="/login.html" class="login-link">Login to view recipes</a>` : 
-              null
-            }
+            ${!this._user?.authenticated ?
+          html`<a href="/login.html" class="login-link">Login to view recipes</a>` :
+          null
+        }
           </div>
         </div>
       `;
@@ -151,8 +157,8 @@ export class TastesElement extends LitElement {
         <section>
           <div class="tasteUSS-boxes-grid">
             ${this.recipes.length > 0 ?
-              this.recipes.map(
-                (r) => html`
+        this.recipes.map(
+          (r) => html`
                   <a href="${r.link || '#'}" class="tasteUSS-box-link">
                     <div class="tasteUSS-box-image">
                       <img src="${r.imgSrc}" alt="${r.name}">
@@ -163,9 +169,9 @@ export class TastesElement extends LitElement {
                     </div>
                   </a>
                 `
-              ) :
-              html`<p class="no-recipes">No ${this.tastesType} recipes at the moment...</p>`
-            }
+        ) :
+        html`<p class="no-recipes">No ${this.tastesType} recipes at the moment...Perhaps you need to sign in?</p>`
+      }
           </div>
         </section>
 

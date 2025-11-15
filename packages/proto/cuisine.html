@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuisine - The Melon Bowl</title>
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/layout.css">
+  <link rel="stylesheet" href="/styles/boxes.css">
+  <link rel="stylesheet" href="/styles/breakfast.css">
+
+  <script type="module">
+    import { define, Auth } from "@calpoly/mustang";
+    import { CuisineElement } from "/src/cuisine.js";
+    import { HeaderElement } from "/src/header.ts";
+
+    define({
+      "cuisine-element": CuisineElement,
+      "melon-header": HeaderElement,
+      "mu-auth": Auth.Provider
+    });
+
+    // Get cuisine from URL parameter
+    const params = new URLSearchParams(window.location.search);
+    const cuisineType = params.get('type') || 'vietnamese';
+    
+    // Capitalize first letter for display
+    const cuisineName = cuisineType.charAt(0).toUpperCase() + cuisineType.slice(1);
+    
+    // Update page title
+    document.title = `${cuisineName} - The Melon Bowl`;
+    
+    // Cuisine images and taglines
+    const cuisineData = {
+      'vietnamese': { img: '/images/vietnamese-cuisine.jpg', tagline: 'Fresh herbs and bold flavors' },
+      'chinese': { img: '/images/chinese-cuisine.jpg', tagline: 'Centuries of culinary tradition' },
+      'japanese': { img: '/images/japanese-cuisine.jpg', tagline: 'Precision and simplicity' },
+      'thai': { img: '/images/thai-cuisine.jpg', tagline: 'Sweet, sour, salty, spicy' },
+      'italian': { img: '/images/italian-cuisine.jpg', tagline: 'La dolce vita' },
+      'french': { img: '/images/french-cuisine.jpg', tagline: 'The art of cooking' },
+    };
+    
+    // Set cuisine on element when DOM loads
+    window.addEventListener('DOMContentLoaded', () => {
+      const cuisineElement = document.querySelector('cuisine-element');
+      const data = cuisineData[cuisineType] || { img: '', tagline: 'Explore this cuisine' };
+      
+      cuisineElement.setAttribute('category', cuisineType);
+      cuisineElement.setAttribute('cuisineType', `${cuisineName} Cuisine`);
+      cuisineElement.setAttribute('tagline', data.tagline);
+      cuisineElement.setAttribute('img-src', data.img);
+      cuisineElement.setAttribute('img-alt', `${cuisineName} cuisine`);
+    });
+
+    // Dark mode handler
+    window.relayDarkMode = function(event) {
+      event.stopPropagation();
+      const checked = event.target.checked;
+      const customEvent = new CustomEvent("dark-mode:toggle", {
+        bubbles: true,
+        detail: { checked },
+      });
+      event.target.dispatchEvent(customEvent);
+    }
+
+    const page = document.body;
+    page.addEventListener("dark-mode:toggle", (event) => {
+      const checked = event.detail.checked;
+      page.classList.toggle("dark-mode", checked);
+    });
+  </script>
+</head>
+
+<body>
+  <mu-auth provides="melonbowl:auth">
+    <header>
+      <melon-header></melon-header>
+    </header>
+
+    <main class="with-header-spacing">
+      <cuisine-element 
+        category="" 
+        cuisineType=""
+        tagline=""
+        img-src=""
+        img-alt="">
+      </cuisine-element>
+    </main>
+  </mu-auth>
+</body>
+
+</html>

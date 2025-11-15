@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meals - The Melon Bowl</title>
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/layout.css">
+  <link rel="stylesheet" href="/styles/boxes.css">
+  <link rel="stylesheet" href="/styles/breakfast.css">
+
+  <script type="module">
+    import { define, Auth } from "@calpoly/mustang";
+    import { MealElement } from "/src/meal.js";
+    import { HeaderElement } from "/src/header.ts";
+
+    define({
+      "meal-element": MealElement,
+      "melon-header": HeaderElement,
+      "mu-auth": Auth.Provider
+    });
+
+    // Get meal type from URL parameter
+    const params = new URLSearchParams(window.location.search);
+    const mealType = params.get('type') || 'breakfast';
+    
+    // Capitalize first letter for display
+    const mealName = mealType.charAt(0).toUpperCase() + mealType.slice(1);
+    
+    // Update page title
+    document.title = `${mealName} - The Melon Bowl`;
+    
+    // dialogues for each meal
+    const dialogues = {
+      'breakfast': 'seems like you woke up early enough to eat breakfast today!',
+      'lunch': 'midday munchies!',
+      'dinner': 'the most important and best part of the day',
+      'dessert': 'craving sweets as always, i see'
+    };
+    
+    // Set meal on element when DOM loads
+    window.addEventListener('DOMContentLoaded', () => {
+      const mealElement = document.querySelector('meal-element');
+      mealElement.setAttribute('category', mealType);
+      mealElement.setAttribute('mealType', mealName);
+      mealElement.setAttribute('dialogue', dialogues[mealType] || `Enjoy these ${mealName} dishes!`);
+    });
+
+    // Dark mode handler
+    window.relayDarkMode = function(event) {
+      event.stopPropagation();
+      const checked = event.target.checked;
+      const customEvent = new CustomEvent("dark-mode:toggle", {
+        bubbles: true,
+        detail: { checked },
+      });
+      event.target.dispatchEvent(customEvent);
+    }
+
+    const page = document.body;
+    page.addEventListener("dark-mode:toggle", (event) => {
+      const checked = event.detail.checked;
+      page.classList.toggle("dark-mode", checked);
+    });
+  </script>
+</head>
+
+<body>
+  <mu-auth provides="melonbowl:auth">
+    <header>
+      <melon-header></melon-header>
+    </header>
+
+    <main class="with-header-spacing">
+      <meal-element 
+        category="" 
+        mealType=""
+        dialogue="">
+      </meal-element>
+    </main>
+  </mu-auth>
+</body>
+
+</html>

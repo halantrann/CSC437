@@ -176,7 +176,7 @@ export class CuisineElement extends LitElement {
                   </a>
                 `
               ) :
-              html`<p class="no-recipes">Doesn't seem like you have any ${this.cuisineType} recipes yet</p>`
+              html`<p class="no-recipes">Sign in to see what ${this.cuisineType} you saved!</p>`
             }
           </div>
         </section>

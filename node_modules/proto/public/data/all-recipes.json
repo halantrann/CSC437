@@ -5,7 +5,7 @@
       "name": "Pandan Waffles",
       "time": "35 min",
       "img": "/images/pandanwaffles.jpg",
-      "link": "/pandanwaffles.html",
+      "link": "/dish.html?id=pandanwaffles",
       "tags": ["vietnamese", "breakfast", "sweet"]
     },
     {
@@ -13,7 +13,7 @@
       "name": "Greek Yogurt Bowl",
       "time": "6 min",
       "img": "/images/greekyogurtbowl.jpg",
-      "link": "/greekyogurtbowl.html",
+      "link": "/dish.html?id=greekyogurtbowl",
       "tags": ["american", "dessert", "breakfast", "sweet"]
     },
     {
@@ -21,7 +21,7 @@
       "name": "Tamago Sando",
       "time": "30 min",
       "img": "/images/tamagosando.jpg",
-      "link": "/tamagosando.html",
+      "link": "/dish.html?id=tamagosando",
       "tags": ["japanese", "lunch", "salty"]
     },
     {
@@ -29,7 +29,7 @@
       "name": "Cantonese Minced Beef and Eggs",
       "time": "60 min",
       "img": "/images/minzi.jpg",
-      "link": "/minzi.html",
+      "link": "/dish.html?id=minzi",
       "tags": ["chinese", "dinner", "umami"]
     },
     {
@@ -37,9 +37,8 @@
       "name": "Pho",
       "time": "3 days",
       "img": "/images/pho.jpg",
-      "link": "/pho.html",
+      "link": "/dish.html?id=pho",
       "tags": ["vietnamese", "dinner", "umami"]
     }
-
   ]
 }

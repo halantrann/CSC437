@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Melon Bowl</title>
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/boxes.css">
+  <link rel="stylesheet" href="/styles/layout.css">
+  <link rel="stylesheet" href="/styles/recipes.css">
+
+  <script type="module">
+    import { define, Auth } from "@calpoly/mustang";
+    import { RecipeElement } from "/src/recipe.js";
+    import { HeaderElement } from "/src/header.ts";
+
+    define({
+      "mbowl-recipes": RecipeElement,
+      "melon-header": HeaderElement,
+      "mu-auth": Auth.Provider
+    });
+
+    // get dish ID from url param 
+    const params = new URLSearchParams(window.location.search);
+    const dishId = params.get('id');
+    
+    if (dishId) {
+      window.addEventListener('DOMContentLoaded', () => {
+        const recipeElement = document.querySelector('mbowl-recipes');
+        recipeElement.setAttribute('src', `/data/${dishId}.json`);
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <mu-auth provides="melonbowl:auth">
+    <header>
+      <melon-header></melon-header>
+    </header>
+
+    <main>
+      <mbowl-recipes></mbowl-recipes>
+    </main>
+  </mu-auth>
+</body>
+</html>

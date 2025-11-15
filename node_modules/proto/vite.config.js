@@ -9,8 +9,22 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        meals: resolve(__dirname, 'breakfast.html'),
-        breakfast_dish1: resolve(__dirname, 'pandanwaffles.html'),
+
+        // DISH: handles all individual dishes
+        meal: resolve(__dirname, 'meal.html'),
+
+        // DISH: handles all individual dishes
+        dish: resolve(__dirname, 'dish.html'),
+
+        // TASTES: handles all taste profiles
+        taste: resolve(__dirname, 'taste.html'),
+
+        // CUISINE: handles all cuisines
+        cuisine: resolve(__dirname, 'cuisine.html'),
+
+        // AUTH PAGES 
+        login: resolve(__dirname, 'login.html'),
+        newuser: resolve(__dirname, 'newuser.html'),
       },
     },
   },
