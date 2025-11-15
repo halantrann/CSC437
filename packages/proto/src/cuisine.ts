@@ -50,14 +50,19 @@ export class CuisineElement extends LitElement {
     this._authObserver.observe((auth: Auth.Model) => {
       this._user = auth.user;
       
-      // Load recipes when authenticated
+      // Load recipes when authenticated AND category is set
       if (this._user?.authenticated && this.category) {
         this.loadRecipes();
       }
     });
+  }
 
-    // Initial load if already authenticated
-    if (this.category && this._user?.authenticated) {
+  // Watch for category changes
+  override updated(changedProperties: Map<string, any>) {
+    super.updated(changedProperties);
+    
+    // Load recipes when category is set/changed and user is authenticated
+    if (changedProperties.has('category') && this.category && this._user?.authenticated) {
       this.loadRecipes();
     }
   }
@@ -77,11 +82,16 @@ export class CuisineElement extends LitElement {
       return;
     }
 
+    if (!this.category) {
+      console.log('No category set yet, skipping load');
+      return;
+    }
+
+    console.log('Loading recipes for cuisine category:', this.category);
     this.loading = true;
     this.error = undefined;
 
     try {
-      // USE AUTHORIZATION HEADER HERE
       const response = await fetch('/api/dishes', {
         headers: this.authorization || {}
       });
@@ -94,12 +104,14 @@ export class CuisineElement extends LitElement {
       }
 
       const data = await response.json();
+      console.log('Received data:', data);
 
       // Filter recipes by cuisine
       if (this.category) {
         this.recipes = data.filter((recipe: Recipe) =>
           recipe.cuisine?.toLowerCase() === this.category!.toLowerCase()
         );
+        console.log('Filtered recipes:', this.recipes);
       }
     } catch (error) {
       console.error('Failed to load recipes:', error);
@@ -165,7 +177,7 @@ export class CuisineElement extends LitElement {
             ${this.recipes.length > 0 ? 
               this.recipes.map(
                 (r) => html`
-                  <a href="${r.link || '#'}" class="cuisine-box-link">
+                  <a href="/dish.html?type=${r.name}" class="cuisine-box-link">
                     <div class="cuisine-box-image">
                       <img src="${r.imgSrc}" alt="${r.name}">
                     </div>

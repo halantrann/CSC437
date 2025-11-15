@@ -14,7 +14,7 @@
 
 	<script>
 		function relayDarkMode(event) {
-			event.stopPropagation(); // prevent bubbling 
+			event.stopPropagation();
 
 			const checked = event.target.checked;
 			const customEvent = new CustomEvent(
@@ -33,8 +33,9 @@
 			page.classList.toggle("dark-mode", checked)
 		})
 	</script>
-  <script type="module" crossorigin src="/assets/main-81TZsyOU.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/state-BPDrD376.js">
+  <script type="module" crossorigin src="/assets/main-w33ExsLm.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/state-CywOovjo.js">
+  <link rel="modulepreload" crossorigin href="/assets/header-DXHvo_qu.js">
 </head>
 
 <body>
@@ -49,9 +50,9 @@
 				<h2>Meal of the Day</h2>
 				<p>hungry but not sure what you're feeling?</p>
 				<div class="mealofday-box">
-					<a href="/pandanwaffles.html" class="side box-link">?</a>
-					<a href="/pandanwaffles.html" class="middle box-link">???</a>
-					<a href="/pandanwaffles.html" class="side box-link">?</a>
+					<a href="/dish/pandanwaffles" class="side box-link">?</a>
+					<a href="/dish/pandanwaffles" class="middle box-link">???</a>
+					<a href="/dish/pandanwaffles" class="side box-link">?</a>
 				</div>
 				<p>then choose from a random selection</p>
 			</section>
@@ -60,25 +61,25 @@
 			<section id="meals">
 				<h3>Meals For Any Hour</h3>
 				<div class="meals-grid">
-					<a href="/breakfast.html" class="meals box">
+					<a href="/meal.html?type=breakfast" class="meals box">
 						<span>breakfast</span>
 						<svg class="icon meals-icon">
 							<use href="/icons/meals_icons.svg#pancake" />
 						</svg>
 					</a>
-					<a href="/meals/lunch.html" class="meals box">
+					<a href="/meal.html?type=lunch" class="meals box">
 						<span>lunch</span>
 						<svg class="icon meals-icon">
 							<use href="/icons/meals_icons.svg#banhmi" />
 						</svg>
 					</a>
-					<a href="/meals/dinner.html" class="meals box">
+					<a href="/meal.html?type=dinner" class="meals box">
 						<span>dinner</span>
 						<svg class="icon meals-icon">
 							<use href="/icons/meals_icons.svg#niuroumien" />
 						</svg>
 					</a>
-					<a href="/meals/dessert.html" class="meals box">
+					<a href="/meal.html?type=dessert" class="meals box">
 						<span>dessert</span>
 						<svg class="icon meals-icon">
 							<use href="/icons/meals_icons.svg#pie" />
@@ -93,9 +94,9 @@
 				<div class="tastes-box">
 					<div>
 						<ul>
-							<li><a href="/umami.html">umami</a></li>
-							<li><a href="tastes/salty.html">salty</a></li>
-							<li><a href="tastes/sweet.html">sweet</a></li>
+							<li><a href="/taste.html?type=umami">umami</a></li>
+							<li><a href="/taste.html?type=salty">salty</a></li>
+							<li><a href="/taste.html?type=sweet">sweet</a></li>
 						</ul>
 					</div>
 					<div class="tastes-image"></div>
@@ -110,10 +111,10 @@
 					<div class="cuisine-category box">
 						<h4>Asian</h4>
 						<ul>
-							<li><a href="/vietnamese.html">Vietnamese</a></li>
-							<li><a href="cuisines/chinese.html">Chinese</a></li>
-							<li><a href="cuisines/japanese.html">Japanese</a></li>
-							<li><a href="cuisines/thai.html">Thai</a></li>
+							<li><a href="/cuisine.html?type=vietnamese">Vietnamese</a></li>
+							<li><a href="/cuisine.html?type=chinese">Chinese</a></li>
+							<li><a href="/cuisine.html?type=japanese">Japanese</a></li>
+							<li><a href="/cuisine.html?type=thai">Thai</a></li>
 						</ul>
 					</div>
 
@@ -121,8 +122,8 @@
 					<div class="cuisine-category box">
 						<h4>European</h4>
 						<ul>
-							<li><a href="cuisines/italian.html">Italian</a></li>
-							<li><a href="cuisines/french.html">French</a></li>
+							<li><a href="/cuisine.html?type=italian">Italian</a></li>
+							<li><a href="/cuisine.html?type=french">French</a></li>
 						</ul>
 					</div>
 
@@ -130,8 +131,8 @@
 					<div class="cuisine-category box">
 						<h4>American</h4>
 						<ul>
-							<li><a href="cuisines/southern.html">Southern</a></li>
-							<li><a href="cuisines/californian.html">Californian</a></li>
+							<li><a href="/cuisine.html?type=southern">Southern</a></li>
+							<li><a href="/cuisine.html?type=californian">Californian</a></li>
 						</ul>
 					</div>
 				</div>

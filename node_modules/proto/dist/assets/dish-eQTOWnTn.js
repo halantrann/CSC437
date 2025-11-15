@@ -1,164 +1,26 @@
-import { html, css, LitElement } from "lit";
-import { property, state } from "lit/decorators.js";
-import { Observer } from "@calpoly/mustang";
-import { Auth } from "@calpoly/mustang";
-import reset from "./styles/reset.css.ts";
-
-interface Recipe {
-  name: string;
-  imgSrc: string;
-  imgAlt?: string;
-  mealType: string;
-  cuisine: string;
-  taste: string;
-  calories: string;
-  prepTime: string;
-  cookTime: string;
-  ingredients: string[];
-  instructions: string[];
-}
-
-export class DishElement extends LitElement {
-  @property()
-  src?: string;
-
-  @state()
-  recipe?: Recipe;
-
-  @state()
-  loading = false;
-
-  @state()
-  error?: string;
-
-  // AUTH OBSERVER
-  _authObserver = new Observer<Auth.Model>(this, "melonbowl:auth");
-  _user?: Auth.User;
-
-  override connectedCallback() {
-    super.connectedCallback();
-
-    // Observe auth state
-    this._authObserver.observe((auth: Auth.Model) => {
-      this._user = auth.user;
-      
-      // Load recipe when authenticated AND src is set
-      if (this._user?.authenticated && this.src) {
-        this.loadRecipe();
-      }
-    });
-  }
-
-  // Watch for src changes
-  override updated(changedProperties: Map<string, any>) {
-    super.updated(changedProperties);
-    
-    // Load recipe when src is set/changed and user is authenticated
-    if (changedProperties.has('src') && this.src && this._user?.authenticated) {
-      this.loadRecipe();
-    }
-  }
-
-  // AUTHORIZATION GETTER
-  get authorization() {
-    return (
-      this._user?.authenticated && {
-        Authorization: `Bearer ${(this._user as Auth.AuthenticatedUser).token}`
-      }
-    );
-  }
-
-  async loadRecipe() {
-    if (!this._user?.authenticated) {
-      this.error = "Please log in to view this recipe";
-      return;
-    }
-
-    if (!this.src) {
-      console.log('No src set yet, skipping load');
-      return;
-    }
-
-    console.log('Loading recipe from:', this.src);
-    this.loading = true;
-    this.error = undefined;
-
-    try {
-      const response = await fetch(this.src, {
-        headers: this.authorization || {}
-      });
-
-      if (!response.ok) {
-        if (response.status === 401) {
-          throw new Error("Please log in to view this recipe");
-        }
-        if (response.status === 404) {
-          throw new Error("Recipe not found");
-        }
-        throw new Error(`Failed to load recipe: ${response.statusText}`);
-      }
-
-      const data = await response.json();
-      console.log('Received recipe data:', data);
-      
-      this.recipe = data;
-    } catch (error) {
-      console.error('Failed to load recipe:', error);
-      this.error = error instanceof Error ? error.message : 'Failed to load recipe';
-    } finally {
-      this.loading = false;
-    }
-  }
-
-  override render() {
-    // Show loading state
-    if (this.loading) {
-      return html`
+import{i as h,O as g,x as i,b as m,n as u,r as c,d as v,a as b}from"./state-CywOovjo.js";import{r as f}from"./reset.css-BZ12Mw8s.js";import{H as x}from"./header-DXHvo_qu.js";var w=Object.defineProperty,s=(a,e,t,y)=>{for(var o=void 0,n=a.length-1,p;n>=0;n--)(p=a[n])&&(o=p(e,t,o)||o);return o&&w(e,t,o),o};const l=class l extends h{constructor(){super(...arguments),this.loading=!1,this._authObserver=new g(this,"melonbowl:auth")}connectedCallback(){super.connectedCallback(),this._authObserver.observe(e=>{this._user=e.user,this._user?.authenticated&&this.src&&this.loadRecipe()})}updated(e){super.updated(e),e.has("src")&&this.src&&this._user?.authenticated&&this.loadRecipe()}get authorization(){return this._user?.authenticated&&{Authorization:`Bearer ${this._user.token}`}}async loadRecipe(){if(!this._user?.authenticated){this.error="Please log in to view this recipe";return}if(!this.src){console.log("No src set yet, skipping load");return}console.log("Loading recipe from:",this.src),this.loading=!0,this.error=void 0;try{const e=await fetch(this.src,{headers:this.authorization||{}});if(!e.ok)throw e.status===401?new Error("Please log in to view this recipe"):e.status===404?new Error("Recipe not found"):new Error(`Failed to load recipe: ${e.statusText}`);const t=await e.json();console.log("Received recipe data:",t),this.recipe=t}catch(e){console.error("Failed to load recipe:",e),this.error=e instanceof Error?e.message:"Failed to load recipe"}finally{this.loading=!1}}render(){return this.loading?i`
         <div class="recipe-box">
           <div class="loading-message">Loading recipe...</div>
         </div>
-      `;
-    }
-
-    // Show error state
-    if (this.error) {
-      return html`
+      `:this.error?i`
         <div class="recipe-box">
           <div class="error-message">
             <p>${this.error}</p>
-            ${!this._user?.authenticated ? 
-              html`<a href="/login.html" class="login-link">Login to view recipe</a>` : 
-              html`<a href="/index.html" class="back-link">Back to Menu</a>`
-            }
+            ${this._user?.authenticated?i`<a href="/index.html" class="back-link">Back to Menu</a>`:i`<a href="/login.html" class="login-link">Login to view recipe</a>`}
           </div>
         </div>
-      `;
-    }
-
-    // Show empty state if no recipe loaded yet
-    if (!this.recipe) {
-      return html`
-        <div class="recipe-box">
-          <div class="loading-message">No recipe data available</div>
-        </div>
-      `;
-    }
-
-    return html`
+      `:this.recipe?i`
      <div class="recipe-box">
       <article class="dish">
           <h1>${this.recipe.name}</h1> 
           <section class="recipe-img">
-            <img src="${this.recipe.imgSrc}" alt="${this.recipe.imgAlt || this.recipe.name}">
+            <img src="${this.recipe.imgSrc}" alt="${this.recipe.imgAlt||this.recipe.name}">
           </section>
 
           <section class="ingredients">
             <h2>Ingredients</h2>
             <ul>
-              ${this.recipe.ingredients && this.recipe.ingredients.length > 0
-                ? this.recipe.ingredients.map(ing => html`<li>${ing}</li>`)
-                : html`<li>No ingredients specified.</li>`
-              }
+              ${this.recipe.ingredients&&this.recipe.ingredients.length>0?this.recipe.ingredients.map(e=>i`<li>${e}</li>`):i`<li>No ingredients specified.</li>`}
             </ul>
           </section>
 
@@ -167,10 +29,7 @@ export class DishElement extends LitElement {
           <section class="instructions">
             <h2>Instructions</h2>
             <ol>
-              ${this.recipe.instructions && this.recipe.instructions.length > 0
-                ? this.recipe.instructions.map(inst => html`<li>${inst}</li>`)
-                : html`<li>No instructions specified.</li>`
-              }
+              ${this.recipe.instructions&&this.recipe.instructions.length>0?this.recipe.instructions.map(e=>i`<li>${e}</li>`):i`<li>No instructions specified.</li>`}
             </ol>
           </section>
 
@@ -218,10 +77,11 @@ export class DishElement extends LitElement {
           </footer>
         </article>
       </div>
-		`;
-  }
-  
-  static styles = [reset.styles, css`
+		`:i`
+        <div class="recipe-box">
+          <div class="loading-message">No recipe data available</div>
+        </div>
+      `}};l.styles=[f.styles,m`
     .loading-message,
     .error-message {
       padding: var(--spacing-xl);
@@ -422,7 +282,4 @@ export class DishElement extends LitElement {
       font-family: var(--font-family-heading);
     }
 
-  `];
-}
-
-customElements.define("mbowl-dish", DishElement);
+  `];let r=l;s([u()],r.prototype,"src");s([c()],r.prototype,"recipe");s([c()],r.prototype,"loading");s([c()],r.prototype,"error");customElements.define("mbowl-dish",r);v({"mbowl-dish":r,"melon-header":x,"mu-auth":b.Provider});const k=new URLSearchParams(window.location.search),d=k.get("type");d&&window.addEventListener("DOMContentLoaded",()=>{const a=document.querySelector("mbowl-dish");console.log("Setting dish name:",d),a.setAttribute("src",`/api/dishes/${encodeURIComponent(d)}`)});

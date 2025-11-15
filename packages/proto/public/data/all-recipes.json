@@ -6,7 +6,11 @@
       "time": "35 min",
       "img": "/images/pandanwaffles.jpg",
       "link": "/dish.html?id=pandanwaffles",
-      "tags": ["vietnamese", "breakfast", "sweet"]
+      "tags": [
+        "vietnamese",
+        "breakfast",
+        "sweet"
+      ]
     },
     {
       "id": "greek-yogurt-bowl",
@@ -14,7 +18,12 @@
       "time": "6 min",
       "img": "/images/greekyogurtbowl.jpg",
       "link": "/dish.html?id=greekyogurtbowl",
-      "tags": ["american", "dessert", "breakfast", "sweet"]
+      "tags": [
+        "american",
+        "dessert",
+        "breakfast",
+        "sweet"
+      ]
     },
     {
       "id": "tamago-sando",
@@ -22,7 +31,11 @@
       "time": "30 min",
       "img": "/images/tamagosando.jpg",
       "link": "/dish.html?id=tamagosando",
-      "tags": ["japanese", "lunch", "salty"]
+      "tags": [
+        "japanese",
+        "lunch",
+        "salty"
+      ]
     },
     {
       "id": "minced-beef-eggs",
@@ -30,7 +43,11 @@
       "time": "60 min",
       "img": "/images/minzi.jpg",
       "link": "/dish.html?id=minzi",
-      "tags": ["chinese", "dinner", "umami"]
+      "tags": [
+        "chinese",
+        "dinner",
+        "umami"
+      ]
     },
     {
       "id": "pho",
@@ -38,7 +55,11 @@
       "time": "3 days",
       "img": "/images/pho.jpg",
       "link": "/dish.html?id=pho",
-      "tags": ["vietnamese", "dinner", "umami"]
+      "tags": [
+        "vietnamese",
+        "dinner",
+        "umami"
+      ]
     }
   ]
 }

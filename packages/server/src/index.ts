@@ -24,8 +24,7 @@ app.use("/auth", auth);
 // });
 
 // Protected routes (authentication required)
-// All /api/dishes routes now require authentication
-app.use("/api/dishes", authenticateUser, dishes);
+app.use("/api/dishes", authenticateUser, dishes); 
 
 // Start server
 app.listen(port, () => {

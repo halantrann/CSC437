@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,23 +14,26 @@
 
   <script type="module">
     import { define, Auth } from "@calpoly/mustang";
-    import { RecipeElement } from "/src/recipe.js";
+    import { DishElement } from "/src/dish.js";
     import { HeaderElement } from "/src/header.ts";
 
     define({
-      "mbowl-recipes": RecipeElement,
+      "mbowl-dish": DishElement,
       "melon-header": HeaderElement,
       "mu-auth": Auth.Provider
     });
 
-    // get dish ID from url param 
+    // get dish name from URL param
     const params = new URLSearchParams(window.location.search);
-    const dishId = params.get('id');
-    
-    if (dishId) {
+    const dishName = params.get('type'); // changed from 'id' to 'type'
+
+    if (dishName) {
       window.addEventListener('DOMContentLoaded', () => {
-        const recipeElement = document.querySelector('mbowl-recipes');
-        recipeElement.setAttribute('src', `/data/${dishId}.json`);
+        const recipeElement = document.querySelector('mbowl-dish');
+        console.log('Setting dish name:', dishName);
+
+        // encode for URL in case it has spaces or special characters
+        recipeElement.setAttribute('src', `/api/dishes/${encodeURIComponent(dishName)}`);
       });
     }
   </script>
@@ -42,8 +46,9 @@
     </header>
 
     <main>
-      <mbowl-recipes></mbowl-recipes>
+      <mbowl-dish></mbowl-dish>
     </main>
   </mu-auth>
 </body>
+
 </html>

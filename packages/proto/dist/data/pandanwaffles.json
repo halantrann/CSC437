@@ -2,6 +2,7 @@
   "name": "Pandan Waffles",
   "imgAlt": "A plate of pandan waffles topped with fresh berries",
   "imgSrc": "/images/pandanwaffles.jpg",
+  "link": "/dish.html?id=pandanwaffles",
   "mealType": "Breakfast",
   "cuisine": "Vietnamese",
   "taste": "Sweet",

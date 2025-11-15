@@ -1,157 +1,15 @@
-import { html, css, LitElement } from "lit";
-import { property, state } from "lit/decorators.js";
-import { Observer } from "@calpoly/mustang";
-import { Auth } from "@calpoly/mustang";
-import reset from "./styles/reset.css.ts";
-
-interface Recipe {
-  name: string;
-  prepTime?: string;
-  cookTime?: string;
-  time?: string;
-  imgSrc: string;
-  link?: string;
-  taste?: string;
-}
-
-export class TastesElement extends LitElement {
-  @property()
-  tastesType?: string;
-
-  @property()
-  tagline?: string;
-
-  @property({ type: Array })
-  recipes: Recipe[] = [];
-
-  @property()
-  category?: string;
-
-  @state()
-  loading = false;
-
-  @state()
-  error?: string;
-
-  // AUTH OBSERVER
-  _authObserver = new Observer<Auth.Model>(this, "melonbowl:auth");
-  _user?: Auth.User;
-
-  override connectedCallback() {
-    super.connectedCallback();
-
-    // Observe auth state
-    this._authObserver.observe((auth: Auth.Model) => {
-      this._user = auth.user;
-
-      // Load recipes when authenticated AND category is set
-      if (this._user?.authenticated && this.category) {
-        this.loadRecipes();
-      }
-    });
-  }
-
-  // Watch for category changes
-  override updated(changedProperties: Map<string, any>) {
-    super.updated(changedProperties);
-    
-    // Load recipes when category is set/changed and user is authenticated
-    if (changedProperties.has('category') && this.category && this._user?.authenticated) {
-      this.loadRecipes();
-    }
-  }
-
-  // AUTHORIZATION GETTER
-  get authorization() {
-    return (
-      this._user?.authenticated && {
-        Authorization: `Bearer ${(this._user as Auth.AuthenticatedUser).token}`
-      }
-    );
-  }
-
-  async loadRecipes() {
-    if (!this._user?.authenticated) {
-      this.error = "Please log in to view recipes";
-      return;
-    }
-
-    if (!this.category) {
-      console.log('No category set yet, skipping load');
-      return;
-    }
-
-    console.log('Loading recipes for taste category:', this.category);
-    this.loading = true;
-    this.error = undefined;
-
-    try {
-      const response = await fetch('/api/dishes', {
-        headers: this.authorization || {}
-      });
-
-      if (!response.ok) {
-        if (response.status === 401) {
-          throw new Error("Please log in to view recipes");
-        }
-        throw new Error(`Failed to load recipes: ${response.statusText}`);
-      }
-
-      const data = await response.json();
-      console.log('Received data:', data);
-
-      // Filter recipes by taste
-      if (this.category) {
-        this.recipes = data.filter((recipe: Recipe) =>
-          recipe.taste?.toLowerCase() === this.category!.toLowerCase()
-        );
-        console.log('Filtered recipes:', this.recipes);
-      }
-    } catch (error) {
-      console.error('Failed to load recipes:', error);
-      this.error = error instanceof Error ? error.message : 'Failed to load recipes';
-    } finally {
-      this.loading = false;
-    }
-  }
-
-  // Helper to calculate total cook time
-  getTotalTime(recipe: Recipe): string {
-    if (recipe.time) return recipe.time;
-
-    const prepMinutes = parseInt(recipe.prepTime || '0');
-    const cookMinutes = parseInt(recipe.cookTime || '0');
-    const total = prepMinutes + cookMinutes;
-
-    return total > 0 ? `${total} min` : 'N/A';
-  }
-
-  override render() {
-    // Show loading state
-    if (this.loading) {
-      return html`
+import{i as u,O as b,x as i,b as f,n as c,r as v,d as x,a as y}from"./state-CywOovjo.js";import{r as S}from"./reset.css-BZ12Mw8s.js";import{H as w}from"./header-DXHvo_qu.js";var k=Object.defineProperty,s=(t,e,r,n)=>{for(var o=void 0,l=t.length-1,h;l>=0;l--)(h=t[l])&&(o=h(e,r,o)||o);return o&&k(e,r,o),o};const p=class p extends u{constructor(){super(...arguments),this.recipes=[],this.loading=!1,this._authObserver=new b(this,"melonbowl:auth")}connectedCallback(){super.connectedCallback(),this._authObserver.observe(e=>{this._user=e.user,this._user?.authenticated&&this.category&&this.loadRecipes()})}updated(e){super.updated(e),e.has("category")&&this.category&&this._user?.authenticated&&this.loadRecipes()}get authorization(){return this._user?.authenticated&&{Authorization:`Bearer ${this._user.token}`}}async loadRecipes(){if(!this._user?.authenticated){this.error="Please log in to view recipes";return}if(!this.category){console.log("No category set yet, skipping load");return}console.log("Loading recipes for taste category:",this.category),this.loading=!0,this.error=void 0;try{const e=await fetch("/api/dishes",{headers:this.authorization||{}});if(!e.ok)throw e.status===401?new Error("Please log in to view recipes"):new Error(`Failed to load recipes: ${e.statusText}`);const r=await e.json();console.log("Received data:",r),this.category&&(this.recipes=r.filter(n=>n.taste?.toLowerCase()===this.category.toLowerCase()),console.log("Filtered recipes:",this.recipes))}catch(e){console.error("Failed to load recipes:",e),this.error=e instanceof Error?e.message:"Failed to load recipes"}finally{this.loading=!1}}getTotalTime(e){if(e.time)return e.time;const r=parseInt(e.prepTime||"0"),n=parseInt(e.cookTime||"0"),o=r+n;return o>0?`${o} min`:"N/A"}render(){return this.loading?i`
         <div class="tasteUSS-box">
           <div class="loading-message">Loading recipes...</div>
         </div>
-      `;
-    }
-
-    // Show error state
-    if (this.error) {
-      return html`
+      `:this.error?i`
         <div class="tasteUSS-box">
           <div class="error-message">
             <p>${this.error}</p>
-            ${!this._user?.authenticated ?
-          html`<a href="/login.html" class="login-link">Login to view recipes</a>` :
-          null
-        }
+            ${this._user?.authenticated?null:i`<a href="/login.html" class="login-link">Login to view recipes</a>`}
           </div>
         </div>
-      `;
-    }
-
-    return html`
+      `:i`
       <div class="tasteUSS-box">
         <section class="tasteUSS-header-box">
           <div>
@@ -162,23 +20,18 @@ export class TastesElement extends LitElement {
 
         <section>
           <div class="tasteUSS-boxes-grid">
-            ${this.recipes.length > 0 ?
-        this.recipes.map(
-          (r) => html`
-                  <a href="/dish.html?id=${(r as any)._id}" class="tasteUSS-box-link">
+            ${this.recipes.length>0?this.recipes.map(e=>i`
+                  <a href="/dish.html?id=${e._id}" class="tasteUSS-box-link">
 
                     <div class="tasteUSS-box-image">
-                      <img src="${r.imgSrc}" alt="${r.name}">
+                      <img src="${e.imgSrc}" alt="${e.name}">
                     </div>
                     <div class="tasteUSS-box-description">
-                      <h3>${r.name}</h3>
-                      <p>${this.getTotalTime(r)}</p>
+                      <h3>${e.name}</h3>
+                      <p>${this.getTotalTime(e)}</p>
                     </div>
                   </a>
-                `
-        ) :
-        html`<p class="no-recipes">No ${this.tastesType} recipes at the moment...Perhaps you need to sign in?</p>`
-      }
+                `):i`<p class="no-recipes">No ${this.tastesType} recipes at the moment...Perhaps you need to sign in?</p>`}
           </div>
         </section>
 
@@ -188,10 +41,7 @@ export class TastesElement extends LitElement {
           </nav>
         </footer>
       </div>
-    `;
-  }
-
-  static styles = [reset.styles, css`
+    `}};p.styles=[S.styles,f`
     .loading-message,
     .error-message {
       padding: var(--spacing-xl);
@@ -341,7 +191,4 @@ export class TastesElement extends LitElement {
       display: flex;
       justify-content: center;
     }
-  `];
-}
-
-customElements.define("tastes-element", TastesElement);
+  `];let a=p;s([c()],a.prototype,"tastesType");s([c()],a.prototype,"tagline");s([c({type:Array})],a.prototype,"recipes");s([c()],a.prototype,"category");s([v()],a.prototype,"loading");s([v()],a.prototype,"error");customElements.define("tastes-element",a);x({"tastes-element":a,"melon-header":w,"mu-auth":y.Provider});const U=new URLSearchParams(window.location.search),d=U.get("type")||"umami",g=d.charAt(0).toUpperCase()+d.slice(1);document.title=`${g} - The Melon Bowl`;const $={umami:"umami salami",sweet:"sweet treat",salty:"salty sensation"};window.addEventListener("DOMContentLoaded",()=>{const t=document.querySelector("tastes-element");t.setAttribute("category",d),t.setAttribute("tastesType",g),t.setAttribute("tagline",$[d]||`${g} dishes`)});window.relayDarkMode=function(t){t.stopPropagation();const e=t.target.checked,r=new CustomEvent("dark-mode:toggle",{bubbles:!0,detail:{checked:e}});t.target.dispatchEvent(r)};const m=document.body;m.addEventListener("dark-mode:toggle",t=>{const e=t.detail.checked;m.classList.toggle("dark-mode",e)});

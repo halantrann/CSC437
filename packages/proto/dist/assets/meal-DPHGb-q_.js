@@ -1,15 +1,15 @@
-import{i as g,O as v,x as o,a as u,n as s,r as h,d as m}from"./state-BPDrD376.js";import{r as b}from"./reset.css-CF66ewkI.js";var f=Object.defineProperty,i=(n,r,t,d)=>{for(var a=void 0,c=n.length-1,p;c>=0;c--)(p=n[c])&&(a=p(r,t,a)||a);return a&&f(r,t,a),a};const l=class l extends g{constructor(){super(...arguments),this.recipes=[],this.loading=!1,this._authObserver=new v(this,"melonbowl:auth")}connectedCallback(){super.connectedCallback(),this._authObserver.observe(r=>{this._user=r.user,this._user?.authenticated&&this.category&&this.loadRecipes()}),this.category&&this._user?.authenticated&&this.loadRecipes()}get authorization(){return this._user?.authenticated&&{Authorization:`Bearer ${this._user.token}`}}async loadRecipes(){if(!this._user?.authenticated){this.error="Please log in to view recipes";return}this.loading=!0,this.error=void 0;try{const r=await fetch("/api/dishes",{headers:this.authorization||{}});if(!r.ok)throw r.status===401?new Error("Please log in to view recipes"):new Error(`Failed to load recipes: ${r.statusText}`);const t=await r.json();this.category&&(this.recipes=t.filter(d=>d.mealType?.toLowerCase()===this.category.toLowerCase()))}catch(r){console.error("Failed to load recipes:",r),this.error=r instanceof Error?r.message:"Failed to load recipes"}finally{this.loading=!1}}render(){return this.loading?o`
+import{i as v,O as b,x as i,b as f,n as c,r as m,d as y,a as x}from"./state-CywOovjo.js";import{r as w}from"./reset.css-BZ12Mw8s.js";import{H as k}from"./header-DXHvo_qu.js";var $=Object.defineProperty,s=(r,e,o,g)=>{for(var t=void 0,l=r.length-1,p;l>=0;l--)(p=r[l])&&(t=p(e,o,t)||t);return t&&$(e,o,t),t};const h=class h extends v{constructor(){super(...arguments),this.recipes=[],this.loading=!1,this._authObserver=new b(this,"melonbowl:auth")}connectedCallback(){super.connectedCallback(),this._authObserver.observe(e=>{this._user=e.user,this._user?.authenticated&&this.category&&this.loadRecipes()})}updated(e){super.updated(e),e.has("category")&&this.category&&this._user?.authenticated&&this.loadRecipes()}get authorization(){return this._user?.authenticated&&{Authorization:`Bearer ${this._user.token}`}}async loadRecipes(){if(!this._user?.authenticated){this.error="Please log in to view recipes";return}if(!this.category){console.log("No category set yet, skipping load");return}console.log("Loading recipes for category:",this.category),this.loading=!0,this.error=void 0;try{const e=await fetch("/api/dishes",{headers:this.authorization||{}});if(!e.ok)throw e.status===401?new Error("Please log in to view recipes"):new Error(`Failed to load recipes: ${e.statusText}`);const o=await e.json();console.log("Received data:",o),this.category&&(this.recipes=o.filter(g=>g.mealType?.toLowerCase()===this.category.toLowerCase()),console.log("Filtered recipes:",this.recipes))}catch(e){console.error("Failed to load recipes:",e),this.error=e instanceof Error?e.message:"Failed to load recipes"}finally{this.loading=!1}}render(){return this.loading?i`
         <div class="recipe-box">
           <div class="loading-message">Loading recipes...</div>
         </div>
-      `:this.error?o`
+      `:this.error?i`
         <div class="recipe-box">
           <div class="error-message">
             <p>${this.error}</p>
-            ${this._user?.authenticated?null:o`<a href="/login.html" class="login-link">Login to view recipes</a>`}
+            ${this._user?.authenticated?null:i`<a href="/login.html" class="login-link">Login to view recipes</a>`}
           </div>
         </div>
-      `:o`
+      `:i`
       <div class="recipe-box">
         <article class="dish">
           <section id="character-box">
@@ -26,9 +26,9 @@ import{i as g,O as v,x as o,a as u,n as s,r as h,d as m}from"./state-BPDrD376.js
           <section class="recipe-links">
             <h2>${this.mealType} Recipes:</h2>
             <ul class="meals-list">
-              ${this.recipes.length>0?this.recipes.map(r=>o`
-                      <li><a href="${r.link||"#"}">${r.name}</a></li>
-                    `):o`<li>No ${this.mealType} recipes yet!</li>`}
+              ${this.recipes.length>0?this.recipes.map(e=>i`
+                      <li><a href="/dish.html?type=${e.name}">${e.name}</a></li>
+                    `):i`<li>Sign in to see ${this.mealType} recipes!</li>`}
             </ul>
           </section>
 
@@ -39,7 +39,7 @@ import{i as g,O as v,x as o,a as u,n as s,r as h,d as m}from"./state-BPDrD376.js
           </footer>
         </article>
       </div>
-    `}};l.styles=[b.styles,u`
+    `}};h.styles=[w.styles,f`
     .loading-message,
     .error-message {
       padding: var(--spacing-xl);
@@ -165,4 +165,4 @@ import{i as g,O as v,x as o,a as u,n as s,r as h,d as m}from"./state-BPDrD376.js
     .meals-list a:hover {
       color: var(--color-link);
     }
-  `];let e=l;i([s()],e.prototype,"dialogue");i([s()],e.prototype,"mealType");i([s({type:Array})],e.prototype,"recipes");i([s()],e.prototype,"category");i([h()],e.prototype,"loading");i([h()],e.prototype,"error");m({"mbowl-meal":e});
+  `];let a=h;s([c()],a.prototype,"dialogue");s([c()],a.prototype,"mealType");s([c({type:Array})],a.prototype,"recipes");s([c()],a.prototype,"category");s([m()],a.prototype,"loading");s([m()],a.prototype,"error");y({"meal-element":a,"melon-header":k,"mu-auth":x.Provider});const _=new URLSearchParams(window.location.search),n=_.get("type")||"breakfast",d=n.charAt(0).toUpperCase()+n.slice(1);document.title=`${d} - The Melon Bowl`;const L={breakfast:"seems like you woke up early enough to eat breakfast today!",lunch:"midday munchies!",dinner:"the most important and best part of the day",dessert:"craving sweets as always, i see"};window.addEventListener("DOMContentLoaded",()=>{const r=document.querySelector("meal-element");r.setAttribute("category",n),r.setAttribute("mealType",d),r.setAttribute("dialogue",L[n]||`Enjoy these ${d} dishes!`)});window.relayDarkMode=function(r){r.stopPropagation();const e=r.target.checked,o=new CustomEvent("dark-mode:toggle",{bubbles:!0,detail:{checked:e}});r.target.dispatchEvent(o)};const u=document.body;u.addEventListener("dark-mode:toggle",r=>{const e=r.detail.checked;u.classList.toggle("dark-mode",e)});

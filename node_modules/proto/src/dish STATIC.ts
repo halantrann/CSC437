@@ -1,4 +1,37 @@
-import{i as g,x as l,a as v,n as o,r as x,d as u}from"./state-BPDrD376.js";import{r as b}from"./reset.css-CF66ewkI.js";var f=Object.defineProperty,a=(d,i,r,h)=>{for(var e=void 0,s=d.length-1,n;s>=0;s--)(n=d[s])&&(e=n(i,r,e)||e);return e&&f(i,r,e),e};const p=class p extends g{render(){return l`
+import { html, css, LitElement } from "lit";
+import { property } from "lit/decorators.js";
+import reset from "./styles/reset.css.ts";
+
+export class DishElement extends LitElement {
+  @property()
+  name?: string;
+
+  @property()
+  imgAlt?: string;
+
+  @property({ attribute: "img-src" })
+  imgSrc?: string;
+
+  @property()
+  mealType?: string;
+
+  @property()
+  cuisine?: string;
+
+  @property()
+  taste?: string;
+
+  @property()
+  calories?: string;
+
+  @property()
+  prepTime?: string;
+
+  @property()
+  cookTime?: string;
+
+  override render() {
+    return html`
      <div class="recipe-box">
       <article class="dish">
           <h1>${this.name}</h1> 
@@ -70,7 +103,9 @@ import{i as g,x as l,a as v,n as o,r as x,d as u}from"./state-BPDrD376.js";impor
           </footer>
         </article>
       </div>
-		`}};p.styles=[b.styles,v`
+		`;
+  }
+  static styles = [reset.styles, css`
       
     .dish-properties {
       display: grid;
@@ -254,26 +289,6 @@ import{i as g,x as l,a as v,n as o,r as x,d as u}from"./state-BPDrD376.js";impor
       font-family: var(--font-family-heading);
     }
 
-  `];let t=p;a([o()],t.prototype,"name");a([o()],t.prototype,"imgAlt");a([o({attribute:"img-src"})],t.prototype,"imgSrc");a([o()],t.prototype,"mealType");a([o()],t.prototype,"cuisine");a([o()],t.prototype,"taste");a([o()],t.prototype,"calories");a([o()],t.prototype,"prepTime");a([o()],t.prototype,"cookTime");var y=Object.defineProperty,m=(d,i,r,h)=>{for(var e=void 0,s=d.length-1,n;s>=0;s--)(n=d[s])&&(e=n(i,r,e)||e);return e&&y(i,r,e),e};class c extends g{constructor(){super(...arguments),this.recipes=[]}connectedCallback(){super.connectedCallback(),this.src&&this.hydrate(this.src)}hydrate(i){fetch(i).then(r=>r.json()).then(r=>{Array.isArray(r)?this.recipes=r:this.recipes=[r]}).catch(r=>console.error("Failed to load recipes:",r))}render(){return l`
-			<div class="recipes-collection">
-				${this.recipes.map(i=>this.renderRecipe(i))} 
-			</div> 
-		`}renderRecipe(i){return l`
-		<mbowl-dish
-        name=${i.name}
-        img-src=${i.imgSrc}
-        mealType=${i.mealType}
-        cuisine=${i.cuisine}
-        taste=${i.taste}
-        calories=${i.calories}
-        prepTime=${i.prepTime}
-        cookTime=${i.cookTime}
-      >
-        <ul slot="ingredients">
-          ${i.ingredients.map(r=>l`<li>${r}</li>`)}
-        </ul>
-        <ol slot="instructions">
-          ${i.instructions.map(r=>l`<li>${r}</li>`)}
-        </ol>
-      </mbowl-dish>
-    `}}m([o()],c.prototype,"src");m([x()],c.prototype,"recipes");u({"mbowl-dish":t,"mbowl-recipes":c});
+  `];
+
+}

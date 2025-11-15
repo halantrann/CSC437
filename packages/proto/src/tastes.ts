@@ -44,19 +44,24 @@ export class TastesElement extends LitElement {
     this._authObserver.observe((auth: Auth.Model) => {
       this._user = auth.user;
 
-      // Load recipes when authenticated
+      // Load recipes when authenticated AND category is set
       if (this._user?.authenticated && this.category) {
         this.loadRecipes();
       }
     });
+  }
 
-    // Initial load if already authenticated
-    if (this.category && this._user?.authenticated) {
+  // Watch for category changes
+  override updated(changedProperties: Map<string, any>) {
+    super.updated(changedProperties);
+    
+    // Load recipes when category is set/changed and user is authenticated
+    if (changedProperties.has('category') && this.category && this._user?.authenticated) {
       this.loadRecipes();
     }
   }
 
-  // AUTHORIZATION GETTER - Add this!
+  // AUTHORIZATION GETTER
   get authorization() {
     return (
       this._user?.authenticated && {
@@ -71,19 +76,18 @@ export class TastesElement extends LitElement {
       return;
     }
 
+    if (!this.category) {
+      console.log('No category set yet, skipping load');
+      return;
+    }
+
+    console.log('Loading recipes for taste category:', this.category);
     this.loading = true;
     this.error = undefined;
 
     try {
-      const headers: HeadersInit = {};
-
-      if (this._user?.authenticated) {
-        const token = (this._user as Auth.AuthenticatedUser).token;
-        headers['Authorization'] = `Bearer ${token}`;
-      }
-
       const response = await fetch('/api/dishes', {
-        headers
+        headers: this.authorization || {}
       });
 
       if (!response.ok) {
@@ -94,12 +98,14 @@ export class TastesElement extends LitElement {
       }
 
       const data = await response.json();
+      console.log('Received data:', data);
 
       // Filter recipes by taste
       if (this.category) {
         this.recipes = data.filter((recipe: Recipe) =>
           recipe.taste?.toLowerCase() === this.category!.toLowerCase()
         );
+        console.log('Filtered recipes:', this.recipes);
       }
     } catch (error) {
       console.error('Failed to load recipes:', error);
@@ -159,7 +165,8 @@ export class TastesElement extends LitElement {
             ${this.recipes.length > 0 ?
         this.recipes.map(
           (r) => html`
-                  <a href="${r.link || '#'}" class="tasteUSS-box-link">
+                  <a href="/dish.html?id=${(r as any)._id}" class="tasteUSS-box-link">
+
                     <div class="tasteUSS-box-image">
                       <img src="${r.imgSrc}" alt="${r.name}">
                     </div>
