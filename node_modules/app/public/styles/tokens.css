@@ -19,6 +19,7 @@
   /* Dark Mode Color Pallette */
   body.dark-mode {
     --color-background: #271a14;
+    --color-background2: #3E4245; 
     --color-background3: #4d3233; 
     --color-background4: #322d43;
     --color-section: #3E4245;

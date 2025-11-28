@@ -64,6 +64,7 @@ export class MealViewElement extends LitElement {
     .meal-view-wrapper {
       background-color: var(--color-background2);
       padding: var(--spacing-lg);
+      min-height: 80vh;
     }
   `;
 }

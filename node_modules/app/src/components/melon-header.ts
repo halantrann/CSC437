@@ -136,25 +136,30 @@ export class HeaderElement extends LitElement {
     :host {
       display: contents;
     }
-
-    .logo-content {
-      gap: 50px;
+   .logo-content {
+      gap: 20px;
       display: flex;
       align-items: center;
       width: 100%;
+      max-width: 100%;
+      padding: var(--spacing-sm);
+      flex-wrap: wrap;
+      box-sizing: border-box;
     }
 
     .logo-icon {
       display: block;
       width: 60px;
       height: 60px;
-      transform: scale(1.5) translateY(5px) translate(25px);
+      transform: scale(1.5) translateY(5px) translateX(10px);
+      margin-left: var(--spacing-sm);
     }
 
     .title-block {
       display: flex;
       flex-direction: column;
       padding: var(--spacing-sm);
+      margin-bottom: 10px;
     }
 
     .title-block h1 {
@@ -167,13 +172,16 @@ export class HeaderElement extends LitElement {
       color: var(--color-header);
     }
 
-    label {
+   
+       label {
       margin-left: auto;
       display: flex;
       align-items: center;
       gap: 0.5rem;
       cursor: pointer;
       font-family: var(--font-family-heading);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     input[type="checkbox"] {
@@ -183,7 +191,8 @@ export class HeaderElement extends LitElement {
     .auth-section {
       display: flex;
       align-items: center;
-      margin-left: 1rem;
+      flex-shrink: 0;
+      margin-left: var(--spacing-sm);
     }
 
     .sign-in-link {

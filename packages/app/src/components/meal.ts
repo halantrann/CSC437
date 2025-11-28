@@ -174,7 +174,7 @@ export class MealElement extends LitElement {
 
           <footer>
             <nav>
-              <a href="/index.html">Back to Menu</a>
+              <a href="/app">Back to Menu</a>
             </nav>
           </footer>
         </article>

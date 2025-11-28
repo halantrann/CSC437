@@ -63,6 +63,8 @@ export class TasteViewElement extends LitElement {
     .taste-view-wrapper {
       background-color: var(--color-background4);
       padding : var(--spacing-lg);
+      min-height: 80vh;
+
     }
   `;
 }

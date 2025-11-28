@@ -128,7 +128,7 @@ export class DishElement extends LitElement {
             <p>${this.error}</p>
             ${!this._user?.authenticated ? 
               html`<a href="/login.html" class="login-link">Login to view recipe</a>` : 
-              html`<a href="/index.html" class="back-link">Back to Menu</a>`
+              html`<a href="/app" class="back-link">Back to Menu</a>`
             }
           </div>
         </div>

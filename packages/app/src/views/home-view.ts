@@ -1,8 +1,8 @@
 import { css, html, LitElement } from "lit";
 
 export class HomeViewElement extends LitElement {
-  render() {
-    return html`
+	render() {
+		return html`
       <main>
         <!-- MEAL OF THE DAY -->
         <section id="meal-of-the-day">
@@ -92,21 +92,23 @@ export class HomeViewElement extends LitElement {
         </section>
       </main>
     `;
-  }
+	}
 
-  static styles = [
-    css`
+	static styles = [
+		css`
       @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap');
 
       :host {
         display: block;
-        font-family: 'Lexend', 'Segoe UI', Arial, Helvetica, sans-serif;
+        max-width: 100vw;
       }
 
       /* Import all necessary styles */
       main {
         margin-top: 0;
+        max-width: 100%;
+        overflow-x: hidden;
       }
 
       h1, h2, h3, h4, h5, h6 {
@@ -121,20 +123,35 @@ export class HomeViewElement extends LitElement {
       /* SECTIONS */
       #meal-of-the-day {
         background-color: var(--color-section);
-        padding: var(--spacing-xxl) var(--spacing-md);
+        padding: var(--spacing-md);
         text-align: center;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      #meal-of-the-day h2 {
+        margin-bottom: var(--spacing-xs);
+      }
+
+      #meal-of-the-day > p {
+        margin-top: 0;
+        margin-bottom: var(--spacing-sm);
       }
 
       #meals {
         background-color: inherit;
         padding: var(--spacing-md);
         text-align: center;
+        max-width: 100%;
+        overflow-x: hidden;
       }
 
       #cuisines {
         background-color: inherit;
         padding: var(--spacing-xl) var(--spacing-md);
         text-align: center;
+        max-width: 100%;
+        overflow-x: hidden;
       }
 
       #tastes {
@@ -144,8 +161,11 @@ export class HomeViewElement extends LitElement {
         align-items: center;
         justify-content: center;
         width: 100%;
+        max-width: 100%;
         padding: var(--spacing-lg) var(--spacing-xl);
         text-align: center;
+        overflow-x: hidden;
+        box-sizing: border-box;
       }
 
       #tastes h3 {
@@ -204,25 +224,30 @@ export class HomeViewElement extends LitElement {
       .cuisines-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: var(--spacing-lg);
+        gap: var(--spacing-sm);
         justify-items: center;
         margin-top: var(--spacing-md);
         width: 100%;
       }
 
-      .cuisine-category {
+    .cuisine-category {
         background-color: var(--color-background);
         border: 1px solid var(--color-border);
-        padding: 25px;
+        padding: 30px;
         width: 100%;
-        max-width: 300px;
+        max-width: 270px;
         border-radius: var(--radius-md);
         box-shadow: var(--shadow-md);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
       }
 
       .cuisine-category h4 {
         font-size: 1.8rem;
         margin-bottom: 15px;
+        margin-top: 0;
       }
 
       .cuisine-category ul {
@@ -232,10 +257,12 @@ export class HomeViewElement extends LitElement {
         list-style: none;
         padding: 0;
         margin: 0;
+        width: 100%;
       }
 
       .cuisine-category li {
         list-style: none;
+        text-align: center;
       }
 
       .cuisine-category a {
@@ -259,6 +286,15 @@ export class HomeViewElement extends LitElement {
         padding: 20px;
         gap: 20px;
         flex-wrap: wrap;
+      }
+
+	  #meal-of-the-day h2 {
+        margin-bottom: var(--spacing-xs);
+      }
+
+      #meal-of-the-day > p {
+        margin-top: 0;
+        margin-bottom: var(--spacing-sm);
       }
 
       .box-link {
@@ -402,9 +438,10 @@ export class HomeViewElement extends LitElement {
         }
 
         #meal-of-the-day {
-          padding: var(--spacing-lg) var(--spacing-sm);
+          padding: var(--spacing-sm);
         }
       }
+		
     `
-  ];
+	];
 }

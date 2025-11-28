@@ -184,7 +184,7 @@ export class TastesElement extends LitElement {
 
         <footer class="footer-nav">
           <nav>
-            <a href="/index.html">Back to Menu</a>
+            <a href="/app">Back to Menu</a>
           </nav>
         </footer>
       </div>
