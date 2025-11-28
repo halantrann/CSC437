@@ -1,0 +1,102 @@
+/* Design Tokens - Colors, Spacing, Typography, etc. */
+
+:root {
+  /* Primary Colors */
+  --color-background: #e6cbae;
+  /* --color-background3: #6A8EAE; */
+  --color-background3: #AD6D6E; 
+  --color-background4: #A09AB4; 
+
+  --color-background2: #84A59D;
+  --color-header2: #84A59D; 
+
+  --color-header: #1b1905;
+  --color-border: #1b1905;
+  --color-emphasistext: black; 
+
+  /* --darkmode-text: "Dark Mode!"; */
+
+  /* Dark Mode Color Pallette */
+  body.dark-mode {
+    --color-background: #271a14;
+    --color-background2: #3E4245; 
+    --color-background3: #4d3233; 
+    --color-background4: #322d43;
+    --color-section: #3E4245;
+
+    --color-header: #a8947f; 
+    --color-header2: #6c7177;
+    --color-link: #b7606d;
+    --color-emphasistext: #a8947f; 
+
+
+    --color-border: #e6cbae;
+    --color-cambridgeblue: #3E4245; 
+    --shadow-glow: 0 0 15px #b7606d;
+    /* --darkmode-text: "Light Mode!";  */
+    /* --color-background: #232946; */
+    /* --color-section: #eebbc3; */
+    /* --color-header: #b8c1ec; 
+    --color-link: #b8c1ec;
+    --color-border: #b8c1ec; */
+  } 
+  
+  /* Section Backgrounds */
+  --color-section: #709a5c;
+  --color-section2: #84BCDA;
+  
+  /* Accent Colors */
+  --color-link: #CA3C25;
+  --color-hyundaiyellow: #F6BD60;
+  --color-cambridgeblue: #84A59D;
+  --color-charbackground: #76948c;
+  --color-tearose: #F5CAC3;
+  --color-lightcoral: #F28482;
+  --color-lemonchiffon: #FFFBBD;
+  
+  /* Additional Colors */
+  --color-lightblue: #9BD1EF;
+  --color-jade: #57A773;
+  --color-darkspringgreen: #157145;
+  
+  /* Spacing */
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 20px;
+  --spacing-lg: 30px;
+  --spacing-xl: 40px;
+  --spacing-xxl: 70px;
+  --spacing-header: 125px; /* to compensate for header height */
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 20px;
+  
+  /* Shadows */
+  --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.2);
+  --shadow-glow: 0 0 15px #CA3C25;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease;
+  
+  /* Typography */
+  --font-family-heading: 'Pixelify Sans', 'Arial Black', 'Gadget', sans-serif;
+  --font-family-body: 'Lexend', 'Segoe UI', Arial, Helvetica, sans-serif;
+  --font-family-mono: 'Courier New', 'Courier', monospace;
+
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+
+  /* Grid System - 12 column base */
+  --grid-columns: 12;
+  --grid-gap: var(--spacing-md);
+  --grid-column-width: calc((100% - (var(--grid-gap) * (var(--grid-columns) - 1))) / var(--grid-columns));
+  
+  /* Container Max Width */
+  --container-max-width: 1200px;
+  --container-padding: var(--spacing-md);
+}

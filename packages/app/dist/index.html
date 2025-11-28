@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>The Melon Bowl</title>
+	<link rel="stylesheet" href="/styles/reset.css" />
+	<link rel="stylesheet" href="/styles/tokens.css" />
+	<link rel="stylesheet" href="/styles/base.css" />
+
+	<link rel="stylesheet" href="/styles/layout.css" />
+	<link rel="stylesheet" href="/styles/boxes.css" />
+	
+  <script type="module" crossorigin src="/assets/main-DVi-3KDb.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/reset.css-BiefbQC4.js">
+</head>
+
+<body>
+	<mu-history provides="melonbowl:history">
+		<mu-auth provides="melonbowl:auth" redirect="/login.html">
+			<article class="page">
+				<melon-header></melon-header>
+				<mu-switch></mu-switch>
+			</article>
+		</mu-auth>
+	</mu-history>
+
+</body>
+
+</html>
