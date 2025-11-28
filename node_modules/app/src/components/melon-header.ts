@@ -39,7 +39,7 @@ export class HeaderElement extends LitElement {
     const savedMode = localStorage.getItem('dark-mode');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     this.isDarkMode = savedMode === 'true' || (savedMode === null && prefersDark);
-    
+
     // Apply initial state to body
     document.body.classList.toggle('dark-mode', this.isDarkMode);
 
@@ -60,23 +60,23 @@ export class HeaderElement extends LitElement {
   handleDarkModeToggle(event: Event) {
     const checkbox = event.target as HTMLInputElement;
     const checked = checkbox.checked;
-    
+
     // Update state
     this.isDarkMode = checked;
-    
+
     // Save to localStorage
     localStorage.setItem('dark-mode', String(checked));
-    
+
     // Toggle body class
     document.body.classList.toggle('dark-mode', checked);
-    
+
     // Dispatch event for other components
     const customEvent = new CustomEvent('dark-mode:toggle', {
       bubbles: true,
       composed: true,
       detail: { checked }
     });
-    
+
     this.dispatchEvent(customEvent);
   }
 
@@ -102,18 +102,31 @@ export class HeaderElement extends LitElement {
         </label>
 
         <div class="auth-section">
-          ${this.loggedIn ? 
-			this.renderLoggedIn() : 
-			this.renderSignIn()}
+          ${this.loggedIn ?
+        this.renderLoggedIn() :
+        this.renderSignIn()}
         </div>
       </div>
     `;
   }
 
-  renderSignIn() {
+  renderSignIn() { // was having issues with having to refresh the page 
     return html`
-      <a href="/login.html" class="sign-in-link">Sign In</a>
-    `;
+    <a 
+      href="/login.html" 
+      class="sign-in-link"
+      @click=${(e: MouseEvent) => {
+        // stop the event from bubbling up to mu-history
+        e.stopPropagation();
+        // Let the browser handle the navigation normally
+        window.location.href = '/login.html';
+        // prevent default to avoid any double navigation
+        e.preventDefault();
+      }}
+    >
+      Sign In
+    </a>
+  `;
   }
 
   renderLoggedIn() {
@@ -123,8 +136,8 @@ export class HeaderElement extends LitElement {
         <button
           class="sign-out-btn"
           @click=${(e: MouseEvent) => {
-            Events.relay(e, "auth:message", ["auth/signout"]);
-          }}
+        Events.relay(e, "auth:message", ["auth/signout"]);
+      }}
         >
           Sign Out
         </button>
