@@ -67,4 +67,19 @@ function getById(id: string): Promise<DishElement> {
     });
 }
 
-export default { index, get, getById, create, update, remove };
+function updateById(id: string, dish: DishElement): Promise<DishElement> {
+  return DishModel.findByIdAndUpdate(id, dish, { new: true })
+    .then((updated) => {
+      if (!updated) throw new Error(`Dish with ID ${id} not found`);
+      return updated;
+    });
+}
+
+function removeById(id: string): Promise<void> {
+  return DishModel.findByIdAndDelete(id)
+    .then((deleted) => {
+      if (!deleted) throw new Error(`Dish with ID ${id} not found`);
+    });
+}
+
+export default { index, get, getById, create, update, updateById, remove, removeById };

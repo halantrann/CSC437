@@ -46,34 +46,34 @@ export class DishEditViewElement extends View<Model, Msg> {
 	}
 
 	handleSubmit(event: Form.SubmitEvent<Recipe>) {
-	console.log("Form submitted with data:", event.detail);
+		console.log("Form submitted with data:", event.detail);
 
-	const formData = event.detail;
+		const formData = event.detail;
 
-	const processedRecipe: Recipe = {
-		...formData,
-		ingredients: typeof formData.ingredients === 'string'
-			? (formData.ingredients as string).split('\n').filter(line => line.trim())
-			: formData.ingredients,
-		instructions: typeof formData.instructions === 'string'
-			? (formData.instructions as string).split('\n').filter(line => line.trim())
-			: formData.instructions
-	};
+		const processedRecipe: Recipe = {
+			...formData,
+			ingredients: typeof formData.ingredients === 'string'
+				? (formData.ingredients as string).split('\n').filter(line => line.trim())
+				: formData.ingredients,
+			instructions: typeof formData.instructions === 'string'
+				? (formData.instructions as string).split('\n').filter(line => line.trim())
+				: formData.instructions
+		};
 
-	this.dispatchMessage([
-		"recipe/save",
-		{
-			name: this.dishName!,
-			recipe: processedRecipe,
-			onSuccess: () =>
-				History.dispatch(this, "history/navigate", {
-					href: `/app/dish/${this.dishName}`
-				}),
-			onFailure: (error: Error) =>
-				console.log("ERROR:", error)
-		}
-	]);
-}
+		this.dispatchMessage([
+			"recipe/save",
+			{
+				name: this.dishName!,
+				recipe: processedRecipe,
+				onSuccess: () =>
+					History.dispatch(this, "history/navigate", {
+						href: `/app/dish/${this.dishName}`
+					}),
+				onFailure: (error: Error) =>
+					console.log("ERROR:", error)
+			}
+		]);
+	}
 
 	render() {
 		// Show loading state

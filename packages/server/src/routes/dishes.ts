@@ -50,21 +50,35 @@ router.post("/", (req: Request, res: Response) => {
 		.catch((err) => res.status(500).send(err));
 });
 
-router.put("/:name", (req: Request, res: Response) => {
-	const { name } = req.params;
+router.put("/:id", (req: Request, res: Response) => {
+	const { id } = req.params;
 	const newDish = req.body;
 
-	Dishes.update(name, newDish)
-		.then((dish: DishElement) => res.json(dish))
-		.catch((err) => res.status(404).end());
+	// Check if it's a MongoDB ID or a name
+	if (/^[0-9a-fA-F]{24}$/.test(id)) {
+		// It's an ID
+		Dishes.updateById(id, newDish)
+			.then((dish: DishElement) => res.json(dish))
+			.catch((err) => res.status(404).send(err));
+	} else {
+		// It's a name
+		Dishes.update(id, newDish)
+			.then((dish: DishElement) => res.json(dish))
+			.catch((err) => res.status(404).send(err));
+	}
 });
+router.delete("/:id", (req: Request, res: Response) => {
+	const { id } = req.params;
 
-router.delete("/:name", (req: Request, res: Response) => {
-	const { name } = req.params;
-
-	Dishes.remove(name)
-		.then(() => res.status(204).end())
-		.catch((err) => res.status(404).send(err));
+	if (/^[0-9a-fA-F]{24}$/.test(id)) {
+		Dishes.removeById(id)
+			.then(() => res.status(204).end())
+			.catch((err) => res.status(404).send(err));
+	} else {
+		Dishes.remove(id)
+			.then(() => res.status(204).end())
+			.catch((err) => res.status(404).send(err));
+	}
 });
 
 export default router;

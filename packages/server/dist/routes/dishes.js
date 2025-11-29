@@ -61,13 +61,21 @@ router.post("/", (req, res) => {
   const newDish = req.body;
   import_dish_svc.default.create(newDish).then((dish) => res.status(201).json(dish)).catch((err) => res.status(500).send(err));
 });
-router.put("/:name", (req, res) => {
-  const { name } = req.params;
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
   const newDish = req.body;
-  import_dish_svc.default.update(name, newDish).then((dish) => res.json(dish)).catch((err) => res.status(404).end());
+  if (/^[0-9a-fA-F]{24}$/.test(id)) {
+    import_dish_svc.default.updateById(id, newDish).then((dish) => res.json(dish)).catch((err) => res.status(404).send(err));
+  } else {
+    import_dish_svc.default.update(id, newDish).then((dish) => res.json(dish)).catch((err) => res.status(404).send(err));
+  }
 });
-router.delete("/:name", (req, res) => {
-  const { name } = req.params;
-  import_dish_svc.default.remove(name).then(() => res.status(204).end()).catch((err) => res.status(404).send(err));
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  if (/^[0-9a-fA-F]{24}$/.test(id)) {
+    import_dish_svc.default.removeById(id).then(() => res.status(204).end()).catch((err) => res.status(404).send(err));
+  } else {
+    import_dish_svc.default.remove(id).then(() => res.status(204).end()).catch((err) => res.status(404).send(err));
+  }
 });
 var dishes_default = router;

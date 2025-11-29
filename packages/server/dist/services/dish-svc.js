@@ -72,4 +72,15 @@ function getById(id) {
     return doc;
   });
 }
-var dish_svc_default = { index, get, getById, create, update, remove };
+function updateById(id, dish) {
+  return DishModel.findByIdAndUpdate(id, dish, { new: true }).then((updated) => {
+    if (!updated) throw new Error(`Dish with ID ${id} not found`);
+    return updated;
+  });
+}
+function removeById(id) {
+  return DishModel.findByIdAndDelete(id).then((deleted) => {
+    if (!deleted) throw new Error(`Dish with ID ${id} not found`);
+  });
+}
+var dish_svc_default = { index, get, getById, create, update, updateById, remove, removeById };
