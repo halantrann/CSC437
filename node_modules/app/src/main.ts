@@ -2,10 +2,16 @@ import {
   Auth,
   define,
   History,
-  Switch
+  Switch,
+  Store
 } from "@calpoly/mustang";
 
 import { html } from "lit";
+
+// Import MVU architecture files
+import { Msg } from "./messages";
+import { Model, init } from "./model";
+import update from "./update";
 
 // Import header
 import { HeaderElement } from "./components/melon-header";
@@ -15,11 +21,12 @@ import { HomeViewElement } from "./views/home-view";
 import { MealViewElement } from "./views/meal-view";
 import { TasteViewElement } from "./views/taste-view";
 import { CuisineViewElement } from "./views/cuisine-view";
-import { DishViewElement } from "./views/dish-view";
+import { DishViewElement } from "./views/dish-view"; // Now using MVU version
 
+// Import components
 import { MealElement } from "./components/meal";
 import { CuisineElement } from "./components/cuisine";
-import { DishElement } from "./components/dish";
+// import { DishElement } from "./components/dish";
 import { TastesElement } from "./components/tastes";
 
 const routes = [
@@ -62,6 +69,11 @@ const routes = [
 define({
   "mu-auth": Auth.Provider,
   "mu-history": History.Provider,
+  "mu-store": class AppStore extends Store.Provider<Model, Msg> {
+    constructor() {
+      super(update, init, "melonbowl:auth");
+    }
+  },
   "mu-switch": class AppSwitch extends Switch.Element {
     constructor() {
       super(routes, "melonbowl:history", "melonbowl:auth");
@@ -75,6 +87,6 @@ define({
   "dish-view": DishViewElement,
   "meal-element": MealElement,
   "cuisine-element": CuisineElement,
-  "mbowl-dish": DishElement,
+  // "mbowl-dish": DishElement,
   "tastes-element": TastesElement
 });
