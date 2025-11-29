@@ -37,9 +37,25 @@ const router = import_express.default.Router();
 router.get("/", (_, res) => {
   import_dish_svc.default.index().then((list) => res.json(list)).catch((err) => res.status(500).send(err));
 });
-router.get("/:name", (req, res) => {
-  const { name } = req.params;
-  import_dish_svc.default.get(name).then((dish) => res.json(dish)).catch((err) => res.status(404).send(err));
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  if (/^[0-9a-fA-F]{24}$/.test(id)) {
+    import_dish_svc.default.getById(id).then((dish) => {
+      if (!dish) {
+        res.status(404).json({ error: "Dish not found" });
+      } else {
+        res.json(dish);
+      }
+    }).catch((err) => res.status(500).json({ error: err.message }));
+  } else {
+    import_dish_svc.default.get(id).then((dish) => {
+      if (!dish) {
+        res.status(404).json({ error: "Dish not found" });
+      } else {
+        res.json(dish);
+      }
+    }).catch((err) => res.status(404).json({ error: err.message }));
+  }
 });
 router.post("/", (req, res) => {
   const newDish = req.body;

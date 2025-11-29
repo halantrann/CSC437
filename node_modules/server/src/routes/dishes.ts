@@ -13,12 +13,33 @@ router.get("/", (_, res: Response) => {
 		.catch((err) => res.status(500).send(err));
 });
 
-router.get("/:name", (req: Request, res: Response) => {
-	const { name } = req.params;
+// ADDED: Get dish by ID (must come BEFORE /:name to match MongoDB IDs)
+router.get("/:id", (req: Request, res: Response) => {
+	const { id } = req.params;
 
-	Dishes.get(name)
-		.then((dish: DishElement) => res.json(dish))
-		.catch((err) => res.status(404).send(err));
+	// Check if it looks like a MongoDB ID (24 hex characters)
+	if (/^[0-9a-fA-F]{24}$/.test(id)) {
+		Dishes.getById(id)
+			.then((dish: DishElement) => {
+				if (!dish) {
+					res.status(404).json({ error: "Dish not found" });
+				} else {
+					res.json(dish);
+				}
+			})
+			.catch((err) => res.status(500).json({ error: err.message }));
+	} else {
+		// If not an ID, treat it as a name
+		Dishes.get(id)
+			.then((dish: DishElement) => {
+				if (!dish) {
+					res.status(404).json({ error: "Dish not found" });
+				} else {
+					res.json(dish);
+				}
+			})
+			.catch((err) => res.status(404).json({ error: err.message }));
+	}
 });
 
 router.post("/", (req: Request, res: Response) => {

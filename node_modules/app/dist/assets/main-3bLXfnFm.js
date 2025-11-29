@@ -616,7 +616,7 @@ import{i as p,O as $,x as r,e as B,a as g,r as l,n as c,b as T,d as Y,_ as X,h a
       min-height: 80vh;
 
     }
-  `;let y=I;A([c({attribute:"taste-type"})],y.prototype,"tasteType");A([l()],y.prototype,"tasteName");A([l()],y.prototype,"tagline");var W=Object.defineProperty,S=(t,e,a,n)=>{for(var i=void 0,o=t.length-1,s;o>=0;o--)(s=t[o])&&(i=s(e,a,i)||i);return i&&W(e,a,i),i};const D=class D extends p{connectedCallback(){super.connectedCallback(),this._updateCuisineData()}updated(e){e.has("cuisineType")&&this._updateCuisineData()}_updateCuisineData(){if(!this.cuisineType)return;this.cuisineName=`${this.cuisineType.charAt(0).toUpperCase()+this.cuisineType.slice(1)} Cuisine`;const a={vietnamese:{img:"/images/vietnamese-cuisine.jpg",tagline:"Fresh herbs and bold flavors"},chinese:{img:"/images/chinese-cuisine.jpg",tagline:"Centuries of culinary tradition"},japanese:{img:"/images/japanese-cuisine.jpg",tagline:"Precision and simplicity"},thai:{img:"/images/thai-cuisine.jpg",tagline:"Sweet, sour, salty, spicy"},italian:{img:"/images/italian-cuisine.jpg",tagline:"La dolce vita"},french:{img:"/images/french-cuisine.jpg",tagline:"The art of cooking"},southern:{img:"/images/southern-cuisine.jpg",tagline:"Comfort food at its finest"},californian:{img:"/images/californian-cuisine.jpg",tagline:"Fresh and innovative"}}[this.cuisineType]||{img:"",tagline:"Explore this cuisine"};this.tagline=a.tagline,this.imgSrc=a.img,this.imgAlt=`${this.cuisineName}`}render(){return!this.cuisineType||!this.cuisineName?r`<p>Loading...</p>`:r`
+  `;let y=I;A([c({attribute:"taste-type"})],y.prototype,"tasteType");A([l()],y.prototype,"tasteName");A([l()],y.prototype,"tagline");var W=Object.defineProperty,_=(t,e,a,n)=>{for(var i=void 0,o=t.length-1,s;o>=0;o--)(s=t[o])&&(i=s(e,a,i)||i);return i&&W(e,a,i),i};const D=class D extends p{connectedCallback(){super.connectedCallback(),this._updateCuisineData()}updated(e){e.has("cuisineType")&&this._updateCuisineData()}_updateCuisineData(){if(!this.cuisineType)return;this.cuisineName=`${this.cuisineType.charAt(0).toUpperCase()+this.cuisineType.slice(1)} Cuisine`;const a={vietnamese:{img:"/images/vietnamese-cuisine.jpg",tagline:"Fresh herbs and bold flavors"},chinese:{img:"/images/chinese-cuisine.jpg",tagline:"Centuries of culinary tradition"},japanese:{img:"/images/japanese-cuisine.jpg",tagline:"Precision and simplicity"},thai:{img:"/images/thai-cuisine.jpg",tagline:"Sweet, sour, salty, spicy"},italian:{img:"/images/italian-cuisine.jpg",tagline:"La dolce vita"},french:{img:"/images/french-cuisine.jpg",tagline:"The art of cooking"},southern:{img:"/images/southern-cuisine.jpg",tagline:"Comfort food at its finest"},californian:{img:"/images/californian-cuisine.jpg",tagline:"Fresh and innovative"}}[this.cuisineType]||{img:"",tagline:"Explore this cuisine"};this.tagline=a.tagline,this.imgSrc=a.img,this.imgAlt=`${this.cuisineName}`}render(){return!this.cuisineType||!this.cuisineName?r`<p>Loading...</p>`:r`
       <div class="cuisine-view-wrapper"> 
         <cuisine-element 
           category=${this.cuisineType}
@@ -635,13 +635,13 @@ import{i as p,O as $,x as r,e as B,a as g,r as l,n as c,b as T,d as Y,_ as X,h a
       background-color: var(--color-background3);
       padding: var(--spacing-lg);
     }
-  `;let u=D;S([c({attribute:"cuisine-type"})],u.prototype,"cuisineType");S([l()],u.prototype,"cuisineName");S([l()],u.prototype,"tagline");S([l()],u.prototype,"imgSrc");S([l()],u.prototype,"imgAlt");var Z=Object.defineProperty,H=(t,e,a,n)=>{for(var i=void 0,o=t.length-1,s;o>=0;o--)(s=t[o])&&(i=s(e,a,i)||i);return i&&Z(e,a,i),i};const O=class O extends p{get src(){return this.dishName?`/api/dishes/${encodeURIComponent(this.dishName)}`:""}render(){return this.dishName?r`
+  `;let m=D;_([c({attribute:"cuisine-type"})],m.prototype,"cuisineType");_([l()],m.prototype,"cuisineName");_([l()],m.prototype,"tagline");_([l()],m.prototype,"imgSrc");_([l()],m.prototype,"imgAlt");var Z=Object.defineProperty,H=(t,e,a,n)=>{for(var i=void 0,o=t.length-1,s;o>=0;o--)(s=t[o])&&(i=s(e,a,i)||i);return i&&Z(e,a,i),i};const O=class O extends p{get src(){return this.dishName?`/api/dishes/${encodeURIComponent(this.dishName)}`:""}render(){return this.dishName?r`
       <mbowl-dish src=${this.src}></mbowl-dish>
     `:r`<p>No dish specified</p>`}};O.styles=g`
     :host {
       display: block;
     }
-  `;let _=O;H([c({attribute:"dish-name"})],_.prototype,"dishName");var V=Object.defineProperty,w=(t,e,a,n)=>{for(var i=void 0,o=t.length-1,s;o>=0;o--)(s=t[o])&&(i=s(e,a,i)||i);return i&&V(e,a,i),i};const U=class U extends p{constructor(){super(...arguments),this.recipes=[],this.loading=!1,this._authObserver=new $(this,"melonbowl:auth")}connectedCallback(){super.connectedCallback(),this._authObserver.observe(e=>{this._user=e.user,this._user?.authenticated&&this.category&&this.loadRecipes()})}updated(e){super.updated(e),e.has("category")&&this.category&&this._user?.authenticated&&this.loadRecipes()}get authorization(){return this._user?.authenticated&&{Authorization:`Bearer ${this._user.token}`}}async loadRecipes(){if(!this._user?.authenticated){this.error="Please log in to view recipes";return}if(!this.category){console.log("No category set yet, skipping load");return}console.log("Loading recipes for category:",this.category),this.loading=!0,this.error=void 0;try{const e=await fetch("/api/dishes",{headers:this.authorization||{}});if(!e.ok)throw e.status===401?new Error("Please log in to view recipes"):new Error(`Failed to load recipes: ${e.statusText}`);const a=await e.json();console.log("Received data:",a),this.category&&(this.recipes=a.filter(n=>n.mealType?.toLowerCase()===this.category.toLowerCase()),console.log("Filtered recipes:",this.recipes))}catch(e){console.error("Failed to load recipes:",e),this.error=e instanceof Error?e.message:"Failed to load recipes"}finally{this.loading=!1}}render(){return this.loading?r`
+  `;let S=O;H([c({attribute:"dish-name"})],S.prototype,"dishName");var V=Object.defineProperty,w=(t,e,a,n)=>{for(var i=void 0,o=t.length-1,s;o>=0;o--)(s=t[o])&&(i=s(e,a,i)||i);return i&&V(e,a,i),i};const U=class U extends p{constructor(){super(...arguments),this.recipes=[],this.loading=!1,this._authObserver=new $(this,"melonbowl:auth")}connectedCallback(){super.connectedCallback(),this._authObserver.observe(e=>{this._user=e.user,this._user?.authenticated&&this.category&&this.loadRecipes()})}updated(e){super.updated(e),e.has("category")&&this.category&&this._user?.authenticated&&this.loadRecipes()}get authorization(){return this._user?.authenticated&&{Authorization:`Bearer ${this._user.token}`}}async loadRecipes(){if(!this._user?.authenticated){this.error="Please log in to view recipes";return}if(!this.category){console.log("No category set yet, skipping load");return}console.log("Loading recipes for category:",this.category),this.loading=!0,this.error=void 0;try{const e=await fetch("/api/dishes",{headers:this.authorization||{}});if(!e.ok)throw e.status===401?new Error("Please log in to view recipes"):new Error(`Failed to load recipes: ${e.statusText}`);const a=await e.json();console.log("Received data:",a),this.category&&(this.recipes=a.filter(n=>n.mealType?.toLowerCase()===this.category.toLowerCase()),console.log("Filtered recipes:",this.recipes))}catch(e){console.error("Failed to load recipes:",e),this.error=e instanceof Error?e.message:"Failed to load recipes"}finally{this.loading=!1}}render(){return this.loading?r`
         <div class="recipe-box">
           <div class="loading-message">Loading recipes...</div>
         </div>
@@ -666,15 +666,18 @@ import{i as p,O as $,x as r,e as B,a as g,r as l,n as c,b as T,d as Y,_ as X,h a
             </div>
           </section>
 
+         
           <section class="recipe-links">
             <h2>${this.mealType} Recipes:</h2>
             <ul class="meals-list">
               ${this.recipes.length>0?this.recipes.map(e=>r`
-                      <li><a href="/dish.html?type=${e.name}">${e.name}</a></li>
+                      <li>
+                        <a href="/app/dish/${e._id||e.id}">${e.name}</a>
+                      </li>
                     `):r`<li>Sign in to see ${this.mealType} recipes!</li>`}
             </ul>
           </section>
-
+          
           <footer>
             <nav>
               <a href="/app">Back to Menu</a>
@@ -837,7 +840,7 @@ import{i as p,O as $,x as r,e as B,a as g,r as l,n as c,b as T,d as Y,_ as X,h a
         <section>
           <div class="cuisine-boxes-grid">
             ${this.recipes.length>0?this.recipes.map(e=>r`
-                  <a href="/dish.html?type=${e.name}" class="cuisine-box-link">
+                  <a href="/app/dish/${e._id||e.id}" class="cuisine-box-link">  
                     <div class="cuisine-box-image">
                       <img src="${e.imgSrc}" alt="${e.name}">
                     </div>
@@ -1105,7 +1108,7 @@ import{i as p,O as $,x as r,e as B,a as g,r as l,n as c,b as T,d as Y,_ as X,h a
 
           <footer>
             <nav>
-              <a href="../index.html">Back to Menu</a>
+              <a href="/app">Back to Menu</a>
             </nav>
           </footer>
         </article>
@@ -1115,6 +1118,10 @@ import{i as p,O as $,x as r,e as B,a as g,r as l,n as c,b as T,d as Y,_ as X,h a
           <div class="loading-message">No recipe data available</div>
         </div>
       `}};F.styles=[T.styles,g`
+     :host {
+        display: block;
+    }
+
     .loading-message,
     .error-message {
       padding: var(--spacing-xl);
@@ -1338,7 +1345,7 @@ import{i as p,O as $,x as r,e as B,a as g,r as l,n as c,b as T,d as Y,_ as X,h a
         <section>
           <div class="tasteUSS-boxes-grid">
             ${this.recipes.length>0?this.recipes.map(e=>r`
-                  <a href="/dish.html?id=${e._id}" class="tasteUSS-box-link">
+                  <a href="/app/dish/${e._id||e.id}" class="tasteUSS-box-link">
 
                     <div class="tasteUSS-box-image">
                       <img src="${e.imgSrc}" alt="${e.name}">
@@ -1508,7 +1515,7 @@ import{i as p,O as $,x as r,e as B,a as g,r as l,n as c,b as T,d as Y,_ as X,h a
       display: flex;
       justify-content: center;
     }
-  `];let m=E;k([c()],m.prototype,"tastesType");k([c()],m.prototype,"tagline");k([c({type:Array})],m.prototype,"recipes");k([c()],m.prototype,"category");k([l()],m.prototype,"loading");k([l()],m.prototype,"error");const re=[{path:"/app/meal/:type",view:t=>r`
+  `];let u=E;k([c()],u.prototype,"tastesType");k([c()],u.prototype,"tagline");k([c({type:Array})],u.prototype,"recipes");k([c()],u.prototype,"category");k([l()],u.prototype,"loading");k([l()],u.prototype,"error");const re=[{path:"/app/meal/:type",view:t=>r`
       <meal-view meal-type=${t.type}></meal-view>
     `},{path:"/app/taste/:type",view:t=>r`
       <taste-view taste-type=${t.type}></taste-view>
@@ -1518,4 +1525,4 @@ import{i as p,O as $,x as r,e as B,a as g,r as l,n as c,b as T,d as Y,_ as X,h a
       <dish-view dish-name=${t.name}></dish-view>
     `},{path:"/app",view:()=>r`
       <home-view></home-view>
-    `},{path:"/",redirect:"/app"}];Y({"mu-auth":J.Provider,"mu-history":G.Provider,"mu-switch":class extends X.Element{constructor(){super(re,"melonbowl:history","melonbowl:auth")}},"melon-header":b,"home-view":j,"meal-view":x,"taste-view":y,"cuisine-view":u,"dish-view":_,"meal-element":h,"cuisine-element":d,"mbowl-dish":f,"tastes-element":m});
+    `},{path:"/",redirect:"/app"}];Y({"mu-auth":J.Provider,"mu-history":G.Provider,"mu-switch":class extends X.Element{constructor(){super(re,"melonbowl:history","melonbowl:auth")}},"melon-header":b,"home-view":j,"meal-view":x,"taste-view":y,"cuisine-view":m,"dish-view":S,"meal-element":h,"cuisine-element":d,"mbowl-dish":f,"tastes-element":u});

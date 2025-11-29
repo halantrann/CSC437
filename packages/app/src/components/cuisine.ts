@@ -5,6 +5,8 @@ import { Auth } from "@calpoly/mustang";
 import reset from "../styles/reset.css.ts";
 
 interface Recipe {
+  _id?: string;
+  id?: string;
   name: string;
   prepTime?: string;
   cookTime?: string;
@@ -49,7 +51,7 @@ export class CuisineElement extends LitElement {
     // Observe auth state
     this._authObserver.observe((auth: Auth.Model) => {
       this._user = auth.user;
-      
+
       // Load recipes when authenticated AND category is set
       if (this._user?.authenticated && this.category) {
         this.loadRecipes();
@@ -60,7 +62,7 @@ export class CuisineElement extends LitElement {
   // Watch for category changes
   override updated(changedProperties: Map<string, any>) {
     super.updated(changedProperties);
-    
+
     // Load recipes when category is set/changed and user is authenticated
     if (changedProperties.has('category') && this.category && this._user?.authenticated) {
       this.loadRecipes();
@@ -124,11 +126,11 @@ export class CuisineElement extends LitElement {
   // helper function to calculate total time
   getTotalTime(recipe: Recipe): string {
     if (recipe.time) return recipe.time;
-    
+
     const prepMinutes = parseInt(recipe.prepTime || '0');
     const cookMinutes = parseInt(recipe.cookTime || '0');
     const total = prepMinutes + cookMinutes;
-    
+
     return total > 0 ? `${total} min` : 'N/A';
   }
 
@@ -148,10 +150,10 @@ export class CuisineElement extends LitElement {
         <div class="cuisine-box">
           <div class="error-message">
             <p>${this.error}</p>
-            ${!this._user?.authenticated ? 
-              html`<a href="/login.html" class="login-link">Login to view recipes</a>` : 
-              null
-            }
+            ${!this._user?.authenticated ?
+          html`<a href="/login.html" class="login-link">Login to view recipes</a>` :
+          null
+        }
           </div>
         </div>
       `;
@@ -174,10 +176,10 @@ export class CuisineElement extends LitElement {
 
         <section>
           <div class="cuisine-boxes-grid">
-            ${this.recipes.length > 0 ? 
-              this.recipes.map(
-                (r) => html`
-                  <a href="/dish.html?type=${r.name}" class="cuisine-box-link">
+            ${this.recipes.length > 0 ?
+        this.recipes.map(
+          (r) => html`
+                  <a href="/app/dish/${r._id || r.id}" class="cuisine-box-link">  
                     <div class="cuisine-box-image">
                       <img src="${r.imgSrc}" alt="${r.name}">
                     </div>
@@ -187,9 +189,9 @@ export class CuisineElement extends LitElement {
                     </div>
                   </a>
                 `
-              ) :
-              html`<p class="no-recipes">Sign in to see what ${this.cuisineType} you saved!</p>`
-            }
+        ) :
+        html`<p class="no-recipes">Sign in to see what ${this.cuisineType} you saved!</p>`
+      }
           </div>
         </section>
 

@@ -57,4 +57,14 @@ function remove(name: String): Promise<void> {
   });
 }
 
-export default { index, get, create, update, remove };
+function getById(id: string): Promise<DishElement> {
+  return DishModel.findById(id)
+    .then((doc) => {
+      if (!doc) {
+        throw new Error(`Dish with ID ${id} not found`);
+      }
+      return doc;
+    });
+}
+
+export default { index, get, getById, create, update, remove };

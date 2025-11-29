@@ -158,20 +158,23 @@ export class MealElement extends LitElement {
             </div>
           </section>
 
+         
           <section class="recipe-links">
             <h2>${this.mealType} Recipes:</h2>
             <ul class="meals-list">
               ${this.recipes.length > 0
                 ? this.recipes.map(
                     (r) => html`
-                      <li><a href="/dish.html?type=${r.name}">${r.name}</a></li>
+                      <li>
+                        <a href="/app/dish/${r._id || r.id}">${r.name}</a>
+                      </li>
                     `
                   )
                 : html`<li>Sign in to see ${this.mealType} recipes!</li>`
               }
             </ul>
           </section>
-
+          
           <footer>
             <nav>
               <a href="/app">Back to Menu</a>

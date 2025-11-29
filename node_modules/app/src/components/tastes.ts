@@ -165,7 +165,7 @@ export class TastesElement extends LitElement {
             ${this.recipes.length > 0 ?
         this.recipes.map(
           (r) => html`
-                  <a href="/dish.html?id=${(r as any)._id}" class="tasteUSS-box-link">
+                  <a href="/app/dish/${(r as any)._id || (r as any).id}" class="tasteUSS-box-link">
 
                     <div class="tasteUSS-box-image">
                       <img src="${r.imgSrc}" alt="${r.name}">

@@ -64,4 +64,12 @@ function remove(name) {
     if (!deleted) throw `${name} Not Removed`;
   });
 }
-var dish_svc_default = { index, get, create, update, remove };
+function getById(id) {
+  return DishModel.findById(id).then((doc) => {
+    if (!doc) {
+      throw new Error(`Dish with ID ${id} not found`);
+    }
+    return doc;
+  });
+}
+var dish_svc_default = { index, get, getById, create, update, remove };
