@@ -27,7 +27,7 @@ export class DishViewElement extends View<Model, Msg> {
     newValue: string
   ) {
     super.attributeChangedCallback(name, oldValue, newValue);
-    
+
     if (
       name === "dish-name" &&
       oldValue !== newValue &&
@@ -73,9 +73,9 @@ export class DishViewElement extends View<Model, Msg> {
             <h2>Ingredients</h2>
             <ul>
               ${this.recipe.ingredients && this.recipe.ingredients.length > 0
-                ? this.recipe.ingredients.map(ing => html`<li>${ing}</li>`)
-                : html`<li>No ingredients specified.</li>`
-              }
+        ? this.recipe.ingredients.map(ing => html`<li>${ing}</li>`)
+        : html`<li>No ingredients specified.</li>`
+      }
             </ul>
           </section>
 
@@ -85,9 +85,9 @@ export class DishViewElement extends View<Model, Msg> {
             <h2>Instructions</h2>
             <ol>
               ${this.recipe.instructions && this.recipe.instructions.length > 0
-                ? this.recipe.instructions.map(inst => html`<li>${inst}</li>`)
-                : html`<li>No instructions specified.</li>`
-              }
+        ? this.recipe.instructions.map(inst => html`<li>${inst}</li>`)
+        : html`<li>No instructions specified.</li>`
+      }
             </ol>
           </section>
 
@@ -131,6 +131,7 @@ export class DishViewElement extends View<Model, Msg> {
           <footer>
             <nav>
               <a href="/app">Back to Menu</a>
+              <a href="/app/dish/${this.dishName}/edit" class="edit-link">Edit Recipe</a>
             </nav>
           </footer>
         </article>

@@ -21,12 +21,12 @@ import { HomeViewElement } from "./views/home-view";
 import { MealViewElement } from "./views/meal-view";
 import { TasteViewElement } from "./views/taste-view";
 import { CuisineViewElement } from "./views/cuisine-view";
-import { DishViewElement } from "./views/dish-view"; // Now using MVU version
+import { DishViewElement } from "./views/dish-view";
+import { DishEditViewElement } from "./views/dish-edit-view"; // Import edit view
 
 // Import components
 import { MealElement } from "./components/meal";
 import { CuisineElement } from "./components/cuisine";
-// import { DishElement } from "./components/dish";
 import { TastesElement } from "./components/tastes";
 
 const routes = [
@@ -46,6 +46,12 @@ const routes = [
     path: "/app/cuisine/:type",
     view: (params: Switch.Params) => html`
       <cuisine-view cuisine-type=${params.type}></cuisine-view>
+    `
+  },
+  {
+    path: "/app/dish/:name/edit",
+    view: (params: Switch.Params) => html`
+      <dish-edit-view dish-name=${params.name}></dish-edit-view>
     `
   },
   {
@@ -69,7 +75,9 @@ const routes = [
 define({
   "mu-auth": Auth.Provider,
   "mu-history": History.Provider,
-  "mu-store": class AppStore extends Store.Provider<Model, Msg> {
+  "mu-store": class AppStore 
+    extends Store.Provider<Model, Msg> 
+    {
     constructor() {
       super(update, init, "melonbowl:auth");
     }
@@ -85,8 +93,8 @@ define({
   "taste-view": TasteViewElement,
   "cuisine-view": CuisineViewElement,
   "dish-view": DishViewElement,
+  "dish-edit-view": DishEditViewElement, // Register edit view
   "meal-element": MealElement,
   "cuisine-element": CuisineElement,
-  // "mbowl-dish": DishElement,
   "tastes-element": TastesElement
 });

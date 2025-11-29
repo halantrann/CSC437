@@ -11,18 +11,20 @@
 
 	<link rel="stylesheet" href="/styles/layout.css" />
 	<link rel="stylesheet" href="/styles/boxes.css" />
-	
-  <script type="module" crossorigin src="/assets/main-3bLXfnFm.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/reset.css-BiefbQC4.js">
+
+  <script type="module" crossorigin src="/assets/main-B4HLyg-X.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/reset.css-ClxiKa7k.js">
 </head>
 
 <body>
 	<mu-history provides="melonbowl:history">
 		<mu-auth provides="melonbowl:auth" redirect="/login.html">
-			<article class="page">
-				<melon-header></melon-header>
-				<mu-switch></mu-switch>
-			</article>
+			<mu-store provides="melonbowl:model">
+				<article class="page">
+					<melon-header></melon-header>
+					<mu-switch></mu-switch>
+				</article>
+			</mu-store>
 		</mu-auth>
 	</mu-history>
 

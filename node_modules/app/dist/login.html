@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +8,7 @@
   <link rel="stylesheet" href="/styles/reset.css">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/base.css">
-  
+
   <style>
     body {
       display: flex;
@@ -16,43 +17,43 @@
       min-height: 100vh;
       background-color: var(--color-background);
     }
-    
+
     .login-container {
       max-width: 400px;
       width: 100%;
       padding: var(--spacing-xl);
     }
-    
+
     h2 {
       text-align: center;
       font-family: var(--font-family-heading);
       color: var(--color-header);
       margin-bottom: var(--spacing-lg);
     }
-    
+
     .card {
       background-color: var(--color-section);
       padding: var(--spacing-xl);
       border-radius: var(--radius-md);
       box-shadow: var(--shadow-md);
     }
-    
+
     login-form {
       display: block;
     }
-    
+
     login-form label {
       display: block;
       margin-bottom: var(--spacing-md);
     }
-    
+
     login-form label span {
       display: block;
       margin-bottom: var(--spacing-xs);
       font-weight: var(--font-weight-bold);
       color: var(--color-header);
     }
-    
+
     login-form input {
       width: 100%;
       padding: var(--spacing-sm);
@@ -62,7 +63,7 @@
       font-size: 1rem;
       box-sizing: border-box;
     }
-    
+
     login-form button {
       width: 100%;
       padding: var(--spacing-sm);
@@ -75,40 +76,41 @@
       margin-top: var(--spacing-md);
       transition: background-color var(--transition-fast);
     }
-    
+
     login-form button:hover:not(:disabled) {
       background-color: var(--color-emphasistext);
     }
-    
+
     login-form button:disabled {
       opacity: 0.5;
       cursor: not-allowed;
     }
-    
+
     .signup-link {
       text-align: center;
       margin-top: var(--spacing-lg);
       color: var(--color-header);
     }
-    
+
     .signup-link a {
       color: var(--color-link);
       font-weight: var(--font-weight-bold);
     }
-    
+
     .signup-link a:hover {
       text-decoration: underline;
     }
   </style>
-  <script type="module" crossorigin src="/assets/login-CW4lYjPD.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/reset.css-BiefbQC4.js">
+  <script type="module" crossorigin src="/assets/login-Dw_089Kp.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/reset.css-ClxiKa7k.js">
 </head>
+
 <body>
   <mu-auth provides="melonbowl:auth">
     <div class="login-container">
       <h2>User Login</h2>
       <main class="card">
-        <login-form api="/auth/login">
+        <login-form api="/auth/login" redirect="/app">
           <label>
             <span>Username:</span>
             <input name="username" autocomplete="off" />
@@ -127,4 +129,5 @@
   </mu-auth>
 
 </body>
+
 </html>
