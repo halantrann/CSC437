@@ -6,14 +6,14 @@ export class HomeViewElement extends LitElement {
       <main>
         <!-- MEAL OF THE DAY -->
         <section id="meal-of-the-day">
-          <h2>Meal of the Day</h2>
+          <h2>Explore Recipes</h2>
           <p>hungry but not sure what you're feeling?</p>
           <div class="mealofday-box">
             <a href="/app/dish/pandanwaffles" class="side box-link">?</a>
             <a href="/app/recipes" class="middle box-link">???</a>
             <a href="/app/dish/pandanwaffles" class="side box-link">?</a>
           </div>
-          <p>then choose from a random selection</p>
+          <p>choose where you want to start!</p>
         </section>
 
         <!-- MEALS -->

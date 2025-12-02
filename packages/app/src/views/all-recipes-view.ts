@@ -385,19 +385,14 @@ export class AllRecipesViewElement extends View<Model, Msg> {
     .back-btn {
       display: inline-block;
       padding: var(--spacing-md) var(--spacing-xl);
-      background-color: var(--color-section);
-      color: var(--color-header);
-      text-decoration: none;
-      border: 2px solid var(--color-border);
+      background-color: var(--color-link);
+      color: white;
       border-radius: var(--radius-md);
       font-weight: 600;
       transition: all var(--transition-fast);
     }
 
     .back-btn:hover {
-      background-color: var(--color-link);
-      color: white;
-      border-color: var(--color-link);
       transform: translateY(-2px);
     }
 

@@ -1,3 +1,5 @@
+// app/src/main.ts
+
 import {
   Auth,
   define,

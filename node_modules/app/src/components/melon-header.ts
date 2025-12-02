@@ -122,7 +122,7 @@ export class HeaderElement extends LitElement {
   renderLoggedIn() {
     return html`
       <div class="user-info">
-        <span class="username">👋 ${this.userid}</span>
+        <span class="username">${this.userid}</span>
         <button
           class="sign-out-btn"
           @click=${(e: MouseEvent) => {

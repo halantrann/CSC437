@@ -128,12 +128,12 @@ export class DishViewElement extends View<Model, Msg> {
             </section>
           </section>
 
-          <footer>
-            <nav>
-              <a href="/app">Back to Menu</a>
-              <a href="/app/dish/${this.dishName}/edit" class="edit-link">Edit Recipe</a>
-            </nav>
-          </footer>
+          <hr>
+
+          <section class="edit-btn-container">
+            <a href="/app/dish/${this.dishName}/edit" class="edit-btn">EDIT RECIPE</a>
+          </section>
+
         </article>
       </div>
     `;
@@ -321,6 +321,27 @@ export class DishViewElement extends View<Model, Msg> {
     .character-dialogue p {
       margin: 0;
       font-family: var(--font-family-heading);
+    }
+
+    .edit-btn {
+      display: inline-block;
+      padding: var(--spacing-md);
+      background-color: var(--color-link);
+      color: var(--color-background);
+      border-radius: var(--radius-md);
+      border: solid 1px var(--color-border);
+      font-weight: 600;
+      transition: all var(--transition-fast);
+    }
+
+    .edit-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .edit-btn-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 1px;
     }
   `];
 }
