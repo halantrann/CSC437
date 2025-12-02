@@ -22,7 +22,8 @@ import { MealViewElement } from "./views/meal-view";
 import { TasteViewElement } from "./views/taste-view";
 import { CuisineViewElement } from "./views/cuisine-view";
 import { DishViewElement } from "./views/dish-view";
-import { DishEditViewElement } from "./views/dish-edit-view"; // Import edit view
+import { DishEditViewElement } from "./views/dish-edit-view";
+import { AllRecipesViewElement } from "./views/all-recipes-view";
 
 // Import components
 import { MealElement } from "./components/meal";
@@ -30,6 +31,12 @@ import { CuisineElement } from "./components/cuisine";
 import { TastesElement } from "./components/tastes";
 
 const routes = [
+  {
+    path: "/app/recipes",
+    view: () => html`
+      <all-recipes-view></all-recipes-view>
+    `
+  },
   {
     path: "/app/meal/:type",
     view: (params: Switch.Params) => html`
@@ -92,8 +99,9 @@ define({
   "meal-view": MealViewElement,
   "taste-view": TasteViewElement,
   "cuisine-view": CuisineViewElement,
-  "dish-view": DishViewElement,
-  "dish-edit-view": DishEditViewElement, // Register edit view
+  "dish-view": DishViewElement,         
+  "dish-edit-view": DishEditViewElement, // DISHES EDIT 
+  "all-recipes-view": AllRecipesViewElement, // ALL RECIPES VIEW
   "meal-element": MealElement,
   "cuisine-element": CuisineElement,
   "tastes-element": TastesElement
