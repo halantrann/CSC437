@@ -9,83 +9,86 @@ import { Model } from "../model";
 import reset from "../styles/reset.css.ts";
 
 export class DishEditViewElement extends View<Model, Msg> {
-	static uses = define({
-		"mu-form": Form.Element
-	});
+  static uses = define({
+    "mu-form": Form.Element
+  });
 
-	@property({ attribute: "dish-name" })
-	dishName?: string;
+  @property({ attribute: "dish-name" })
+  dishName?: string;
 
-	@state()
-	get recipe(): Recipe | undefined {
-		return this.model.recipe;
-	}
+  @state()
+  get recipe(): Recipe | undefined {
+    return this.model.recipe;
+  }
 
-	constructor() {
-		super("melonbowl:model");
-	}
+  constructor() {
+    super("melonbowl:model");
+  }
 
-	attributeChangedCallback(
-		name: string,
-		oldValue: string,
-		newValue: string
-	) {
-		super.attributeChangedCallback(name, oldValue, newValue);
+  attributeChangedCallback(
+    name: string,
+    oldValue: string,
+    newValue: string
+  ) {
+    super.attributeChangedCallback(name, oldValue, newValue);
 
-		if (
-			name === "dish-name" &&
-			oldValue !== newValue &&
-			newValue
-		) {
-			console.log("Requesting recipe for editing:", newValue);
-			this.dispatchMessage([
-				"recipe/request",
-				{ name: newValue }
-			]);
-		}
-	}
+    if (
+      name === "dish-name" &&
+      oldValue !== newValue &&
+      newValue
+    ) {
+      console.log("Requesting recipe for editing:", newValue);
+      this.dispatchMessage([
+        "recipe/request",
+        { name: newValue }
+      ]);
+    }
+  }
 
-	handleSubmit(event: Form.SubmitEvent<Recipe>) {
-		console.log("Form submitted with data:", event.detail);
+  handleSubmit(event: Form.SubmitEvent<Recipe>) {
+    console.log("Form submitted with data:", event.detail);
 
-		const formData = event.detail;
+    const formData = event.detail;
 
-		const processedRecipe: Recipe = {
-			...formData,
-			ingredients: typeof formData.ingredients === 'string'
-				? (formData.ingredients as string).split('\n').filter(line => line.trim())
-				: formData.ingredients,
-			instructions: typeof formData.instructions === 'string'
-				? (formData.instructions as string).split('\n').filter(line => line.trim())
-				: formData.instructions
-		};
+    const processedRecipe: Recipe = {
+      ...formData,
+      ingredients: typeof formData.ingredients === 'string'
+        ? (formData.ingredients as string).split('\n').filter(line => line.trim())
+        : formData.ingredients,
+      instructions: typeof formData.instructions === 'string'
+        ? (formData.instructions as string).split('\n').filter(line => line.trim())
+        : formData.instructions
+    };
 
-		this.dispatchMessage([
-			"recipe/save",
-			{
-				name: this.dishName!,
-				recipe: processedRecipe,
-				onSuccess: () =>
-					History.dispatch(this, "history/navigate", {
-						href: `/app/dish/${this.dishName}`
-					}),
-				onFailure: (error: Error) =>
-					console.log("ERROR:", error)
-			}
-		]);
-	}
+    // Fixed: callbacks as third element
+    this.dispatchMessage([
+      "recipe/save",
+      {
+        name: this.dishName!,
+        recipe: processedRecipe
+      },
+      {
+        onSuccess: () =>
+          History.dispatch(this, "history/navigate", {
+            href: `/app/dish/${this.dishName}`
+          }),
+        onFailure: (error: Error) =>
+          console.log("ERROR:", error)
+      }
+    ]);
+  }
 
-	render() {
-		// Show loading state
-		if (!this.recipe) {
-			return html`
+  render() {
+    // Show loading state
+    if (!this.recipe) {
+      return html`
         <div class="edit-box">
           <div class="loading-message">Loading recipe...</div>
         </div>
       `;
-		}
+    }
 
-		return html`
+    return html`
       <div class="edit-box">
         <h1>Edit Recipe: ${this.recipe.name}</h1>
         
@@ -155,15 +158,21 @@ export class DishEditViewElement extends View<Model, Msg> {
           </label>
 
           <div class="button-group">
-            <button type="submit">Save Recipe</button>
-            <a href="/app/dish/${this.dishName}" class="cancel-link">Cancel</a>
+            <button type="submit" class="save-btn">
+              <span class="btn-icon">💾</span>
+              Save Recipe
+            </button>
+            <a href="/app/dish/${this.dishName}" class="cancel-btn">
+              <span class="btn-icon">✕</span>
+              Cancel
+            </a>
           </div>
         </mu-form>
       </div>
     `;
-	}
+  }
 
-	static styles = [reset.styles, css`
+  static styles = [reset.styles, css`
     :host {
       display: block;
     }
@@ -212,6 +221,14 @@ export class DishEditViewElement extends View<Model, Msg> {
       border-radius: var(--radius-sm);
       font-family: inherit;
       font-size: 1rem;
+      transition: border-color var(--transition-fast);
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--color-link);
+      box-shadow: 0 0 0 3px rgba(202, 60, 37, 0.1);
     }
 
     textarea {
@@ -225,38 +242,68 @@ export class DishEditViewElement extends View<Model, Msg> {
       margin-top: var(--spacing-lg);
     }
 
-    button[type="submit"] {
+    .save-btn,
+    .cancel-btn {
       flex: 1;
       padding: var(--spacing-md);
-      background-color: var(--color-link);
-      color: white;
       border: none;
       border-radius: var(--radius-sm);
       font-weight: var(--font-weight-bold);
-      cursor: pointer;
       font-size: 1rem;
-    }
-
-    button[type="submit"]:hover {
-      opacity: 0.9;
-    }
-
-    .cancel-link {
-      flex: 1;
-      padding: var(--spacing-md);
-      background-color: #ccc;
-      color: #333;
-      text-decoration: none;
-      border-radius: var(--radius-sm);
-      font-weight: var(--font-weight-bold);
-      text-align: center;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 0.5rem;
+      transition: all var(--transition-fast);
+      text-decoration: none;
     }
 
-    .cancel-link:hover {
-      background-color: #bbb;
+    .save-btn {
+      background-color: var(--color-link);
+      color: white;
+      box-shadow: 0 2px 8px rgba(202, 60, 37, 0.3);
+    }
+
+    .save-btn:hover {
+      background-color: var(--color-emphasistext);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(202, 60, 37, 0.4);
+    }
+
+    .save-btn:active {
+      transform: translateY(0);
+    }
+
+    .cancel-btn {
+      background-color: var(--color-section);
+      color: var(--color-header);
+      border: 1px solid var(--color-border);
+    }
+
+    .cancel-btn:hover {
+      background-color: #e0e0e0;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .cancel-btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-icon {
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 480px) {
+      .edit-box {
+        padding: var(--spacing-md);
+        margin: var(--spacing-md);
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
     }
   `];
 }

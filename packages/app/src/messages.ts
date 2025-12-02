@@ -10,7 +10,8 @@ export type Msg =
 		{
 			name: string;
 			recipe: Recipe;
-	
+		},
+		{
 			onSuccess?: () => void;
 			onFailure?: (err: Error) => void;
 		}
