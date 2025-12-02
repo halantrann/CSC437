@@ -159,11 +159,9 @@ export class DishEditViewElement extends View<Model, Msg> {
 
           <div class="button-group">
             <button type="submit" class="save-btn">
-              <span class="btn-icon">💾</span>
               Save Recipe
             </button>
             <a href="/app/dish/${this.dishName}" class="cancel-btn">
-              <span class="btn-icon">✕</span>
               Cancel
             </a>
           </div>
@@ -291,9 +289,6 @@ export class DishEditViewElement extends View<Model, Msg> {
       transform: translateY(0);
     }
 
-    .btn-icon {
-      font-size: 1.2rem;
-    }
 
     @media (max-width: 480px) {
       .edit-box {
