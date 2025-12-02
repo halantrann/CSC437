@@ -204,7 +204,7 @@ export class AllRecipesViewElement extends View<Model, Msg> {
       font-size: 1rem;
       border: 2px solid var(--color-border);
       border-radius: var(--radius-md);
-      background-color: var(--color-section);
+      background-color: white);
       font-family: var(--font-family-body);
       transition: all var(--transition-fast);
     }

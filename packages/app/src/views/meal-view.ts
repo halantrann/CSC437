@@ -66,5 +66,6 @@ export class MealViewElement extends LitElement {
       padding: var(--spacing-lg);
       min-height: 80vh;
     }
+
   `;
 }

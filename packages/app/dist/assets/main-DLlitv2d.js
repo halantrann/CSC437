@@ -1,4 +1,4 @@
-import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d as X,f as ae,h as W,_ as ie,s as re}from"./reset.css-CJy4G2Ks.js";const te={};function oe(s,e,a){const[r,i]=s;switch(console.log("Update called with command:",r),console.log("Update called with user:",a),r){case"recipe/request":{const{name:t}=i;return[e,ne(i,a).then(n=>["recipe/load",{name:t,recipe:n}]).catch(n=>(console.error(n),[]))]}case"recipe/load":{const{recipe:t}=i;return{...e,recipe:t}}case"recipes/request":return[e,ce(i,a).then(t=>["recipes/load",{recipes:t}]).catch(t=>(console.error(t),[]))];case"recipes/load":{const{recipes:t}=i;return{...e,recipes:t}}case"recipe/save":{const{name:t,recipe:n}=i,j=s[2],{onSuccess:T,onFailure:C}=j||{};return[e,se({name:t,recipe:n},a).then(f=>(T&&T(),["recipe/load",{name:t,recipe:f}])).catch(f=>(console.error("Failed to save recipe:",f),C&&C(f),[]))]}default:{const t=r;throw new Error(`Unhandled message "${t}"`)}}}function se(s,e){return console.log("saveRecipe called for:",s.name),fetch(`/api/dishes/${s.name}`,{method:"PUT",headers:{"Content-Type":"application/json",...N.headers(e)},body:JSON.stringify(s.recipe)}).then(a=>(console.log("Save response status:",a.status),a.status===200?a.json():a.text().then(r=>{throw console.error("Save failed with response:",r),new Error(`Failed to save recipe for ${s.name}: ${a.status}`)}))).then(a=>{if(a)return a;throw new Error("No JSON in API response")})}function ne(s,e){console.log("requestRecipe called for:",s.name),console.log("User authenticated:",e==null?void 0:e.authenticated);const a=N.headers(e);console.log("Auth headers:",a);const r=`/api/dishes/${s.name}`;return console.log("Fetching from URL:",r),fetch(r,{headers:a}).then(i=>{if(console.log("Recipe fetch response status:",i.status),console.log("Recipe fetch response ok:",i.ok),i.status===200)return i.json();if(i.status===401)throw console.error("Authentication failed - user not logged in"),new Error("Unauthorized - authentication required");return i.text().then(t=>{throw console.error("Fetch failed with response:",t),new Error(`Failed to fetch recipe: ${i.status} - ${t}`)})}).then(i=>{if(console.log("Recipe JSON received:",i),i)return i;throw new Error("No JSON in response")})}function ce(s,e){const a=s.filter?`/api/dishes?filter=${s.filter}`:"/api/dishes";return console.log("Fetching recipes from:",a),fetch(a,{headers:N.headers(e)}).then(r=>{if(console.log("Recipes fetch response status:",r.status),r.status===200)return r.json();throw new Error("Failed to fetch recipes")}).then(r=>{if(console.log("Recipes JSON received:",r),r)return r;throw new Error("No JSON in response")})}var le=Object.defineProperty,z=(s,e,a,r)=>{for(var i=void 0,t=s.length-1,n;t>=0;t--)(n=s[t])&&(i=n(e,a,i)||i);return i&&le(e,a,i),i};const U=class U extends u{constructor(){super(...arguments),this._authObserver=new A(this,"melonbowl:auth"),this.loggedIn=!1,this.isDarkMode=!1,this.handleExternalDarkModeChange=e=>{const a=e;this.isDarkMode=a.detail.checked}}connectedCallback(){super.connectedCallback(),this._authObserver.observe(r=>{const{user:i}=r;i&&i.authenticated?(this.loggedIn=!0,this.userid=i.username):(this.loggedIn=!1,this.userid=void 0)});const e=localStorage.getItem("dark-mode"),a=window.matchMedia("(prefers-color-scheme: dark)").matches;this.isDarkMode=e==="true"||e===null&&a,document.body.classList.toggle("dark-mode",this.isDarkMode),document.body.addEventListener("dark-mode:toggle",this.handleExternalDarkModeChange)}disconnectedCallback(){super.disconnectedCallback(),document.body.removeEventListener("dark-mode:toggle",this.handleExternalDarkModeChange)}handleDarkModeToggle(e){const r=e.target.checked;this.isDarkMode=r,localStorage.setItem("dark-mode",String(r)),document.body.classList.toggle("dark-mode",r);const i=new CustomEvent("dark-mode:toggle",{bubbles:!0,composed:!0,detail:{checked:r}});this.dispatchEvent(i)}render(){return o`
+import{a as L,i as u,O as N,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d as X,f as ae,h as W,_ as re,s as ie}from"./reset.css-CJy4G2Ks.js";const te={};function oe(s,e,a){const[i,r]=s;switch(console.log("Update called with command:",i),console.log("Update called with user:",a),i){case"recipe/request":{const{name:t}=r;return[e,ne(r,a).then(n=>["recipe/load",{name:t,recipe:n}]).catch(n=>(console.error(n),[]))]}case"recipe/load":{const{recipe:t}=r;return{...e,recipe:t}}case"recipes/request":return[e,ce(r,a).then(t=>["recipes/load",{recipes:t}]).catch(t=>(console.error(t),[]))];case"recipes/load":{const{recipes:t}=r;return{...e,recipes:t}}case"recipe/save":{const{name:t,recipe:n}=r,j=s[2],{onSuccess:T,onFailure:C}=j||{};return[e,se({name:t,recipe:n},a).then(f=>(T&&T(),["recipe/load",{name:t,recipe:f}])).catch(f=>(console.error("Failed to save recipe:",f),C&&C(f),[]))]}default:{const t=i;throw new Error(`Unhandled message "${t}"`)}}}function se(s,e){return console.log("saveRecipe called for:",s.name),fetch(`/api/dishes/${s.name}`,{method:"PUT",headers:{"Content-Type":"application/json",...L.headers(e)},body:JSON.stringify(s.recipe)}).then(a=>(console.log("Save response status:",a.status),a.status===200?a.json():a.text().then(i=>{throw console.error("Save failed with response:",i),new Error(`Failed to save recipe for ${s.name}: ${a.status}`)}))).then(a=>{if(a)return a;throw new Error("No JSON in API response")})}function ne(s,e){console.log("requestRecipe called for:",s.name),console.log("User authenticated:",e==null?void 0:e.authenticated);const a=L.headers(e);console.log("Auth headers:",a);const i=`/api/dishes/${s.name}`;return console.log("Fetching from URL:",i),fetch(i,{headers:a}).then(r=>{if(console.log("Recipe fetch response status:",r.status),console.log("Recipe fetch response ok:",r.ok),r.status===200)return r.json();if(r.status===401)throw console.error("Authentication failed - user not logged in"),new Error("Unauthorized - authentication required");return r.text().then(t=>{throw console.error("Fetch failed with response:",t),new Error(`Failed to fetch recipe: ${r.status} - ${t}`)})}).then(r=>{if(console.log("Recipe JSON received:",r),r)return r;throw new Error("No JSON in response")})}function ce(s,e){const a=s.filter?`/api/dishes?filter=${s.filter}`:"/api/dishes";return console.log("Fetching recipes from:",a),fetch(a,{headers:L.headers(e)}).then(i=>{if(console.log("Recipes fetch response status:",i.status),i.status===200)return i.json();throw new Error("Failed to fetch recipes")}).then(i=>{if(console.log("Recipes JSON received:",i),i)return i;throw new Error("No JSON in response")})}var le=Object.defineProperty,z=(s,e,a,i)=>{for(var r=void 0,t=s.length-1,n;t>=0;t--)(n=s[t])&&(r=n(e,a,r)||r);return r&&le(e,a,r),r};const U=class U extends u{constructor(){super(...arguments),this._authObserver=new N(this,"melonbowl:auth"),this.loggedIn=!1,this.isDarkMode=!1,this.handleExternalDarkModeChange=e=>{const a=e;this.isDarkMode=a.detail.checked}}connectedCallback(){super.connectedCallback(),this._authObserver.observe(i=>{const{user:r}=i;r&&r.authenticated?(this.loggedIn=!0,this.userid=r.username):(this.loggedIn=!1,this.userid=void 0)});const e=localStorage.getItem("dark-mode"),a=window.matchMedia("(prefers-color-scheme: dark)").matches;this.isDarkMode=e==="true"||e===null&&a,document.body.classList.toggle("dark-mode",this.isDarkMode),document.body.addEventListener("dark-mode:toggle",this.handleExternalDarkModeChange)}disconnectedCallback(){super.disconnectedCallback(),document.body.removeEventListener("dark-mode:toggle",this.handleExternalDarkModeChange)}handleDarkModeToggle(e){const i=e.target.checked;this.isDarkMode=i,localStorage.setItem("dark-mode",String(i)),document.body.classList.toggle("dark-mode",i);const r=new CustomEvent("dark-mode:toggle",{bubbles:!0,composed:!0,detail:{checked:i}});this.dispatchEvent(r)}render(){return o`
       <div class="logo-content">
         <!-- CLICKABLE LOGO -->
         <a href="/app" class="logo-link">
@@ -40,7 +40,7 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
         </a>
     `}renderLoggedIn(){return o`
       <div class="user-info">
-        <span class="username">👋 ${this.userid}</span>
+        <span class="username">${this.userid}</span>
         <button
           class="sign-out-btn"
           @click=${e=>{ee.relay(e,"auth:message",["auth/signout"])}}
@@ -237,14 +237,14 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
       <main>
         <!-- MEAL OF THE DAY -->
         <section id="meal-of-the-day">
-          <h2>Meal of the Day</h2>
+          <h2>Explore Recipes</h2>
           <p>hungry but not sure what you're feeling?</p>
           <div class="mealofday-box">
             <a href="/app/dish/pandanwaffles" class="side box-link">?</a>
             <a href="/app/recipes" class="middle box-link">???</a>
             <a href="/app/dish/pandanwaffles" class="side box-link">?</a>
           </div>
-          <p>then choose from a random selection</p>
+          <p>choose where you want to start!</p>
         </section>
 
         <!-- MEALS -->
@@ -669,7 +669,7 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
         }
       }
 		
-    `];let E=F;var de=Object.defineProperty,P=(s,e,a,r)=>{for(var i=void 0,t=s.length-1,n;t>=0;t--)(n=s[t])&&(i=n(e,a,i)||i);return i&&de(e,a,i),i};const B=class B extends u{connectedCallback(){super.connectedCallback(),this._updateMealData()}updated(e){e.has("mealType")&&this._updateMealData()}_updateMealData(){if(!this.mealType)return;this.mealName=this.mealType.charAt(0).toUpperCase()+this.mealType.slice(1);const e={breakfast:"seems like you woke up early enough to eat breakfast today!",lunch:"midday munchies!",dinner:"the most important and best part of the day",dessert:"craving sweets as always, i see"};this.dialogue=e[this.mealType]||`Enjoy these ${this.mealName} dishes!`}render(){return!this.mealType||!this.mealName?o`<p>Loading...</p>`:o`
+    `];let A=F;var de=Object.defineProperty,P=(s,e,a,i)=>{for(var r=void 0,t=s.length-1,n;t>=0;t--)(n=s[t])&&(r=n(e,a,r)||r);return r&&de(e,a,r),r};const B=class B extends u{connectedCallback(){super.connectedCallback(),this._updateMealData()}updated(e){e.has("mealType")&&this._updateMealData()}_updateMealData(){if(!this.mealType)return;this.mealName=this.mealType.charAt(0).toUpperCase()+this.mealType.slice(1);const e={breakfast:"seems like you woke up early enough to eat breakfast today!",lunch:"midday munchies!",dinner:"the most important and best part of the day",dessert:"craving sweets as always, i see"};this.dialogue=e[this.mealType]||`Enjoy these ${this.mealName} dishes!`}render(){return!this.mealType||!this.mealName?o`<p>Loading...</p>`:o`
       <div class="meal-view-wrapper">
         <meal-element 
           category=${this.mealType}
@@ -687,7 +687,8 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
       padding: var(--spacing-lg);
       min-height: 80vh;
     }
-  `;let x=B;P([l({attribute:"meal-type"})],x.prototype,"mealType");P([c()],x.prototype,"mealName");P([c()],x.prototype,"dialogue");var pe=Object.defineProperty,M=(s,e,a,r)=>{for(var i=void 0,t=s.length-1,n;t>=0;t--)(n=s[t])&&(i=n(e,a,i)||i);return i&&pe(e,a,i),i};const Y=class Y extends u{connectedCallback(){super.connectedCallback(),this._updateTasteData()}updated(e){e.has("tasteType")&&this._updateTasteData()}_updateTasteData(){if(!this.tasteType)return;this.tasteName=this.tasteType.charAt(0).toUpperCase()+this.tasteType.slice(1);const e={umami:"Rich, savory, and deeply satisfying dishes",salty:"Bold and flavorful with that perfect salty kick",sweet:"Delightfully sweet treats and desserts"};this.tagline=e[this.tasteType]||`Dishes with ${this.tasteName} flavor`}render(){return!this.tasteType||!this.tasteName?o`<p>Loading...</p>`:o`
+
+  `;let x=B;P([l({attribute:"meal-type"})],x.prototype,"mealType");P([c()],x.prototype,"mealName");P([c()],x.prototype,"dialogue");var pe=Object.defineProperty,D=(s,e,a,i)=>{for(var r=void 0,t=s.length-1,n;t>=0;t--)(n=s[t])&&(r=n(e,a,r)||r);return r&&pe(e,a,r),r};const Y=class Y extends u{connectedCallback(){super.connectedCallback(),this._updateTasteData()}updated(e){e.has("tasteType")&&this._updateTasteData()}_updateTasteData(){if(!this.tasteType)return;this.tasteName=this.tasteType.charAt(0).toUpperCase()+this.tasteType.slice(1);const e={umami:"Rich, savory, and deeply satisfying dishes",salty:"Bold and flavorful with that perfect salty kick",sweet:"Delightfully sweet treats and desserts"};this.tagline=e[this.tasteType]||`Dishes with ${this.tasteName} flavor`}render(){return!this.tasteType||!this.tasteName?o`<p>Loading...</p>`:o`
       <div class="taste-view-wrapper">
         <tastes-element
           category=${this.tasteType}
@@ -706,7 +707,7 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
       min-height: 80vh;
 
     }
-  `;let y=Y;M([l({attribute:"taste-type"})],y.prototype,"tasteType");M([c()],y.prototype,"tasteName");M([c()],y.prototype,"tagline");var ge=Object.defineProperty,R=(s,e,a,r)=>{for(var i=void 0,t=s.length-1,n;t>=0;t--)(n=s[t])&&(i=n(e,a,i)||i);return i&&ge(e,a,i),i};const q=class q extends u{connectedCallback(){super.connectedCallback(),this._updateCuisineData()}updated(e){e.has("cuisineType")&&this._updateCuisineData()}_updateCuisineData(){if(!this.cuisineType)return;this.cuisineName=`${this.cuisineType.charAt(0).toUpperCase()+this.cuisineType.slice(1)} Cuisine`;const a={vietnamese:{img:"/images/vietnamese-cuisine.jpg",tagline:"Fresh herbs and bold flavors"},chinese:{img:"/images/chinese-cuisine.jpg",tagline:"Centuries of culinary tradition"},japanese:{img:"/images/japanese-cuisine.jpg",tagline:"Precision and simplicity"},thai:{img:"/images/thai-cuisine.jpg",tagline:"Sweet, sour, salty, spicy"},italian:{img:"/images/italian-cuisine.jpg",tagline:"La dolce vita"},french:{img:"/images/french-cuisine.jpg",tagline:"The art of cooking"},southern:{img:"/images/southern-cuisine.jpg",tagline:"Comfort food at its finest"},californian:{img:"/images/californian-cuisine.jpg",tagline:"Fresh and innovative"}}[this.cuisineType]||{img:"",tagline:"Explore this cuisine"};this.tagline=a.tagline,this.imgSrc=a.img,this.imgAlt=`${this.cuisineName}`}render(){return!this.cuisineType||!this.cuisineName?o`<p>Loading...</p>`:o`
+  `;let y=Y;D([l({attribute:"taste-type"})],y.prototype,"tasteType");D([c()],y.prototype,"tasteName");D([c()],y.prototype,"tagline");var ge=Object.defineProperty,R=(s,e,a,i)=>{for(var r=void 0,t=s.length-1,n;t>=0;t--)(n=s[t])&&(r=n(e,a,r)||r);return r&&ge(e,a,r),r};const q=class q extends u{connectedCallback(){super.connectedCallback(),this._updateCuisineData()}updated(e){e.has("cuisineType")&&this._updateCuisineData()}_updateCuisineData(){if(!this.cuisineType)return;this.cuisineName=`${this.cuisineType.charAt(0).toUpperCase()+this.cuisineType.slice(1)} Cuisine`;const a={vietnamese:{img:"/images/vietnamese-cuisine.jpg",tagline:"Fresh herbs and bold flavors"},chinese:{img:"/images/chinese-cuisine.jpg",tagline:"Centuries of culinary tradition"},japanese:{img:"/images/japanese-cuisine.jpg",tagline:"Precision and simplicity"},thai:{img:"/images/thai-cuisine.jpg",tagline:"Sweet, sour, salty, spicy"},italian:{img:"/images/italian-cuisine.jpg",tagline:"La dolce vita"},french:{img:"/images/french-cuisine.jpg",tagline:"The art of cooking"},southern:{img:"/images/southern-cuisine.jpg",tagline:"Comfort food at its finest"},californian:{img:"/images/californian-cuisine.jpg",tagline:"Fresh and innovative"}}[this.cuisineType]||{img:"",tagline:"Explore this cuisine"};this.tagline=a.tagline,this.imgSrc=a.img,this.imgAlt=`${this.cuisineName}`}render(){return!this.cuisineType||!this.cuisineName?o`<p>Loading...</p>`:o`
       <div class="cuisine-view-wrapper"> 
         <cuisine-element 
           category=${this.cuisineType}
@@ -725,7 +726,7 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
       background-color: var(--color-background3);
       padding: var(--spacing-lg);
     }
-  `;let m=q;R([l({attribute:"cuisine-type"})],m.prototype,"cuisineType");R([c()],m.prototype,"cuisineName");R([c()],m.prototype,"tagline");R([c()],m.prototype,"imgSrc");R([c()],m.prototype,"imgAlt");var he=Object.defineProperty,me=Object.getOwnPropertyDescriptor,Z=(s,e,a,r)=>{for(var i=r>1?void 0:r?me(e,a):e,t=s.length-1,n;t>=0;t--)(n=s[t])&&(i=(r?n(e,a,i):n(i))||i);return r&&i&&he(e,a,i),i};const G=class G extends I{get recipe(){return this.model.recipe}constructor(){super("melonbowl:model")}attributeChangedCallback(e,a,r){super.attributeChangedCallback(e,a,r),e==="dish-name"&&a!==r&&r&&(console.log("Requesting recipe for:",r),this.dispatchMessage(["recipe/request",{name:r}]))}render(){return this.recipe?this.recipe&&!this.recipe.ingredients?o`
+  `;let m=q;R([l({attribute:"cuisine-type"})],m.prototype,"cuisineType");R([c()],m.prototype,"cuisineName");R([c()],m.prototype,"tagline");R([c()],m.prototype,"imgSrc");R([c()],m.prototype,"imgAlt");var he=Object.defineProperty,me=Object.getOwnPropertyDescriptor,Z=(s,e,a,i)=>{for(var r=i>1?void 0:i?me(e,a):e,t=s.length-1,n;t>=0;t--)(n=s[t])&&(r=(i?n(e,a,r):n(r))||r);return i&&r&&he(e,a,r),r};const G=class G extends I{get recipe(){return this.model.recipe}constructor(){super("melonbowl:model")}attributeChangedCallback(e,a,i){super.attributeChangedCallback(e,a,i),e==="dish-name"&&a!==i&&i&&(console.log("Requesting recipe for:",i),this.dispatchMessage(["recipe/request",{name:i}]))}render(){return this.recipe?this.recipe&&!this.recipe.ingredients?o`
         <div class="recipe-box">
           <div class="loading-message">Loading recipe details...</div>
         </div>
@@ -791,12 +792,12 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
             </section>
           </section>
 
-          <footer>
-            <nav>
-              <a href="/app">Back to Menu</a>
-              <a href="/app/dish/${this.dishName}/edit" class="edit-link">Edit Recipe</a>
-            </nav>
-          </footer>
+          <hr>
+
+          <section class="edit-btn-container">
+            <a href="/app/dish/${this.dishName}/edit" class="edit-btn">EDIT RECIPE</a>
+          </section>
+
         </article>
       </div>
     `:o`
@@ -986,9 +987,30 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
       margin: 0;
       font-family: var(--font-family-heading);
     }
-  `];let _=G;Z([l({attribute:"dish-name"})],_.prototype,"dishName",2);Z([c()],_.prototype,"recipe",1);var ue=Object.defineProperty,ve=Object.getOwnPropertyDescriptor,V=(s,e,a,r)=>{for(var i=r>1?void 0:r?ve(e,a):e,t=s.length-1,n;t>=0;t--)(n=s[t])&&(i=(r?n(e,a,i):n(i))||i);return r&&i&&ue(e,a,i),i};const L=class L extends I{get recipe(){return this.model.recipe}constructor(){super("melonbowl:model")}attributeChangedCallback(e,a,r){super.attributeChangedCallback(e,a,r),e==="dish-name"&&a!==r&&r&&(console.log("Requesting recipe for editing:",r),this.dispatchMessage(["recipe/request",{name:r}]))}handleSubmit(e){console.log("Form submitted with data:",e.detail);const a=e.detail,r={...a,ingredients:typeof a.ingredients=="string"?a.ingredients.split(`
-`).filter(i=>i.trim()):a.ingredients,instructions:typeof a.instructions=="string"?a.instructions.split(`
-`).filter(i=>i.trim()):a.instructions};this.dispatchMessage(["recipe/save",{name:this.dishName,recipe:r},{onSuccess:()=>W.dispatch(this,"history/navigate",{href:`/app/dish/${this.dishName}`}),onFailure:i=>console.log("ERROR:",i)}])}render(){var e,a;return this.recipe?o`
+
+    .edit-btn {
+      display: inline-block;
+      padding: var(--spacing-md);
+      background-color: var(--color-link);
+      color: var(--color-background);
+      border-radius: var(--radius-md);
+      border: solid 1px var(--color-border);
+      font-weight: 600;
+      transition: all var(--transition-fast);
+    }
+
+    .edit-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .edit-btn-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 1px;
+    }
+  `];let _=G;Z([l({attribute:"dish-name"})],_.prototype,"dishName",2);Z([c()],_.prototype,"recipe",1);var ue=Object.defineProperty,ve=Object.getOwnPropertyDescriptor,V=(s,e,a,i)=>{for(var r=i>1?void 0:i?ve(e,a):e,t=s.length-1,n;t>=0;t--)(n=s[t])&&(r=(i?n(e,a,r):n(r))||r);return i&&r&&ue(e,a,r),r};const E=class E extends I{get recipe(){return this.model.recipe}constructor(){super("melonbowl:model")}attributeChangedCallback(e,a,i){super.attributeChangedCallback(e,a,i),e==="dish-name"&&a!==i&&i&&(console.log("Requesting recipe for editing:",i),this.dispatchMessage(["recipe/request",{name:i}]))}handleSubmit(e){console.log("Form submitted with data:",e.detail);const a=e.detail,i={...a,ingredients:typeof a.ingredients=="string"?a.ingredients.split(`
+`).filter(r=>r.trim()):a.ingredients,instructions:typeof a.instructions=="string"?a.instructions.split(`
+`).filter(r=>r.trim()):a.instructions};this.dispatchMessage(["recipe/save",{name:this.dishName,recipe:i},{onSuccess:()=>W.dispatch(this,"history/navigate",{href:`/app/dish/${this.dishName}`}),onFailure:r=>console.log("ERROR:",r)}])}render(){var e,a;return this.recipe?o`
       <div class="edit-box">
         <h1>Edit Recipe: ${this.recipe.name}</h1>
         
@@ -1073,7 +1095,7 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
         <div class="edit-box">
           <div class="loading-message">Loading recipe...</div>
         </div>
-      `}};L.uses=X({"mu-form":ae.Element}),L.styles=[k.styles,p`
+      `}};E.uses=X({"mu-form":ae.Element}),E.styles=[k.styles,p`
     :host {
       display: block;
     }
@@ -1203,7 +1225,7 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
         flex-direction: column;
       }
     }
-  `];let O=L;V([l({attribute:"dish-name"})],O.prototype,"dishName",2);V([c()],O.prototype,"recipe",1);var fe=Object.defineProperty,be=Object.getOwnPropertyDescriptor,D=(s,e,a,r)=>{for(var i=r>1?void 0:r?be(e,a):e,t=s.length-1,n;t>=0;t--)(n=s[t])&&(i=(r?n(e,a,i):n(i))||i);return r&&i&&fe(e,a,i),i};const Q=class Q extends I{constructor(){super("melonbowl:model"),this.searchQuery="",this.filterType="all"}get recipes(){return this.model.recipes||[]}connectedCallback(){super.connectedCallback(),this.dispatchMessage(["recipes/request",{}])}get filteredRecipes(){if(!this.searchQuery.trim())return this.recipes;const e=this.searchQuery.toLowerCase();return this.recipes.filter(a=>{var j,T,C,f;const r=(j=a.name)==null?void 0:j.toLowerCase().includes(e),i=(T=a.cuisine)==null?void 0:T.toLowerCase().includes(e),t=(C=a.mealType)==null?void 0:C.toLowerCase().includes(e),n=(f=a.taste)==null?void 0:f.toLowerCase().includes(e);return r||i||t||n})}handleSearch(e){const a=e.target;this.searchQuery=a.value}clearSearch(){this.searchQuery=""}render(){const e=this.filteredRecipes;return o`
+  `];let O=E;V([l({attribute:"dish-name"})],O.prototype,"dishName",2);V([c()],O.prototype,"recipe",1);var fe=Object.defineProperty,be=Object.getOwnPropertyDescriptor,M=(s,e,a,i)=>{for(var r=i>1?void 0:i?be(e,a):e,t=s.length-1,n;t>=0;t--)(n=s[t])&&(r=(i?n(e,a,r):n(r))||r);return i&&r&&fe(e,a,r),r};const Q=class Q extends I{constructor(){super("melonbowl:model"),this.searchQuery="",this.filterType="all"}get recipes(){return this.model.recipes||[]}connectedCallback(){super.connectedCallback(),this.dispatchMessage(["recipes/request",{}])}get filteredRecipes(){if(!this.searchQuery.trim())return this.recipes;const e=this.searchQuery.toLowerCase();return this.recipes.filter(a=>{var j,T,C,f;const i=(j=a.name)==null?void 0:j.toLowerCase().includes(e),r=(T=a.cuisine)==null?void 0:T.toLowerCase().includes(e),t=(C=a.mealType)==null?void 0:C.toLowerCase().includes(e),n=(f=a.taste)==null?void 0:f.toLowerCase().includes(e);return i||r||t||n})}handleSearch(e){const a=e.target;this.searchQuery=a.value}clearSearch(){this.searchQuery=""}render(){const e=this.filteredRecipes;return o`
       <div class="all-recipes-container">
         <!-- HEADER SECTION -->
         <section class="header-section">
@@ -1340,7 +1362,7 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
       font-size: 1rem;
       border: 2px solid var(--color-border);
       border-radius: var(--radius-md);
-      background-color: var(--color-section);
+      background-color: white);
       font-family: var(--font-family-body);
       transition: all var(--transition-fast);
     }
@@ -1521,19 +1543,14 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
     .back-btn {
       display: inline-block;
       padding: var(--spacing-md) var(--spacing-xl);
-      background-color: var(--color-section);
-      color: var(--color-header);
-      text-decoration: none;
-      border: 2px solid var(--color-border);
+      background-color: var(--color-link);
+      color: white;
       border-radius: var(--radius-md);
       font-weight: 600;
       transition: all var(--transition-fast);
     }
 
     .back-btn:hover {
-      background-color: var(--color-link);
-      color: white;
-      border-color: var(--color-link);
       transform: translateY(-2px);
     }
 
@@ -1552,7 +1569,7 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
         gap: var(--spacing-md);
       }
     }
-  `];let w=Q;D([c()],w.prototype,"searchQuery",2);D([c()],w.prototype,"filterType",2);D([c()],w.prototype,"recipes",1);var xe=Object.defineProperty,$=(s,e,a,r)=>{for(var i=void 0,t=s.length-1,n;t>=0;t--)(n=s[t])&&(i=n(e,a,i)||i);return i&&xe(e,a,i),i};const J=class J extends u{constructor(){super(...arguments),this.recipes=[],this.loading=!1,this._authObserver=new A(this,"melonbowl:auth")}connectedCallback(){super.connectedCallback(),this._authObserver.observe(e=>{var a;this._user=e.user,(a=this._user)!=null&&a.authenticated&&this.category&&this.loadRecipes()})}updated(e){var a;super.updated(e),e.has("category")&&this.category&&((a=this._user)!=null&&a.authenticated)&&this.loadRecipes()}get authorization(){var e;return((e=this._user)==null?void 0:e.authenticated)&&{Authorization:`Bearer ${this._user.token}`}}async loadRecipes(){var e;if(!((e=this._user)!=null&&e.authenticated)){this.error="Please log in to view recipes";return}if(!this.category){console.log("No category set yet, skipping load");return}console.log("Loading recipes for category:",this.category),this.loading=!0,this.error=void 0;try{const a=await fetch("/api/dishes",{headers:this.authorization||{}});if(!a.ok)throw a.status===401?new Error("Please log in to view recipes"):new Error(`Failed to load recipes: ${a.statusText}`);const r=await a.json();console.log("Received data:",r),this.category&&(this.recipes=r.filter(i=>{var t;return((t=i.mealType)==null?void 0:t.toLowerCase())===this.category.toLowerCase()}),console.log("Filtered recipes:",this.recipes))}catch(a){console.error("Failed to load recipes:",a),this.error=a instanceof Error?a.message:"Failed to load recipes"}finally{this.loading=!1}}render(){var e;return this.loading?o`
+  `];let w=Q;M([c()],w.prototype,"searchQuery",2);M([c()],w.prototype,"filterType",2);M([c()],w.prototype,"recipes",1);var xe=Object.defineProperty,$=(s,e,a,i)=>{for(var r=void 0,t=s.length-1,n;t>=0;t--)(n=s[t])&&(r=n(e,a,r)||r);return r&&xe(e,a,r),r};const J=class J extends u{constructor(){super(...arguments),this.recipes=[],this.loading=!1,this._authObserver=new N(this,"melonbowl:auth")}connectedCallback(){super.connectedCallback(),this._authObserver.observe(e=>{var a;this._user=e.user,(a=this._user)!=null&&a.authenticated&&this.category&&this.loadRecipes()})}updated(e){var a;super.updated(e),e.has("category")&&this.category&&((a=this._user)!=null&&a.authenticated)&&this.loadRecipes()}get authorization(){var e;return((e=this._user)==null?void 0:e.authenticated)&&{Authorization:`Bearer ${this._user.token}`}}async loadRecipes(){var e;if(!((e=this._user)!=null&&e.authenticated)){this.error="Please log in to view recipes";return}if(!this.category){console.log("No category set yet, skipping load");return}console.log("Loading recipes for category:",this.category),this.loading=!0,this.error=void 0;try{const a=await fetch("/api/dishes",{headers:this.authorization||{}});if(!a.ok)throw a.status===401?new Error("Please log in to view recipes"):new Error(`Failed to load recipes: ${a.statusText}`);const i=await a.json();console.log("Received data:",i),this.category&&(this.recipes=i.filter(r=>{var t;return((t=r.mealType)==null?void 0:t.toLowerCase())===this.category.toLowerCase()}),console.log("Filtered recipes:",this.recipes))}catch(a){console.error("Failed to load recipes:",a),this.error=a instanceof Error?a.message:"Failed to load recipes"}finally{this.loading=!1}}render(){var e;return this.loading?o`
         <div class="recipe-box">
           <div class="loading-message">Loading recipes...</div>
         </div>
@@ -1577,7 +1594,6 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
             </div>
           </section>
 
-         
           <section class="recipe-links">
             <h2>${this.mealType} Recipes:</h2>
             <ul class="meals-list">
@@ -1590,8 +1606,11 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
           </section>
           
           <footer>
-            <nav>
-              <a href="/app">Back to Menu</a>
+            <nav class="meal-footer-nav">
+              <a href="/app" class="footer-btn">
+                <span class="btn-icon">←</span>
+                <span>Back to Menu</span>
+              </a>
             </nav>
           </footer>
         </article>
@@ -1642,11 +1661,40 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
     }
 
     .recipe-box footer {
-      border-top: 0.2px solid var(--color-border);
-      padding-top: 10px;
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--spacing-lg);
+      margin-top: var(--spacing-sm);
       text-align: center;
+    }
+
+    .meal-footer-nav {
+      display: flex;
+      justify-content: center;
+    }
+
+    .footer-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md);
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+      font-family: var(--font-family-heading);
+      border: 1px solid var(--color-border);
+      background-color: var(--color-background2);
+      color: var(--color-header);
+    }
+
+    .footer-btn:hover {
+      background-color: var(--color-background);
+      border-color: var(--color-link);
       color: var(--color-link);
-      margin-top: 20px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-icon {
+      font-size: 1.2rem;
     }
 
     .box {
@@ -1722,7 +1770,7 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
     .meals-list a:hover {
       color: var(--color-link);
     }
-  `];let g=J;$([l()],g.prototype,"dialogue");$([l()],g.prototype,"mealType");$([l({type:Array})],g.prototype,"recipes");$([l()],g.prototype,"category");$([c()],g.prototype,"loading");$([c()],g.prototype,"error");var ye=Object.defineProperty,v=(s,e,a,r)=>{for(var i=void 0,t=s.length-1,n;t>=0;t--)(n=s[t])&&(i=n(e,a,i)||i);return i&&ye(e,a,i),i};const K=class K extends u{constructor(){super(...arguments),this.recipes=[],this.loading=!1,this._authObserver=new A(this,"melonbowl:auth")}connectedCallback(){super.connectedCallback(),this._authObserver.observe(e=>{var a;this._user=e.user,(a=this._user)!=null&&a.authenticated&&this.category&&this.loadRecipes()})}updated(e){var a;super.updated(e),e.has("category")&&this.category&&((a=this._user)!=null&&a.authenticated)&&this.loadRecipes()}get authorization(){var e;return((e=this._user)==null?void 0:e.authenticated)&&{Authorization:`Bearer ${this._user.token}`}}async loadRecipes(){var e;if(!((e=this._user)!=null&&e.authenticated)){this.error="Please log in to view recipes";return}if(!this.category){console.log("No category set yet, skipping load");return}console.log("Loading recipes for cuisine category:",this.category),this.loading=!0,this.error=void 0;try{const a=await fetch("/api/dishes",{headers:this.authorization||{}});if(!a.ok)throw a.status===401?new Error("Please log in to view recipes"):new Error(`Failed to load recipes: ${a.statusText}`);const r=await a.json();console.log("Received data:",r),this.category&&(this.recipes=r.filter(i=>{var t;return((t=i.cuisine)==null?void 0:t.toLowerCase())===this.category.toLowerCase()}),console.log("Filtered recipes:",this.recipes))}catch(a){console.error("Failed to load recipes:",a),this.error=a instanceof Error?a.message:"Failed to load recipes"}finally{this.loading=!1}}getTotalTime(e){if(e.time)return e.time;const a=parseInt(e.prepTime||"0"),r=parseInt(e.cookTime||"0"),i=a+r;return i>0?`${i} min`:"N/A"}render(){var e;return this.loading?o`
+  `];let g=J;$([l()],g.prototype,"dialogue");$([l()],g.prototype,"mealType");$([l({type:Array})],g.prototype,"recipes");$([l()],g.prototype,"category");$([c()],g.prototype,"loading");$([c()],g.prototype,"error");var ye=Object.defineProperty,v=(s,e,a,i)=>{for(var r=void 0,t=s.length-1,n;t>=0;t--)(n=s[t])&&(r=n(e,a,r)||r);return r&&ye(e,a,r),r};const K=class K extends u{constructor(){super(...arguments),this.recipes=[],this.loading=!1,this._authObserver=new N(this,"melonbowl:auth")}connectedCallback(){super.connectedCallback(),this._authObserver.observe(e=>{var a;this._user=e.user,(a=this._user)!=null&&a.authenticated&&this.category&&this.loadRecipes()})}updated(e){var a;super.updated(e),e.has("category")&&this.category&&((a=this._user)!=null&&a.authenticated)&&this.loadRecipes()}get authorization(){var e;return((e=this._user)==null?void 0:e.authenticated)&&{Authorization:`Bearer ${this._user.token}`}}async loadRecipes(){var e;if(!((e=this._user)!=null&&e.authenticated)){this.error="Please log in to view recipes";return}if(!this.category){console.log("No category set yet, skipping load");return}console.log("Loading recipes for cuisine category:",this.category),this.loading=!0,this.error=void 0;try{const a=await fetch("/api/dishes",{headers:this.authorization||{}});if(!a.ok)throw a.status===401?new Error("Please log in to view recipes"):new Error(`Failed to load recipes: ${a.statusText}`);const i=await a.json();console.log("Received data:",i),this.category&&(this.recipes=i.filter(r=>{var t;return((t=r.cuisine)==null?void 0:t.toLowerCase())===this.category.toLowerCase()}),console.log("Filtered recipes:",this.recipes))}catch(a){console.error("Failed to load recipes:",a),this.error=a instanceof Error?a.message:"Failed to load recipes"}finally{this.loading=!1}}getTotalTime(e){if(e.time)return e.time;const a=parseInt(e.prepTime||"0"),i=parseInt(e.cookTime||"0"),r=a+i;return r>0?`${r} min`:"N/A"}render(){var e;return this.loading?o`
         <div class="cuisine-box">
           <div class="loading-message">Loading recipes...</div>
         </div>
@@ -1766,7 +1814,10 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
 
         <footer class="footer-nav">
           <nav>
-            <a href="/app">Back to Menu</a>
+            <a href="/app" class="footer-btn">
+              <span class="btn-icon">←</span>
+              <span>Back to Menu</span>
+            </a>
           </nav>
         </footer>
       </div>
@@ -1935,9 +1986,9 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
     }
 
     .footer-nav {
-      border-top: 0.2px solid var(--color-border);
-      color: var(--color-link);
-      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
       text-align: center;
     }
 
@@ -1945,7 +1996,32 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
       display: flex;
       justify-content: center;
     }
-  `];let d=K;v([l()],d.prototype,"cuisineType");v([l()],d.prototype,"imgAlt");v([l()],d.prototype,"tagline");v([l({attribute:"img-src"})],d.prototype,"imgSrc");v([l({type:Array})],d.prototype,"recipes");v([l()],d.prototype,"category");v([c()],d.prototype,"loading");v([c()],d.prototype,"error");var we=Object.defineProperty,S=(s,e,a,r)=>{for(var i=void 0,t=s.length-1,n;t>=0;t--)(n=s[t])&&(i=n(e,a,i)||i);return i&&we(e,a,i),i};const H=class H extends u{constructor(){super(...arguments),this.recipes=[],this.loading=!1,this._authObserver=new A(this,"melonbowl:auth")}connectedCallback(){super.connectedCallback(),this._authObserver.observe(e=>{var a;this._user=e.user,(a=this._user)!=null&&a.authenticated&&this.category&&this.loadRecipes()})}updated(e){var a;super.updated(e),e.has("category")&&this.category&&((a=this._user)!=null&&a.authenticated)&&this.loadRecipes()}get authorization(){var e;return((e=this._user)==null?void 0:e.authenticated)&&{Authorization:`Bearer ${this._user.token}`}}async loadRecipes(){var e;if(!((e=this._user)!=null&&e.authenticated)){this.error="Please log in to view recipes";return}if(!this.category){console.log("No category set yet, skipping load");return}console.log("Loading recipes for taste category:",this.category),this.loading=!0,this.error=void 0;try{const a=await fetch("/api/dishes",{headers:this.authorization||{}});if(!a.ok)throw a.status===401?new Error("Please log in to view recipes"):new Error(`Failed to load recipes: ${a.statusText}`);const r=await a.json();console.log("Received data:",r),this.category&&(this.recipes=r.filter(i=>{var t;return((t=i.taste)==null?void 0:t.toLowerCase())===this.category.toLowerCase()}),console.log("Filtered recipes:",this.recipes))}catch(a){console.error("Failed to load recipes:",a),this.error=a instanceof Error?a.message:"Failed to load recipes"}finally{this.loading=!1}}getTotalTime(e){if(e.time)return e.time;const a=parseInt(e.prepTime||"0"),r=parseInt(e.cookTime||"0"),i=a+r;return i>0?`${i} min`:"N/A"}render(){var e;return this.loading?o`
+
+    .footer-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md);
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+      font-family: var(--font-family-heading);
+      border: 1px solid var(--color-border);
+      background-color: var(--color-background3);
+      color: var(--color-header);
+    }
+
+    .footer-btn:hover {
+      background-color: var(--color-background);
+      border-color: var(--color-link);
+      color: var(--color-link);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-icon {
+      font-size: 1.2rem;
+    }
+  `];let d=K;v([l()],d.prototype,"cuisineType");v([l()],d.prototype,"imgAlt");v([l()],d.prototype,"tagline");v([l({attribute:"img-src"})],d.prototype,"imgSrc");v([l({type:Array})],d.prototype,"recipes");v([l()],d.prototype,"category");v([c()],d.prototype,"loading");v([c()],d.prototype,"error");var we=Object.defineProperty,S=(s,e,a,i)=>{for(var r=void 0,t=s.length-1,n;t>=0;t--)(n=s[t])&&(r=n(e,a,r)||r);return r&&we(e,a,r),r};const H=class H extends u{constructor(){super(...arguments),this.recipes=[],this.loading=!1,this._authObserver=new N(this,"melonbowl:auth")}connectedCallback(){super.connectedCallback(),this._authObserver.observe(e=>{var a;this._user=e.user,(a=this._user)!=null&&a.authenticated&&this.category&&this.loadRecipes()})}updated(e){var a;super.updated(e),e.has("category")&&this.category&&((a=this._user)!=null&&a.authenticated)&&this.loadRecipes()}get authorization(){var e;return((e=this._user)==null?void 0:e.authenticated)&&{Authorization:`Bearer ${this._user.token}`}}async loadRecipes(){var e;if(!((e=this._user)!=null&&e.authenticated)){this.error="Please log in to view recipes";return}if(!this.category){console.log("No category set yet, skipping load");return}console.log("Loading recipes for taste category:",this.category),this.loading=!0,this.error=void 0;try{const a=await fetch("/api/dishes",{headers:this.authorization||{}});if(!a.ok)throw a.status===401?new Error("Please log in to view recipes"):new Error(`Failed to load recipes: ${a.statusText}`);const i=await a.json();console.log("Received data:",i),this.category&&(this.recipes=i.filter(r=>{var t;return((t=r.taste)==null?void 0:t.toLowerCase())===this.category.toLowerCase()}),console.log("Filtered recipes:",this.recipes))}catch(a){console.error("Failed to load recipes:",a),this.error=a instanceof Error?a.message:"Failed to load recipes"}finally{this.loading=!1}}getTotalTime(e){if(e.time)return e.time;const a=parseInt(e.prepTime||"0"),i=parseInt(e.cookTime||"0"),r=a+i;return r>0?`${r} min`:"N/A"}render(){var e;return this.loading?o`
         <div class="tasteUSS-box">
           <div class="loading-message">Loading recipes...</div>
         </div>
@@ -1969,7 +2045,6 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
           <div class="tasteUSS-boxes-grid">
             ${this.recipes.length>0?this.recipes.map(a=>o`
                   <a href="/app/dish/${a._id||a.id}" class="tasteUSS-box-link">
-
                     <div class="tasteUSS-box-image">
                       <img src="${a.imgSrc}" alt="${a.name}">
                     </div>
@@ -1982,9 +2057,12 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
           </div>
         </section>
 
-        <footer class="footer-nav">
+       <footer class="footer-nav">
           <nav>
-            <a href="/app">Back to Menu</a>
+            <a href="/app" class="footer-btn">
+              <span class="btn-icon">←</span>
+              <span>Back to Menu</span>
+            </a>
           </nav>
         </footer>
       </div>
@@ -2127,16 +2205,41 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
       color: var(--color-text);
     }
 
-    .footer-nav {
-      border-top: 0.2px solid var(--color-border);
-      color: var(--color-link);
-      padding-top: var(--spacing-md);
+     .footer-nav {
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
       text-align: center;
     }
 
     .footer-nav nav {
       display: flex;
       justify-content: center;
+    }
+
+    .footer-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md);
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+      font-family: var(--font-family-heading);
+      border: 1px solid var(--color-border);
+      background-color: var(--color-background4);
+      color: var(--color-header);
+    }
+
+    .footer-btn:hover {
+      background-color: var(--color-background);
+      border-color: var(--color-link);
+      color: var(--color-link);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-icon {
+      font-size: 1.2rem;
     }
   `];let h=H;S([l()],h.prototype,"tastesType");S([l()],h.prototype,"tagline");S([l({type:Array})],h.prototype,"recipes");S([l()],h.prototype,"category");S([c()],h.prototype,"loading");S([c()],h.prototype,"error");const ke=[{path:"/app/recipes",view:()=>o`
       <all-recipes-view></all-recipes-view>
@@ -2152,4 +2255,4 @@ import{a as N,i as u,O as A,x as o,e as ee,b as p,r as c,n as l,V as I,c as k,d 
       <dish-view dish-name=${s.name}></dish-view>
     `},{path:"/app",view:()=>o`
       <home-view></home-view>
-    `},{path:"/",redirect:"/app"}];X({"mu-auth":N.Provider,"mu-history":W.Provider,"mu-store":class extends re.Provider{constructor(){super(oe,te,"melonbowl:auth")}},"mu-switch":class extends ie.Element{constructor(){super(ke,"melonbowl:history","melonbowl:auth")}},"melon-header":b,"home-view":E,"meal-view":x,"taste-view":y,"cuisine-view":m,"dish-view":_,"dish-edit-view":O,"all-recipes-view":w,"meal-element":g,"cuisine-element":d,"tastes-element":h});
+    `},{path:"/",redirect:"/app"}];X({"mu-auth":L.Provider,"mu-history":W.Provider,"mu-store":class extends ie.Provider{constructor(){super(oe,te,"melonbowl:auth")}},"mu-switch":class extends re.Element{constructor(){super(ke,"melonbowl:history","melonbowl:auth")}},"melon-header":b,"home-view":A,"meal-view":x,"taste-view":y,"cuisine-view":m,"dish-view":_,"dish-edit-view":O,"all-recipes-view":w,"meal-element":g,"cuisine-element":d,"tastes-element":h});

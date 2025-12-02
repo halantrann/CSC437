@@ -197,7 +197,10 @@ export class CuisineElement extends LitElement {
 
         <footer class="footer-nav">
           <nav>
-            <a href="/app">Back to Menu</a>
+            <a href="/app" class="footer-btn">
+              <span class="btn-icon">←</span>
+              <span>Back to Menu</span>
+            </a>
           </nav>
         </footer>
       </div>
@@ -369,15 +372,40 @@ export class CuisineElement extends LitElement {
     }
 
     .footer-nav {
-      border-top: 0.2px solid var(--color-border);
-      color: var(--color-link);
-      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
       text-align: center;
     }
 
     .footer-nav nav {
       display: flex;
       justify-content: center;
+    }
+
+    .footer-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md);
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+      font-family: var(--font-family-heading);
+      border: 1px solid var(--color-border);
+      background-color: var(--color-background3);
+      color: var(--color-header);
+    }
+
+    .footer-btn:hover {
+      background-color: var(--color-background);
+      border-color: var(--color-link);
+      color: var(--color-link);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-icon {
+      font-size: 1.2rem;
     }
   `];
 }

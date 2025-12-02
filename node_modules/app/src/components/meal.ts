@@ -158,7 +158,6 @@ export class MealElement extends LitElement {
             </div>
           </section>
 
-         
           <section class="recipe-links">
             <h2>${this.mealType} Recipes:</h2>
             <ul class="meals-list">
@@ -176,8 +175,11 @@ export class MealElement extends LitElement {
           </section>
           
           <footer>
-            <nav>
-              <a href="/app">Back to Menu</a>
+            <nav class="meal-footer-nav">
+              <a href="/app" class="footer-btn">
+                <span class="btn-icon">←</span>
+                <span>Back to Menu</span>
+              </a>
             </nav>
           </footer>
         </article>
@@ -231,11 +233,40 @@ export class MealElement extends LitElement {
     }
 
     .recipe-box footer {
-      border-top: 0.2px solid var(--color-border);
-      padding-top: 10px;
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--spacing-lg);
+      margin-top: var(--spacing-sm);
       text-align: center;
+    }
+
+    .meal-footer-nav {
+      display: flex;
+      justify-content: center;
+    }
+
+    .footer-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md);
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+      font-family: var(--font-family-heading);
+      border: 1px solid var(--color-border);
+      background-color: var(--color-background2);
+      color: var(--color-header);
+    }
+
+    .footer-btn:hover {
+      background-color: var(--color-background);
+      border-color: var(--color-link);
       color: var(--color-link);
-      margin-top: 20px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-icon {
+      font-size: 1.2rem;
     }
 
     .box {
