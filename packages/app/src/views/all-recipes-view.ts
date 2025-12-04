@@ -255,8 +255,8 @@ export class AllRecipesViewElement extends View<Model, Msg> {
     }
 
     .recipe-card {
-      background-color: var(--color-section);
-      border: 2px solid var(--color-border);
+      background-color: var(--color-background);
+      border: 1px solid var(--color-border);
       border-radius: var(--radius-md);
       overflow: hidden;
       text-decoration: none;
@@ -386,22 +386,29 @@ export class AllRecipesViewElement extends View<Model, Msg> {
     .footer-nav {
       margin-top: var(--spacing-xl);
       padding-top: var(--spacing-lg);
-      border-top: 2px solid var(--color-border);
+      border-top: 1px solid var(--color-border);
       text-align: center;
     }
 
     .back-btn {
-      display: inline-block;
-      padding: var(--spacing-md) var(--spacing-xl);
-      background-color: var(--color-link);
-      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md) var(--spacing-lg);
+      background-color: var(--color-section);
+      color: var(--color-header);
+      text-decoration: none;
+      border: 1px solid var(--color-border);
       border-radius: var(--radius-md);
       font-weight: 600;
       transition: all var(--transition-fast);
     }
 
     .back-btn:hover {
-      transform: translateY(-2px);
+      background-color: var(--color-background);
+      border-color: var(--color-link);
+      color: var(--color-link);
+      box-shadow: var(--shadow-md);
     }
 
     /* RESPONSIVE */

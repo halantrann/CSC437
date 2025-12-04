@@ -50,7 +50,7 @@ export class FavoritesViewElement extends View<Model, Msg> {
                 </svg>
                 <h2>No favorites yet!</h2>
                 <p>Start exploring recipes and add your favorites.</p>
-                <a href="/app" class="explore-btn">Explore Recipes</a>
+                <a href="/app/recipes" class="explore-btn">Explore Recipes</a>
               </div>
             `
           : html`
