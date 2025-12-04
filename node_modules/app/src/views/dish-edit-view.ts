@@ -65,9 +65,7 @@ export class DishEditViewElement extends View<Model, Msg> {
       "recipe/save",
       {
         name: this.dishName!,
-        recipe: processedRecipe
-      },
-      {
+        recipe: processedRecipe,
         onSuccess: () =>
           History.dispatch(this, "history/navigate", {
             href: `/app/dish/${this.dishName}`

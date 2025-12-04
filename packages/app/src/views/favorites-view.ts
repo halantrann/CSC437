@@ -39,7 +39,7 @@ export class FavoritesViewElement extends View<Model, Msg> {
       <div class="favorites-container">
         <header class="favorites-header">
           <h1>Your Favorite Recipes</h1>
-          <p>All your saved recipes in one place</p>
+          <p>all your most loved recipes in one place</p>
         </header>
 
         ${this.favorites.length === 0

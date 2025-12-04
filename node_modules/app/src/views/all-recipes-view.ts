@@ -63,7 +63,7 @@ export class AllRecipesViewElement extends View<Model, Msg> {
         <!-- HEADER SECTION -->
         <section class="header-section">
           <h1>All Recipes</h1>
-          <p class="subtitle">Browse through all your saved recipes</p>
+          <p class="subtitle">browse through all the saved recipes</p>
         </section>
 
         <!-- SEARCH BAR -->
@@ -205,7 +205,7 @@ export class AllRecipesViewElement extends View<Model, Msg> {
       width: 100%;
       padding: 1rem 3rem 1rem 3rem;
       font-size: 1rem;
-      border: 2px solid var(--color-border);
+      border: 1px solid var(--color-border);
       border-radius: var(--radius-md);
       background-color: white);
       font-family: var(--font-family-body);
@@ -255,7 +255,7 @@ export class AllRecipesViewElement extends View<Model, Msg> {
     }
 
     .recipe-card {
-      background-color: var(--color-background);
+      background-color: var(--color-card);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-md);
       overflow: hidden;

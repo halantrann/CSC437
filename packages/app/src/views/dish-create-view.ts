@@ -50,7 +50,6 @@ export class DishCreateViewElement extends View<Model, Msg> {
     .replace(/\s+/g, "")
     .replace(/[^a-z0-9]/g, "");
 
-  // 🎉 FINAL FIX — only TWO tuple elements
   this.dispatchMessage([
     "recipe/create",
     {
@@ -76,7 +75,7 @@ export class DishCreateViewElement extends View<Model, Msg> {
   render() {
     if (this.successMessage) {
       return html`
-        <div class="create-box">
+        <div class="create-container">
           <div class="success-message">
             <h2>✓ ${this.successMessage}</h2>
             <p>Redirecting to your new recipe...</p>
@@ -86,9 +85,11 @@ export class DishCreateViewElement extends View<Model, Msg> {
     }
 
     return html`
-      <div class="create-box">
-        <h1>Add a New Recipe</h1>
-        <p class="subtitle">Share your culinary creation with The Melon Bowl!</p>
+      <div class="create-container">
+        <header class="create-header">
+          <h1>Add a New Recipe</h1>
+          <p>share your culinary creation</p>
+        </header>
         
         <mu-form @mu-form:submit=${this.handleSubmit}>
           
@@ -191,6 +192,13 @@ export class DishCreateViewElement extends View<Model, Msg> {
             </a>
           </div>
         </mu-form>
+
+        <footer class="create-footer">
+          <a href="/app" class="back-btn">
+            <span class="btn-icon">←</span>
+            <span>Back to Menu</span>
+          </a>
+        </footer>
       </div>
     `;
   }
@@ -198,31 +206,32 @@ export class DishCreateViewElement extends View<Model, Msg> {
   static styles = [reset.styles, css`
     :host {
       display: block;
-      background-color: var(--color-section);
-      min-height: 100vh;
-      padding: var(--spacing-lg);
     }
 
-    .create-box {
+    .create-container {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: var(--spacing-xl);
       background-color: var(--color-background);
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      padding: 40px;
-      max-width: 800px;
-      margin: 40px auto;
+      border-radius: var(--radius-md);
+      margin-top: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
     }
 
-    .create-box h1 {
-      color: var(--color-link);
-      margin-bottom: var(--spacing-sm);
+    .create-header {
       text-align: center;
-    }
-
-    .subtitle {
-      text-align: center;
-      color: var(--color-text);
       margin-bottom: var(--spacing-xl);
-      font-style: italic;
+    }
+
+    .create-header h1 {
+      color: var(--color-link);
+      font-size: 3rem;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .create-header p {
+      font-size: 1.2rem;
+      color: var(--color-text);
     }
 
     .success-message {
@@ -234,12 +243,18 @@ export class DishCreateViewElement extends View<Model, Msg> {
     .success-message h2 {
       color: #2e7d32;
       margin-bottom: var(--spacing-md);
+      font-size: 2rem;
+    }
+
+    .success-message p {
+      font-size: 1.2rem;
     }
 
     mu-form {
       display: flex;
       flex-direction: column;
       gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
     }
 
     label {
@@ -250,7 +265,8 @@ export class DishCreateViewElement extends View<Model, Msg> {
 
     label span {
       font-weight: var(--font-weight-bold);
-      color: var(--color-link);
+      color: var(--color-header);
+      font-size: 1rem;
     }
 
     input,
@@ -259,9 +275,10 @@ export class DishCreateViewElement extends View<Model, Msg> {
       padding: var(--spacing-sm);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-sm);
-      font-family: inherit;
+      font-family: var(--font-family-body);
       font-size: 1rem;
       transition: border-color var(--transition-fast);
+      background-color: var(--color-background);
     }
 
     input:focus,
@@ -274,7 +291,7 @@ export class DishCreateViewElement extends View<Model, Msg> {
 
     textarea {
       resize: vertical;
-      font-family: inherit;
+      font-family: var(--font-family-body);
     }
 
     select {
@@ -308,6 +325,7 @@ export class DishCreateViewElement extends View<Model, Msg> {
       gap: 0.5rem;
       transition: all var(--transition-fast);
       text-decoration: none;
+      font-family: var(--font-family-heading);
     }
 
     .save-btn {
@@ -342,20 +360,59 @@ export class DishCreateViewElement extends View<Model, Msg> {
       transform: translateY(0);
     }
 
+    .create-footer {
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--spacing-lg);
+      text-align: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md) var(--spacing-lg);
+      background-color: var(--color-section);
+      color: var(--color-header);
+      text-decoration: none;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      transition: all var(--transition-fast);
+      font-family: var(--font-family-heading);
+    }
+
+    .back-btn:hover {
+      background-color: var(--color-background);
+      border-color: var(--color-link);
+      color: var(--color-link);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-icon {
+      font-size: 1.2rem;
+    }
+
     @media (max-width: 768px) {
       .form-row {
         grid-template-columns: 1fr;
       }
+
+      .create-header h1 {
+        font-size: 2.5rem;
+      }
     }
 
     @media (max-width: 480px) {
-      .create-box {
+      .create-container {
         padding: var(--spacing-md);
-        margin: var(--spacing-md);
       }
 
       .button-group {
         flex-direction: column;
+      }
+
+      .create-header h1 {
+        font-size: 2rem;
       }
     }
   `];
