@@ -47,16 +47,6 @@ export class LoginFormElement extends LitElement {
     `;
 	}
 
-	static styles = [
-		reset.styles,
-		css`
-      .error:not(:empty) {
-        color: var(--color-error);
-        border: 1px solid var(--color-error);
-        padding: var(--size-spacing-medium);
-      }
-  `];
-
 	handleChange(event: InputEvent) {
 		const target = event.target as HTMLInputElement;
 		const name = target?.name;
@@ -111,5 +101,37 @@ export class LoginFormElement extends LitElement {
 					this.error = error.toString();
 				});
 		}
-	}
+	}	
+
+	static styles = [
+		reset.styles,
+		css`
+      button {
+        width: 100%;
+        padding: 14px;
+        background: var(--color-link);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: var(--font-weight-bold, 600);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-top: var(--spacing-md, 10px);
+        font-family: inherit;
+      }
+
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .error:not(:empty) {
+        color: var(--color-error);
+        border: 1px solid var(--color-error);
+        padding: var(--size-spacing-medium);
+        margin-top: var(--spacing-md, 10px);
+        border-radius: var(--radius-sm, 8px);
+      }
+    `];
 }

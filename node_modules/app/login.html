@@ -8,31 +8,36 @@
   <link rel="stylesheet" href="/styles/reset.css">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/base.css">
-
+</head>
 
 <body>
   <mu-auth provides="melonbowl:auth">
     <main class="card">
       <section class="login-header-container">
-        <h2>The Melon Bowl</h2>
-        <p class="signup-link">
-          New to The Melon Bowl?
-          <a href="/register.html"><u>Create an Account</u></a>
-        </p>
+        <div class="header-text">
+          <h2>The Melon Bowl</h2>
+          <p class="signup-link">
+            New to The Melon Bowl?
+            <a href="/register.html"><u>Create an Account</u></a>
+          </p>
+        </div>
+        <div class="logo-container">
+          <svg width="125" height="125">
+            <use href="/icons/logo.svg#melonbowllogo" />
+          </svg>
+        </div>
       </section>
 
       <login-form api="/auth/login" redirect="/app">
         <label>
           <span>Username:</span>
-          <input name="username" autocomplete="off" />
+          <input name="username" autocomplete="off" placeholder="Enter your username"/>
         </label>
         <label>
           <span>Password:</span>
-          <input type="password" name="password" />
+          <input type="password" name="password" placeholder="Enter your password"/>
         </label>
       </login-form>
-
-
     </main>
   </mu-auth>
 
@@ -40,6 +45,7 @@
 </body>
 
 </html>
+
 <style>
   body {
     display: flex;
@@ -51,17 +57,23 @@
 
   .login-header-container {
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     align-items: center;
     padding-bottom: var(--spacing-lg);
+    gap: var(--spacing-md);
+  }
+
+  .header-text {
+    flex: 1;
+    text-align: left;
   }
 
   h2 {
-    text-align: center;
+    text-align: left;
     font-size: 2.7rem;
     font-family: var(--font-family-heading);
     color: var(--color-header);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-xs);
   }
 
   .card {
@@ -97,10 +109,11 @@
     width: 100%;
     padding: var(--spacing-sm);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
+    border-radius: 8px;
     font-family: var(--font-family-body);
     font-size: 1rem;
     box-sizing: border-box;
+    background-color: var(--color-background);
   }
 
   login-form button {
@@ -109,7 +122,7 @@
     background-color: var(--color-link);
     color: white;
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: 8px;
     font-weight: var(--font-weight-bold);
     cursor: pointer;
     margin-top: var(--spacing-md);
@@ -126,8 +139,7 @@
   }
 
   .signup-link {
-    text-align: center;
-    margin-top: var(--spacing-lg);
+    text-align: left;
     color: var(--color-header);
   }
 
@@ -139,5 +151,10 @@
   .signup-link a:hover {
     text-decoration: underline;
   }
+
+  .logo-container svg {
+    display: block;
+    translate: 0 20px; 
+  }
+
 </style>
-</head>
