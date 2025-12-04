@@ -39,7 +39,7 @@ export class LoginFormElement extends LitElement {
           <button
             ?disabled=${!this.canSubmit}
             type="submit">
-            Login
+            - login -
           </button>
         </slot>
         <p class="error">${this.error}</p>

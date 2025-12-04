@@ -15,7 +15,7 @@ export class RegisterFormElement extends LitElement {
       <div class="register-container">
         <div class="register-box">
           <h1>Create Account</h1>
-          <p class="subtitle">Join The Melon Bowl community!</p>
+          <p class="subtitle">become a melon</p>
 
           ${this.errorMessage
             ? html`
@@ -67,12 +67,12 @@ export class RegisterFormElement extends LitElement {
             </div>
 
             <button type="submit" class="register-btn" ?disabled=${this.loading}>
-              ${this.loading ? "Creating Account..." : "Create Account"}
+              ${this.loading ? "Creating Account..." : "- register -"}
             </button>
           </form>
 
           <div class="login-link-container">
-            <p>Already have an account? <a href="/login.html"><u>Log in here</u></a></p>
+            <p>Already have an account? <a href="/login.html"><u>Log in Here</u></a></p>
           </div>
         </div>
       </div>
@@ -129,8 +129,8 @@ export class RegisterFormElement extends LitElement {
     :host {
       display: block;
       min-height: 100vh;
-      background: var(--color-background4);
-      font-family: 'Lexend', sans-serif;
+      background: var(--color-section);
+      font-family: var(--font-family-heading);
     }
 
     .register-container {
@@ -142,27 +142,29 @@ export class RegisterFormElement extends LitElement {
     }
 
     .register-box {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      background: var(--color-background);
+      border-radius: 30px;
+      box-shadow: var(--shadow-md);
       padding: 40px;
       width: 100%;
       max-width: 450px;
     }
 
     h1 {
-      color: #333;
+      color: var(--color-header);
       text-align: center;
-      margin: 0 0 10px 0;
-      font-family: 'Pixelify Sans', sans-serif;
+      margin: 0 0 0 0;
+      font-family: var(--font-family-heading);
       font-size: 2.5rem;
     }
 
     .subtitle {
       text-align: center;
-      color: #666;
-      margin: 0 0 30px 0;
+      color: var(--color-header);
+      margin: 0 0 50px 0;
+      margin-top: -10px;
       font-size: 1rem;
+      font-family: var(--font-family-heading);
     }
 
     .error-banner {
@@ -176,6 +178,7 @@ export class RegisterFormElement extends LitElement {
       gap: 10px;
       color: #c33;
       font-size: 0.95rem;
+      font-family: var(--font-family-heading);
     }
 
     form {
@@ -187,51 +190,50 @@ export class RegisterFormElement extends LitElement {
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
 
     label {
-      font-weight: 600;
-      color: #333;
-      font-size: 0.95rem;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-link);
+      font-size: 1.2rem;
+      font-family: var(--font-family-heading);
     }
 
     input {
       padding: 12px 16px;
-      border: 1px solid #e0e0e0;
+      border: 1px solid var(--color-border);
       border-radius: 8px;
       font-size: 1rem;
-      font-family: inherit;
+      font-family: var(--font-family-body);
       transition: all 0.2s ease;
+      background-color: var(--color-background);
     }
 
     input:focus {
       outline: none;
-      border-color: var(--color-background4);
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      border-color: var(--color-link);
+      box-shadow: 0 0 0 3px rgba(234, 106, 102, 0.1);
     }
 
     input:disabled {
       background-color: var(--color-background2);
       cursor: not-allowed;
+      opacity: 0.6;
     }
 
     .register-btn {
       padding: 14px;
-      background: var(--color-background4);
+      background: var(--color-link);
       color: white;
       border: none;
       border-radius: 8px;
       font-size: 1.1rem;
-      font-weight: 600;
+      font-weight: var(--font-weight-bold);
       cursor: pointer;
       transition: all 0.2s ease;
       margin-top: 10px;
-    }
-
-    .register-btn:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+      font-family: var(--font-family-heading);
     }
 
     .register-btn:active:not(:disabled) {
@@ -247,23 +249,25 @@ export class RegisterFormElement extends LitElement {
       margin-top: 24px;
       text-align: center;
       padding-top: 20px;
-      border-top: 1px solid #e0e0e0;
+      border-top: 1px solid var(--color-border);
     }
 
     .login-link-container p {
       margin: 0;
-      color: #666;
+      color: var(--color-header);
+      font-family: var(--font-family-heading);
     }
 
     .login-link-container a {
       color: var(--color-link);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: var(--font-weight-bold);
       transition: color 0.2s ease;
+      font-family: var(--font-family-heading);
     }
 
     .login-link-container a:hover {
-      color: #764ba2;
+      color: var(--color-emphasistext);
       text-decoration: underline;
     }
 

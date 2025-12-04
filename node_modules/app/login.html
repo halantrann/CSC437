@@ -31,11 +31,11 @@
       <login-form api="/auth/login" redirect="/app">
         <label>
           <span>Username:</span>
-          <input name="username" autocomplete="off" placeholder="Enter your username"/>
+          <input name="username" autocomplete="off" placeholder="Enter your username" />
         </label>
         <label>
           <span>Password:</span>
-          <input type="password" name="password" placeholder="Enter your password"/>
+          <input type="password" name="password" placeholder="Enter your password" />
         </label>
       </login-form>
     </main>
@@ -86,7 +86,7 @@
 
   .card span {
     color: var(--color-link);
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
   }
 
   login-form {
@@ -114,6 +114,12 @@
     font-size: 1rem;
     box-sizing: border-box;
     background-color: var(--color-background);
+  }
+
+  login-form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(234, 106, 102, 0.1);
+    border-color: var(--color-link);
   }
 
   login-form button {
@@ -154,7 +160,6 @@
 
   .logo-container svg {
     display: block;
-    translate: 0 20px; 
+    translate: 0 20px;
   }
-
 </style>

@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/styles/reset.css">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/base.css">
-  <script type="module" crossorigin src="/assets/login-CApUG3yI.js"></script>
+  <script type="module" crossorigin src="/assets/login-BizE17NM.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/reset.css-CJy4G2Ks.js">
 </head>
 
@@ -24,7 +24,7 @@
           </p>
         </div>
         <div class="logo-container">
-          <svg width="125" height="125" viewBox="0 0 100 100">
+          <svg width="125" height="125">
             <use href="/icons/logo.svg#melonbowllogo" />
           </svg>
         </div>
@@ -37,7 +37,7 @@
         </label>
         <label>
           <span>Password:</span>
-          <input type="password" name="password" placeholder="Enter your password" />
+          <input type="password" name="password" placeholder="Enter your password"/>
         </label>
       </login-form>
     </main>
@@ -69,25 +69,17 @@
     text-align: left;
   }
 
-  .logo-container {
-    flex-shrink: 0;
-  }
-
-  .logo-container svg {
-    display: block;
-    translate: 0 15px;
-  }
-
   h2 {
     text-align: left;
     font-size: 2.7rem;
     font-family: var(--font-family-heading);
     color: var(--color-header);
+    margin-bottom: var(--spacing-xs);
   }
 
   .card {
     background-color: var(--color-background);
-    font-family: var(--font-family-header);
+    font-family: var(--font-family-heading);
     padding: var(--spacing-xl);
     border-radius: 30px;
     box-shadow: var(--shadow-md);
@@ -122,16 +114,16 @@
     font-family: var(--font-family-body);
     font-size: 1rem;
     box-sizing: border-box;
-
+    background-color: var(--color-background);
   }
 
   login-form button {
     width: 100%;
     padding: var(--spacing-sm);
     background-color: var(--color-link);
-    color: rgb(252, 239, 219);
+    color: white;
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: 8px;
     font-weight: var(--font-weight-bold);
     cursor: pointer;
     margin-top: var(--spacing-md);
@@ -149,7 +141,6 @@
 
   .signup-link {
     text-align: left;
-    margin-top: 0;
     color: var(--color-header);
   }
 
@@ -161,4 +152,10 @@
   .signup-link a:hover {
     text-decoration: underline;
   }
+
+  .logo-container svg {
+    display: block;
+    translate: 0 20px; 
+  }
+
 </style>
