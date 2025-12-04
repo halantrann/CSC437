@@ -132,7 +132,10 @@ export class AllRecipesViewElement extends View<Model, Msg> {
           <img src="${recipe.imgSrc}" alt="${recipe.imgAlt || recipe.name}" />
         </div>
         <div class="recipe-info">
-          <h3 class="recipe-name">${recipe.name}</h3>
+          <div class="card-title-row">
+            <h3 class="recipe-name">${recipe.name}</h3>
+            <favorite-button recipeId="${recipeId}"></favorite-button>
+          </div>
           <div class="recipe-tags">
             ${recipe.mealType ? html`<span class="tag meal-tag">${recipe.mealType}</span>` : ''}
             ${recipe.cuisine ? html`<span class="tag cuisine-tag">${recipe.cuisine}</span>` : ''}
@@ -268,6 +271,11 @@ export class AllRecipesViewElement extends View<Model, Msg> {
       box-shadow: var(--shadow-lg);
       border-color: var(--color-link);
     }
+      .card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
     .recipe-image {
       width: 100%;

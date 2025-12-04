@@ -63,7 +63,10 @@ export class DishViewElement extends View<Model, Msg> {
     return html`
       <div class="recipe-box">
         <article class="dish">
-          <h1>${this.recipe.name}</h1> 
+          <div class="dish-header">
+            <h1>${this.recipe.name}</h1>
+            <favorite-button recipeId="${this.recipe._id || this.recipe.name}"></favorite-button>
+          </div>
           
           <section class="recipe-img">
             <img src="${this.recipe.imgSrc}" alt="${this.recipe.imgAlt || this.recipe.name}">
@@ -155,6 +158,12 @@ export class DishViewElement extends View<Model, Msg> {
       margin-top: 20px;
       margin-bottom: 20px;
       color: var(--color-background);
+    }
+
+    .dish-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .dish-properties dl {

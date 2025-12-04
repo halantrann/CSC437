@@ -27,13 +27,21 @@ import { DishViewElement } from "./views/dish-view";
 import { DishEditViewElement } from "./views/dish-edit-view";
 import { DishCreateViewElement } from "./views/dish-create-view";
 import { AllRecipesViewElement } from "./views/all-recipes-view";
+import { FavoritesViewElement } from "./views/favorites-view";
 
 // Import components
 import { MealElement } from "./components/meal";
 import { CuisineElement } from "./components/cuisine";
 import { TastesElement } from "./components/tastes";
+import { FavoriteButtonElement } from "../components/favorite-button";
 
 const routes = [
+  {
+    path: "/app/favorites",
+    view: () => html`
+      <favorites-view></favorites-view>
+    `
+  },
   {
     path: "/app/recipes",
     view: () => html`
@@ -110,9 +118,11 @@ define({
   "cuisine-view": CuisineViewElement,
   "dish-view": DishViewElement,         
   "dish-edit-view": DishEditViewElement,
-  "dish-create-view": DishCreateViewElement, // TEMP 
+  "dish-create-view": DishCreateViewElement, 
   "all-recipes-view": AllRecipesViewElement,
+  "favorites-view": FavoritesViewElement,
   "meal-element": MealElement,
   "cuisine-element": CuisineElement,
-  "tastes-element": TastesElement
+  "tastes-element": TastesElement,
+  "favorite-button": FavoriteButtonElement
 });

@@ -9,7 +9,7 @@ export class HomeViewElement extends LitElement {
           <h2>Explore Recipes</h2>
           <p>hungry but not sure what you're feeling?</p>
           <div class="mealofday-box">
-            <a href="/app/dish/pandanwaffles" class="side box-link">?</a>
+            <a href="/app/favorites" class="side box-link">?</a>
             <a href="/app/recipes" class="middle box-link">???</a>
             <a href="/app/dish/new" class="side box-link">?</a>
           </div>

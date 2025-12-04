@@ -198,7 +198,7 @@ export class DishCreateViewElement extends View<Model, Msg> {
   static styles = [reset.styles, css`
     :host {
       display: block;
-      background-color: var(--color-background2);
+      background-color: var(--color-section);
       min-height: 100vh;
       padding: var(--spacing-lg);
     }

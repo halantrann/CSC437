@@ -88,6 +88,51 @@ export default function update(
       ];
     }
 
+    case "favorite/toggle": {
+      const { recipeId } = payload;
+      const newFavoriteIds = new Set(model.favoriteIds);
+      const isFavorite = newFavoriteIds.has(recipeId);
+
+      if (isFavorite) {
+        newFavoriteIds.delete(recipeId);
+      } else {
+        newFavoriteIds.add(recipeId);
+      }
+
+      return [
+        { ...model, favoriteIds: newFavoriteIds },
+        toggleFavorite({ recipeId, isFavorite: !isFavorite })  // Removed 'user' parameter
+          .then((): Msg => ["favorite/toggled", { recipeId, isFavorite: !isFavorite }])
+          .catch((err): [] => {
+            console.error(err);
+            return [];
+          })
+      ];
+    }
+
+    case "favorite/toggled": {
+      // Already updated optimistically, nothing more to do
+      return model;
+    }
+
+    case "favorites/request": {
+      return [
+        model,
+        requestFavorites(user)
+          .then((favorites): Msg => ["favorites/load", { favorites }])
+          .catch((err): [] => {
+            console.error(err);
+            return [];
+          })
+      ];
+    }
+
+    case "favorites/load": {
+      const { favorites } = payload;
+      const favoriteIds = new Set(favorites.map(r => r._id || r.name));
+      return { ...model, favorites, favoriteIds };
+    }
+
     default:
       throw new Error(`Unhandled message "${command}"`);
   }
@@ -158,4 +203,51 @@ function requestRecipes(
   return fetch(url, {
     headers: Auth.headers(user),
   }).then((res) => res.json());
+}
+
+function toggleFavorite(
+  msg: { recipeId: string; isFavorite: boolean },
+): Promise<void> {
+  // Temporary localStorage solution until backend is ready
+  return new Promise((resolve) => {
+    const stored = localStorage.getItem('melonbowl:favorites');
+    const favorites = stored ? JSON.parse(stored) : [];
+
+    if (msg.isFavorite) {
+      // Add to favorites
+      if (!favorites.includes(msg.recipeId)) {
+        favorites.push(msg.recipeId);
+      }
+    } else {
+      // Remove from favorites
+      const index = favorites.indexOf(msg.recipeId);
+      if (index > -1) {
+        favorites.splice(index, 1);
+      }
+    }
+
+    localStorage.setItem('melonbowl:favorites', JSON.stringify(favorites));
+    resolve();
+  });
+}
+
+function requestFavorites(user: Auth.User): Promise<Recipe[]> {
+  // Temporary localStorage solution until backend is ready
+  return new Promise((resolve) => {
+    const stored = localStorage.getItem('melonbowl:favorites');
+    const favoriteIds = stored ? JSON.parse(stored) : [];
+
+    // Fetch all recipes and filter to favorites
+    fetch(`/api/dishes`, {
+      headers: Auth.headers(user)
+    })
+      .then(res => res.json())
+      .then((allRecipes: Recipe[]) => {
+        const favorites = allRecipes.filter(r =>
+          favoriteIds.includes(r._id || r.name)
+        );
+        resolve(favorites);
+      })
+      .catch(() => resolve([]));
+  });
 }
