@@ -25,6 +25,7 @@ import { TasteViewElement } from "./views/taste-view";
 import { CuisineViewElement } from "./views/cuisine-view";
 import { DishViewElement } from "./views/dish-view";
 import { DishEditViewElement } from "./views/dish-edit-view";
+import { DishCreateViewElement } from "./views/dish-create-view";
 import { AllRecipesViewElement } from "./views/all-recipes-view";
 
 // Import components
@@ -37,6 +38,12 @@ const routes = [
     path: "/app/recipes",
     view: () => html`
       <all-recipes-view></all-recipes-view>
+    `
+  },
+  {
+    path: "/app/dish/new",
+    view: () => html`
+      <dish-create-view></dish-create-view>
     `
   },
   {
@@ -102,8 +109,9 @@ define({
   "taste-view": TasteViewElement,
   "cuisine-view": CuisineViewElement,
   "dish-view": DishViewElement,         
-  "dish-edit-view": DishEditViewElement, // DISHES EDIT 
-  "all-recipes-view": AllRecipesViewElement, // ALL RECIPES VIEW
+  "dish-edit-view": DishEditViewElement,
+  "dish-create-view": DishCreateViewElement, // TEMP 
+  "all-recipes-view": AllRecipesViewElement,
   "meal-element": MealElement,
   "cuisine-element": CuisineElement,
   "tastes-element": TastesElement

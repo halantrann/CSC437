@@ -11,7 +11,7 @@ export class HomeViewElement extends LitElement {
           <div class="mealofday-box">
             <a href="/app/dish/pandanwaffles" class="side box-link">?</a>
             <a href="/app/recipes" class="middle box-link">???</a>
-            <a href="/app/dish/pandanwaffles" class="side box-link">?</a>
+            <a href="/app/dish/new" class="side box-link">?</a>
           </div>
           <p>choose where you want to start!</p>
         </section>
