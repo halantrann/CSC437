@@ -31,27 +31,21 @@ export class FavoriteButtonElement extends View<Model, Msg> {
   };
 
   render() {
+      const iconHref = this.isFavorite 
+    ? "/icons/general_icons.svg#star_filled"
+    : "/icons/general_icons.svg#star_outline";
     return html`
-      <button
-        class="favorite-btn ${this.isFavorite ? "active" : ""}"
-        @click=${this.handleToggle}
-        title="${this.isFavorite
-          ? "Remove from favorites"
-          : "Add to favorites"}"
-      >
-        <svg
-          class="star-icon"
-          viewBox="0 0 24 24"
-          fill="${this.isFavorite ? "currentColor" : "none"}"
-          stroke="currentColor"
-        >
-          <path
-            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-          />
-        </svg>
-      </button>
-    `;
-  }
+    <button 
+      class="favorite-btn ${this.isFavorite ? 'favorited' : ''}"
+      @click=${this.handleToggle}
+      aria-label=${this.isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+    >
+      <svg width="24" height="24">
+        <use href="${iconHref}" />
+      </svg>
+    </button>
+  `;
+}
 
   static styles = css`
     :host {

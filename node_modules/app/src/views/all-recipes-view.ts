@@ -100,10 +100,10 @@ export class AllRecipesViewElement extends View<Model, Msg> {
             </div>
           ` : html`
             <div class="no-results">
-              <svg class="empty-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.35-4.35"></path>
+              <svg class="empty-icon" width="64" height="64">
+                <use href="/icons/general_icons.svg#magnifying_glass" />
               </svg>
+
               <h3>No recipes found</h3>
               <p>Try adjusting your search terms</p>
               ${this.searchQuery ? html`

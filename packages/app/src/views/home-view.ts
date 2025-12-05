@@ -9,9 +9,21 @@ export class HomeViewElement extends LitElement {
           <h2>Explore Recipes</h2>
           <p>hungry but not sure what you're feeling?</p>
           <div class="mealofday-box">
-            <a href="/app/favorites" class="side box-link">?</a>
-            <a href="/app/recipes" class="middle box-link">???</a>
-            <a href="/app/dish/new" class="side box-link">?</a>
+            <a href="/app/favorites" class="side box-link">
+              <svg width="60" height="60">
+                <use href="/icons/general_icons.svg#star_filled" />
+              </svg>
+            </a>
+            <a href="/app/recipes" class="middle box-link">
+              <svg width="80" height="80">
+                <use href="/icons/general_icons.svg#magnifying_glass" />
+              </svg>
+            </a>
+            <a href="/app/dish/new" class="side box-link">
+              <svg width="60" height="60">
+                <use href="/icons/general_icons.svg#new_recipe" />
+              </svg>
+            </a>
           </div>
           <p>choose where you want to start!</p>
         </section>
@@ -441,6 +453,15 @@ export class HomeViewElement extends LitElement {
           padding: var(--spacing-sm);
         }
       }
+
+      .box-link svg {
+        fill: var(--color-header);
+        transition: fill var(--transition-fast);
+      }
+
+      .box-link:hover svg {
+        fill: var(--color-link);
+}
 		
     `
 	];

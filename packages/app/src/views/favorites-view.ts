@@ -43,20 +43,21 @@ export class FavoritesViewElement extends View<Model, Msg> {
         </header>
 
         ${this.favorites.length === 0
-          ? html`
+        ? html`
               <div class="empty-state">
-                <svg class="icon empty-icon">
-                  <use href="/icons/characters.svg#wilson" />
+                <svg class="icon empty-icon" width="150" height="150">
+                  <use href="/icons/general_icons.svg#star_filled" />
                 </svg>
+                
                 <h2>No favorites yet!</h2>
                 <p>Start exploring recipes and add your favorites.</p>
                 <a href="/app/recipes" class="explore-btn">Explore Recipes</a>
               </div>
             `
-          : html`
+        : html`
               <div class="favorites-grid">
                 ${this.favorites.map(
-                  (recipe) => html`
+          (recipe) => html`
                     <a href="/app/dish/${recipe._id || recipe.name}" class="favorite-card">
                       <div class="card-image">
                         <img src="${recipe.imgSrc}" alt="${recipe.name}" />
@@ -71,7 +72,7 @@ export class FavoritesViewElement extends View<Model, Msg> {
                       </div>
                     </a>
                   `
-                )}
+        )}
               </div>
             `}
 
