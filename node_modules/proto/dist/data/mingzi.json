@@ -1,8 +1,8 @@
 {
   "name": "Minced Beef with Rice",
   "imgAlt": "Cantonese minced beef with egg over rice",
-  "imgSrc": "/images/mingzi.jpg",
-  "link": "/dish.html?id=mingzi",
+  "imgSrc": "/images/mincedbeefrice.jpg",
+  "link": "/dish.html?id=mincedbeefrice",
   "mealType": "Dinner",
   "cuisine": "Chinese",
   "taste": "Umami",
