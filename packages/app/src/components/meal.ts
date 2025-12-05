@@ -37,6 +37,9 @@ export class MealElement extends LitElement {
   @state()
   error?: string;
 
+  @state()
+  isHovering = false;
+
   // AUTH OBSERVER 
   _authObserver = new Observer<Auth.Model>(this, "melonbowl:auth");
   _user?: Auth.User;
@@ -119,6 +122,14 @@ export class MealElement extends LitElement {
     }
   }
 
+  private _handleMouseEnter() {
+    this.isHovering = true;
+  }
+
+  private _handleMouseLeave() {
+    this.isHovering = false;
+  }
+
   override render() {
     // Show loading state
     if (this.loading) {
@@ -148,9 +159,13 @@ export class MealElement extends LitElement {
       <div class="recipe-box">
         <article class="dish">
           <section id="character-box">
-            <div class="character-icon-container box">
+            <div 
+              class="character-icon-container box"
+              @mouseenter=${this._handleMouseEnter}
+              @mouseleave=${this._handleMouseLeave}
+            >
               <svg class="character-icon">
-                <use href="/icons/characters.svg#halan" />
+                <use href="/icons/characters.svg#${this.isHovering ? 'halan_surprise' : 'halan'}" />
               </svg>
             </div>
             <div class="character-dialogue">
@@ -277,6 +292,7 @@ export class MealElement extends LitElement {
       box-shadow: var(--shadow-md);
       margin: var(--spacing-sm);
       transition: transform var(--transition-fast), box-shadow var(--transition-medium);
+      cursor: pointer;
     }
 
     .box:hover {
@@ -313,6 +329,7 @@ export class MealElement extends LitElement {
       height: auto;
       display: block;
       transform: scale(1.38); 
+      transition: all var(--transition-fast);
     }
 
     .character-dialogue {
