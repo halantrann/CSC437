@@ -50,18 +50,17 @@ export class HeaderElement extends LitElement {
     this.isDarkMode = customEvent.detail.checked;
   };
 
-  handleDarkModeToggle(event: Event) {
-    const checkbox = event.target as HTMLInputElement;
-    const checked = checkbox.checked;
+  handleDarkModeToggle() {
+    const newMode = !this.isDarkMode;
 
-    this.isDarkMode = checked;
-    localStorage.setItem('dark-mode', String(checked));
-    document.body.classList.toggle('dark-mode', checked);
+    this.isDarkMode = newMode;
+    localStorage.setItem('dark-mode', String(newMode));
+    document.body.classList.toggle('dark-mode', newMode);
 
     const customEvent = new CustomEvent('dark-mode:toggle', {
       bubbles: true,
       composed: true,
-      detail: { checked }
+      detail: { checked: newMode }
     });
 
     this.dispatchEvent(customEvent);
@@ -84,19 +83,18 @@ export class HeaderElement extends LitElement {
           <p>your pocket menu for when you don't know what to eat</p>
         </div>
 
-        <!-- IMPROVED DARK MODE TOGGLE -->
-        <label class="dark-mode-toggle">
-          <input 
-            type="checkbox" 
-            .checked=${this.isDarkMode}
-            @change=${this.handleDarkModeToggle}
-          />
-          <span class="toggle-icon">
-            ${this.isDarkMode ? '🌙' : '☀️'}
-          </span>
-        </label>
+        <!-- SVG DARK MODE TOGGLE -->
+        <button 
+          class="dark-mode-toggle"
+          @click=${this.handleDarkModeToggle}
+          aria-label="Toggle dark mode"
+        >
+          <svg class="toggle-icon" width="100" height="100">
+            <use href="/icons/general_icons.svg#${this.isDarkMode ? 'sun' : 'moon'}" />
+          </svg>
+        </button>
 
-        <!-- IMPROVED AUTH SECTION -->
+        <!-- AUTH SECTION -->
         <div class="auth-section">
           ${this.loggedIn ? this.renderLoggedIn() : this.renderSignIn()}
         </div>
@@ -109,13 +107,13 @@ export class HeaderElement extends LitElement {
       <a href="/login.html" 
         class="sign-in-btn"
         @click=${(e: MouseEvent) => {
-              e.stopPropagation();
-              window.location.href = "/login.html";
-              e.preventDefault();
-            }}
-              >
-          Sign In
-        </a>
+        e.stopPropagation();
+        window.location.href = "/login.html";
+        e.preventDefault();
+      }}
+      >
+        Sign In
+      </a>
     `;
   }
 
@@ -136,12 +134,12 @@ export class HeaderElement extends LitElement {
   }
 
   static styles = css`
-     :host {
+    :host {
       display: block;
       position: sticky;
       top: 0;
       z-index: 1000;
-  }
+    }
 
     .logo-content {
       gap: 20px;
@@ -152,13 +150,10 @@ export class HeaderElement extends LitElement {
       padding: var(--spacing-sm);
       flex-wrap: wrap;
       box-sizing: border-box;
-
       background-color: var(--color-background);
       border-bottom: 1px solid var(--color-border);
-
-      backdrop-filter: blur(8px); /* optional, looks nice with sticky headers */
+      backdrop-filter: blur(8px);
     }
-
 
     /* CLICKABLE LOGO */
     .logo-link {
@@ -209,38 +204,46 @@ export class HeaderElement extends LitElement {
       font-size: 0.9rem;
     }
 
-    /* DARK MODE TOGGLE */
+    /* SVG DARK MODE TOGGLE */
     .dark-mode-toggle {
       margin-left: auto;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: center;
       cursor: pointer;
       font-family: var(--font-family-heading);
       white-space: nowrap;
       flex-shrink: 0;
-      padding: 0.5rem 1rem;
+      padding: 0rem;
+      padding-top: 0.25rem;
       background-color: var(--color-background);
       border: 2px solid var(--color-border);
       border-radius: var(--radius-md);
       transition: all var(--transition-fast);
+      width: 48px;
+      height: 48px;
+      
     }
 
     .dark-mode-toggle:hover {
       border-color: var(--color-link);
       transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .dark-mode-toggle:active {
+      transform: translateY(0);
     }
 
     .toggle-icon {
-      font-size: 1.2rem;
       display: flex;
       align-items: center;
+      justify-content: center;
+      transition: transform var(--transition-fast);
     }
 
-    input[type="checkbox"] {
-      cursor: pointer;
-      width: 18px;
-      height: 18px;
+    .dark-mode-toggle:hover .toggle-icon {
+      transform: rotate(20deg);
     }
 
     /* AUTH SECTION */
@@ -260,6 +263,7 @@ export class HeaderElement extends LitElement {
       font-weight: 600;
       transition: all var(--transition-fast);
       box-shadow: var(--shadow-sm);
+      font-family: var(--font-family-heading);
     }
 
     .sign-in-btn:hover {
@@ -293,6 +297,7 @@ export class HeaderElement extends LitElement {
       cursor: pointer;
       font-weight: 600;
       transition: all var(--transition-fast);
+      font-family: var(--font-family-heading);
     }
 
     .sign-out-btn:hover {
@@ -309,7 +314,7 @@ export class HeaderElement extends LitElement {
       .dark-mode-toggle {
         margin-left: 0;
         order: 3;
-      }
+  }
 
       .auth-section {
         margin-left: 0;
