@@ -21,7 +21,7 @@ export class HomeViewElement extends LitElement {
             </a>
             <a href="/app/dish/new" class="side box-link">
               <svg width="60" height="60">
-                <use href="/icons/general_icons.svg#new_recipe" />
+                <use href="/icons/general_icons.svg#recipes_scroll" />
               </svg>
             </a>
           </div>
