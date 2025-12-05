@@ -1,0 +1,30 @@
+{
+  "name": "Carbonara",
+  "imgAlt": "Classic Italian pasta with creamy egg sauce and pancetta",
+  "imgSrc": "/images/carbonara.jpg",
+  "link": "/dish.html?id=carbonara",
+  "mealType": "Dinner",
+  "cuisine": "Italian",
+  "taste": "Salty",
+  "calories": "520 kcal per serving",
+  "prepTime": "10 min",
+  "cookTime": "15 min",
+  "ingredients": [
+    "400g spaghetti",
+    "200g pancetta or guanciale (diced)",
+    "4 egg yolks",
+    "1 whole egg",
+    "1 cup Pecorino Romano cheese (grated)",
+    "Black pepper",
+    "Salt for pasta water"
+  ],
+  "instructions": [
+    "Cook pasta in salted boiling water until al dente.",
+    "Meanwhile, crisp pancetta in a large pan over medium heat.",
+    "Whisk egg yolks, whole egg, and cheese together in a bowl.",
+    "Reserve 1 cup pasta water, then drain pasta.",
+    "Remove pan from heat, add pasta to pancetta.",
+    "Quickly stir in egg mixture, adding pasta water to create creamy sauce.",
+    "Season generously with black pepper and serve immediately."
+  ]
+}

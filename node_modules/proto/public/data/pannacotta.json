@@ -1,0 +1,28 @@
+{
+  "name": "Panna Cotta",
+  "imgAlt": "Italian cream dessert with berry sauce",
+  "imgSrc": "/images/pannacotta.jpg",
+  "link": "/dish.html?id=pannacotta",
+  "mealType": "Dessert",
+  "cuisine": "Italian",
+  "taste": "Sweet",
+  "calories": "320 kcal per serving",
+  "prepTime": "10 min",
+  "cookTime": "5 min",
+  "ingredients": [
+    "2 cups heavy cream",
+    "1/4 cup sugar",
+    "1 tsp vanilla extract",
+    "2 tsp gelatin powder",
+    "3 tbsp cold water",
+    "Fresh berries for topping"
+  ],
+  "instructions": [
+    "Sprinkle gelatin over cold water and let bloom for 5 minutes.",
+    "Heat cream and sugar in saucepan until sugar dissolves (do not boil).",
+    "Remove from heat and stir in vanilla and bloomed gelatin.",
+    "Pour into ramekins or molds.",
+    "Refrigerate for at least 4 hours until set.",
+    "Serve with fresh berries or berry sauce."
+  ]
+}

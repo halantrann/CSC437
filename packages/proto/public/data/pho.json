@@ -1,0 +1,35 @@
+{
+  "name": "Phở",
+  "imgAlt": "Vietnamese beef noodle soup with fresh herbs",
+  "imgSrc": "/images/pho.jpg",
+  "link": "/dish.html?id=pho",
+  "mealType": "Lunch",
+  "cuisine": "Vietnamese",
+  "taste": "Umami",
+  "calories": "450 kcal per serving",
+  "prepTime": "20 min",
+  "cookTime": "40 min",
+  "ingredients": [
+    "200g beef sirloin (thinly sliced)",
+    "200g rice noodles",
+    "6 cups beef broth",
+    "1 onion (charred)",
+    "2 inches ginger (charred)",
+    "2 star anise",
+    "1 cinnamon stick",
+    "2 tbsp fish sauce",
+    "Bean sprouts",
+    "Fresh basil and cilantro",
+    "Lime wedges",
+    "Sriracha and hoisin sauce"
+  ],
+  "instructions": [
+    "Char onion and ginger over flame or in broiler.",
+    "Simmer broth with charred onion, ginger, star anise, and cinnamon for 30 minutes.",
+    "Strain broth and season with fish sauce.",
+    "Cook rice noodles according to package instructions.",
+    "Place noodles in bowl, arrange raw beef slices on top.",
+    "Ladle hot broth over beef to cook it.",
+    "Serve with bean sprouts, herbs, lime, and condiments on the side."
+  ]
+}
