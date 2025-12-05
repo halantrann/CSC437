@@ -37,7 +37,7 @@ export class CuisineViewElement extends LitElement {
     this.cuisineName = `${this.cuisineType.charAt(0).toUpperCase() + this.cuisineType.slice(1)} Cuisine`;
 
     // Cuisine images and taglines
-    const cuisineData: { [key: string]: { flag: string; tagline: string } } = {
+     const cuisineData: { [key: string]: { flag: string; tagline: string } } = {
       'vietnamese': { flag: 'vietnamese_flag', tagline: 'Fresh herbs and bold flavors' },
       'chinese': { flag: 'chinese_flag', tagline: 'Centuries of culinary tradition' },
       'japanese': { flag: 'japanese_flag', tagline: 'Precision and simplicity' },
@@ -50,7 +50,9 @@ export class CuisineViewElement extends LitElement {
 
     const data = cuisineData[this.cuisineType] || { flag: '', tagline: 'Explore this cuisine' };
     this.tagline = data.tagline;
-    this.imgSrc = data.flag ? `/icons/${data.flag}.svg` : '';
+    
+    // Reference the symbol ID within the all_flags.svg file
+    this.imgSrc = data.flag ? `/icons/all_flags.svg#${data.flag}` : '';
     this.imgAlt = `${this.cuisineName} flag`;
   }
 
