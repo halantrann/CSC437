@@ -170,7 +170,9 @@ export class CuisineElement extends LitElement {
           </div>
 
           <div class="cuisine-header-image">
-            <img src="${this.imgSrc}" alt="${this.imgAlt}">
+            <svg width="800" height="540" viewBox="0 0 800 540">
+              <use href="${this.imgSrc}"></use>
+            </svg>
           </div>
         </section>
 
@@ -406,6 +408,12 @@ export class CuisineElement extends LitElement {
 
     .btn-icon {
       font-size: 1.2rem;
+    }
+
+    .cuisine-header-image svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
   `];
 }

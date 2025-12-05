@@ -37,21 +37,21 @@ export class CuisineViewElement extends LitElement {
     this.cuisineName = `${this.cuisineType.charAt(0).toUpperCase() + this.cuisineType.slice(1)} Cuisine`;
 
     // Cuisine images and taglines
-    const cuisineData: { [key: string]: { img: string; tagline: string } } = {
-      'vietnamese': { img: '/images/vietnamese-cuisine.jpg', tagline: 'Fresh herbs and bold flavors' },
-      'chinese': { img: '/images/chinese-cuisine.jpg', tagline: 'Centuries of culinary tradition' },
-      'japanese': { img: '/images/japanese-cuisine.jpg', tagline: 'Precision and simplicity' },
-      'thai': { img: '/images/thai-cuisine.jpg', tagline: 'Sweet, sour, salty, spicy' },
-      'italian': { img: '/images/italian-cuisine.jpg', tagline: 'La dolce vita' },
-      'french': { img: '/images/french-cuisine.jpg', tagline: 'The art of cooking' },
-      'southern': { img: '/images/southern-cuisine.jpg', tagline: 'Comfort food at its finest' },
-      'californian': { img: '/images/californian-cuisine.jpg', tagline: 'Fresh and innovative' }
+    const cuisineData: { [key: string]: { flag: string; tagline: string } } = {
+      'vietnamese': { flag: 'vietnamese_flag', tagline: 'Fresh herbs and bold flavors' },
+      'chinese': { flag: 'chinese_flag', tagline: 'Centuries of culinary tradition' },
+      'japanese': { flag: 'japanese_flag', tagline: 'Precision and simplicity' },
+      'thai': { flag: 'thai_flag', tagline: 'Sweet, sour, salty, spicy' },
+      'italian': { flag: 'italian_flag', tagline: 'La dolce vita' },
+      'french': { flag: 'french_flag', tagline: 'The art of cooking' },
+      'southern': { flag: 'southern_flag', tagline: 'Comfort food at its finest' },
+      'californian': { flag: 'californian_flag', tagline: 'Fresh and innovative' }
     };
 
-    const data = cuisineData[this.cuisineType] || { img: '', tagline: 'Explore this cuisine' };
+    const data = cuisineData[this.cuisineType] || { flag: '', tagline: 'Explore this cuisine' };
     this.tagline = data.tagline;
-    this.imgSrc = data.img;
-    this.imgAlt = `${this.cuisineName}`;
+    this.imgSrc = data.flag ? `/icons/${data.flag}.svg` : '';
+    this.imgAlt = `${this.cuisineName} flag`;
   }
 
   render() {
