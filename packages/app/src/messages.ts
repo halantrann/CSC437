@@ -20,6 +20,11 @@ export type Msg =
 			onFailure?: (err: Error) => void;
 		}
 	]
+	| ["recipe/delete", {
+		name: string;
+		onSuccess?: () => void;
+		onFailure?: (err: Error) => void;
+	}]
 	| ["recipe/load", { name: string; recipe: Recipe }]
 	| ["recipes/load", { recipes: Recipe[] }]
 	| ["favorites/request", {}]

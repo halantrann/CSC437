@@ -18,7 +18,8 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var dish_svc_exports = {};
 __export(dish_svc_exports, {
-  default: () => dish_svc_default
+  default: () => dish_svc_default,
+  deleteRecipe: () => deleteRecipe
 });
 module.exports = __toCommonJS(dish_svc_exports);
 var import_mongoose = require("mongoose");
@@ -83,4 +84,21 @@ function removeById(id) {
     if (!deleted) throw new Error(`Dish with ID ${id} not found`);
   });
 }
+function deleteRecipe(name) {
+  return fetch(`/api/recipes/${name}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    }
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Failed to delete recipe: ${response.statusText}`);
+    }
+    return response.json();
+  });
+}
 var dish_svc_default = { index, get, getById, create, update, updateById, remove, removeById };
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  deleteRecipe
+});

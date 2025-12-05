@@ -21,6 +21,9 @@ export class DishEditViewElement extends View<Model, Msg> {
     return this.model.recipe;
   }
 
+  @state()
+  showDeleteConfirm = false;
+
   constructor() {
     super("melonbowl:model");
   }
@@ -60,7 +63,6 @@ export class DishEditViewElement extends View<Model, Msg> {
         : formData.instructions
     };
 
-    // Fixed: callbacks as third element
     this.dispatchMessage([
       "recipe/save",
       {
@@ -76,19 +78,71 @@ export class DishEditViewElement extends View<Model, Msg> {
     ]);
   }
 
+  handleDeleteClick() {
+    this.showDeleteConfirm = true;
+  }
+
+  handleDeleteConfirm() {
+    console.log("Deleting recipe:", this.dishName);
+    
+    this.dispatchMessage([
+      "recipe/delete",
+      {
+        name: this.dishName!,
+        onSuccess: () => {
+          History.dispatch(this, "history/navigate", {
+            href: "/app"
+          });
+        },
+        onFailure: (error: Error) => {
+          console.error("Delete error:", error);
+          alert(`Failed to delete recipe: ${error.message}`);
+          this.showDeleteConfirm = false;
+        }
+      }
+    ]);
+  }
+
+  handleDeleteCancel() {
+    this.showDeleteConfirm = false;
+  }
+
   render() {
     // Show loading state
     if (!this.recipe) {
       return html`
-        <div class="edit-box">
+        <div class="edit-container">
           <div class="loading-message">Loading recipe...</div>
         </div>
       `;
     }
 
+    // Show delete confirmation modal
+    if (this.showDeleteConfirm) {
+      return html`
+        <div class="edit-container">
+          <div class="delete-confirm-modal">
+            <h2>Delete Recipe?</h2>
+            <p>Are you sure you want to delete <strong>${this.recipe.name}</strong>?</p>
+            <p class="warning">This action cannot be undone.</p>
+            <div class="modal-buttons">
+              <button @click=${this.handleDeleteConfirm} class="confirm-delete-btn">
+                Yes, Delete
+              </button>
+              <button @click=${this.handleDeleteCancel} class="cancel-delete-btn">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     return html`
-      <div class="edit-box">
-        <h1>Edit Recipe: ${this.recipe.name}</h1>
+      <div class="edit-container">
+        <header class="edit-header">
+          <h1>Edit Recipe: ${this.recipe.name}</h1>
+        </header>
         
         <mu-form
           .init=${this.recipe}
@@ -157,13 +211,19 @@ export class DishEditViewElement extends View<Model, Msg> {
 
           <div class="button-group">
             <button type="submit" class="save-btn">
-              Save Recipe
+              Save Changes
             </button>
             <a href="/app/dish/${this.dishName}" class="cancel-btn">
               Cancel
             </a>
           </div>
         </mu-form>
+
+        <footer class="edit-footer">
+          <button @click=${this.handleDeleteClick} class="delete-btn">
+            🗑️ Delete Recipe
+          </button>
+        </footer>
       </div>
     `;
   }
@@ -173,30 +233,38 @@ export class DishEditViewElement extends View<Model, Msg> {
       display: block;
     }
 
-    .edit-box {
+    .edit-container {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: var(--spacing-xl);
       background-color: var(--color-background);
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      padding: 40px;
-      max-width: 700px;
-      margin: 40px auto;
+      border-radius: var(--radius-md);
+      margin-top: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
     }
 
-    .edit-box h1 {
-      color: var(--color-link);
-      margin-bottom: var(--spacing-lg);
+    .edit-header {
       text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .edit-header h1 {
+      color: var(--color-link);
+      font-size: 3rem;
+      margin-bottom: var(--spacing-sm);
     }
 
     .loading-message {
       padding: var(--spacing-xl);
       text-align: center;
+      font-size: 1.2rem;
     }
 
     mu-form {
       display: flex;
       flex-direction: column;
       gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
     }
 
     label {
@@ -207,7 +275,8 @@ export class DishEditViewElement extends View<Model, Msg> {
 
     label span {
       font-weight: var(--font-weight-bold);
-      color: var(--color-link);
+      color: var(--color-header);
+      font-size: 1rem;
     }
 
     input,
@@ -215,9 +284,10 @@ export class DishEditViewElement extends View<Model, Msg> {
       padding: var(--spacing-sm);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-sm);
-      font-family: inherit;
+      font-family: var(--font-family-body);
       font-size: 1rem;
       transition: border-color var(--transition-fast);
+      background-color: var(--color-background);
     }
 
     input:focus,
@@ -229,7 +299,7 @@ export class DishEditViewElement extends View<Model, Msg> {
 
     textarea {
       resize: vertical;
-      font-family: inherit;
+      font-family: var(--font-family-body);
     }
 
     .button-group {
@@ -253,6 +323,7 @@ export class DishEditViewElement extends View<Model, Msg> {
       gap: 0.5rem;
       transition: all var(--transition-fast);
       text-decoration: none;
+      font-family: var(--font-family-heading);
     }
 
     .save-btn {
@@ -287,15 +358,132 @@ export class DishEditViewElement extends View<Model, Msg> {
       transform: translateY(0);
     }
 
+    .edit-footer {
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--spacing-lg);
+      text-align: center;
+    }
+
+    .delete-btn {
+      padding: var(--spacing-md) var(--spacing-lg);
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: var(--font-weight-bold);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-family: var(--font-family-heading);
+    }
+
+    .delete-btn:hover {
+      background-color: #c82333;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+    }
+
+    .delete-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Delete Confirmation Modal */
+    .delete-confirm-modal {
+      background-color: var(--color-background);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-xl);
+      max-width: 500px;
+      margin: 100px auto;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+
+    .delete-confirm-modal h2 {
+      color: #dc3545;
+      margin-bottom: var(--spacing-md);
+      font-size: 2rem;
+    }
+
+    .delete-confirm-modal p {
+      color: var(--color-text);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1.1rem;
+    }
+
+    .delete-confirm-modal p strong {
+      color: var(--color-header);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .delete-confirm-modal .warning {
+      color: #dc3545;
+      font-style: italic;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+    }
+
+    .confirm-delete-btn,
+    .cancel-delete-btn {
+      padding: var(--spacing-md) var(--spacing-lg);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: var(--font-weight-bold);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-family: var(--font-family-heading);
+      min-width: 120px;
+    }
+
+    .confirm-delete-btn {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .confirm-delete-btn:hover {
+      background-color: #c82333;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+    }
+
+    .cancel-delete-btn {
+      background-color: var(--color-section);
+      color: var(--color-header);
+      border: 1px solid var(--color-border);
+    }
+
+    .cancel-delete-btn:hover {
+      background-color: #e0e0e0;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .edit-header h1 {
+        font-size: 2.5rem;
+      }
+    }
 
     @media (max-width: 480px) {
-      .edit-box {
+      .edit-container {
         padding: var(--spacing-md);
-        margin: var(--spacing-md);
       }
 
       .button-group {
         flex-direction: column;
+      }
+
+      .modal-buttons {
+        flex-direction: column;
+      }
+
+      .edit-header h1 {
+        font-size: 2rem;
       }
     }
   `];

@@ -82,4 +82,19 @@ function removeById(id: string): Promise<void> {
     });
 }
 
+export function deleteRecipe(name: string): Promise<void> {
+  return fetch(`/api/recipes/${name}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    }
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Failed to delete recipe: ${response.statusText}`);
+      }
+      return response.json();
+    });
+}
+
 export default { index, get, getById, create, update, updateById, remove, removeById };

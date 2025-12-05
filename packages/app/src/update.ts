@@ -133,6 +133,24 @@ export default function update(
       return { ...model, favorites, favoriteIds };
     }
 
+    case "recipe/delete": {
+      const { name, onSuccess, onFailure } = payload;
+
+      return [
+        model,
+        deleteRecipe(name, user)
+          .then((): [] => {
+            onSuccess?.();
+            return [];
+          })
+          .catch((error: Error): [] => {
+            console.error("Failed to delete recipe:", error);
+            onFailure?.(error);
+            return [];
+          })
+      ];
+    }
+
     default:
       throw new Error(`Unhandled message "${command}"`);
   }
@@ -249,5 +267,25 @@ function requestFavorites(user: Auth.User): Promise<Recipe[]> {
         resolve(favorites);
       })
       .catch(() => resolve([]));
+  });
+}
+
+function deleteRecipe(
+  name: string,
+  user: Auth.User
+): Promise<void> {
+  return fetch(`/api/dishes/${name}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      ...Auth.headers(user),
+    },
+  }).then((response) => {
+    if (response.status === 200 || response.status === 204) {
+      return;
+    }
+    return response.text().then((t) => {
+      throw new Error(t);
+    });
   });
 }
