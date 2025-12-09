@@ -145,7 +145,12 @@ export class DishViewElement extends View<Model, Msg> {
   static styles = [reset.styles, css`
     :host {
       display: block;
+      background-color: var(--color-background2);
+      min-height: 100vh;
+            padding: var(--spacing-lg);
+
     }
+
 
     .loading-message {
       padding: var(--spacing-xl);

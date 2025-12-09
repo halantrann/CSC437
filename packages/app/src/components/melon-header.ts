@@ -217,7 +217,7 @@ export class HeaderElement extends LitElement {
       padding: 0rem;
       padding-top: 0.25rem;
       background-color: var(--color-background);
-      border: 2px solid var(--color-border);
+      border: 1px solid var(--color-border);
       border-radius: var(--radius-md);
       transition: all var(--transition-fast);
       width: 48px;
@@ -279,7 +279,7 @@ export class HeaderElement extends LitElement {
       background-color: var(--color-background);
       padding: 0.5rem 1rem;
       border-radius: var(--radius-md);
-      border: 2px solid var(--color-border);
+      border: 1px solid var(--color-border);
     }
 
     .username {

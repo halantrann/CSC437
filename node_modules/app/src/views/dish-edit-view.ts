@@ -124,7 +124,6 @@ export class DishEditViewElement extends View<Model, Msg> {
           <div class="delete-confirm-modal">
             <h2>Delete Recipe?</h2>
             <p>Are you sure you want to delete <strong>${this.recipe.name}</strong>?</p>
-            <p class="warning">This action cannot be undone.</p>
             <div class="modal-buttons">
               <button @click=${this.handleDeleteConfirm} class="confirm-delete-btn">
                 Yes, Delete
@@ -210,9 +209,6 @@ export class DishEditViewElement extends View<Model, Msg> {
           </label>
 
           <div class="button-group">
-            <button type="submit" class="save-btn">
-              Save Changes
-            </button>
             <a href="/app/dish/${this.dishName}" class="cancel-btn">
               Cancel
             </a>
@@ -221,7 +217,7 @@ export class DishEditViewElement extends View<Model, Msg> {
 
         <footer class="edit-footer">
           <button @click=${this.handleDeleteClick} class="delete-btn">
-            🗑️ Delete Recipe
+            🗑️ Delete Recipe 🗑️
           </button>
         </footer>
       </div>
@@ -231,27 +227,31 @@ export class DishEditViewElement extends View<Model, Msg> {
   static styles = [reset.styles, css`
     :host {
       display: block;
+      background-color: var(--color-background2);
+      min-height: 100vh;
+      padding: var(--spacing-xl) var(--spacing-md);
     }
 
     .edit-container {
-      max-width: 1250px;
-      margin: 0 auto;
+      max-width: 700px;
+      margin: 40px auto;
       padding: var(--spacing-xl);
       background-color: var(--color-background);
-      border-radius: var(--radius-md);
-      margin-top: var(--spacing-lg);
-      margin-bottom: var(--spacing-lg);
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     }
 
     .edit-header {
       text-align: center;
       margin-bottom: var(--spacing-xl);
+      padding-bottom: var(--spacing-lg);
+      border-bottom: 1px solid var(--color-border);
     }
 
     .edit-header h1 {
       color: var(--color-link);
-      font-size: 3rem;
-      margin-bottom: var(--spacing-sm);
+      font-size: 2.5rem;
+      margin-bottom: 0;
     }
 
     .loading-message {
@@ -263,7 +263,6 @@ export class DishEditViewElement extends View<Model, Msg> {
     mu-form {
       display: flex;
       flex-direction: column;
-      gap: var(--spacing-md);
       margin-bottom: var(--spacing-xl);
     }
 
@@ -271,6 +270,7 @@ export class DishEditViewElement extends View<Model, Msg> {
       display: flex;
       flex-direction: column;
       gap: var(--spacing-xs);
+      margin-bottom: var(--spacing-md);
     }
 
     label span {
@@ -282,6 +282,7 @@ export class DishEditViewElement extends View<Model, Msg> {
     input,
     textarea {
       padding: var(--spacing-sm);
+      color: var(--color-text);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-sm);
       font-family: var(--font-family-body);
@@ -326,21 +327,6 @@ export class DishEditViewElement extends View<Model, Msg> {
       font-family: var(--font-family-heading);
     }
 
-    .save-btn {
-      background-color: var(--color-link);
-      color: white;
-      box-shadow: 0 2px 8px rgba(202, 60, 37, 0.3);
-    }
-
-    .save-btn:hover {
-      background-color: var(--color-emphasistext);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(202, 60, 37, 0.4);
-    }
-
-    .save-btn:active {
-      transform: translateY(0);
-    }
 
     .cancel-btn {
       background-color: var(--color-section);
@@ -350,7 +336,6 @@ export class DishEditViewElement extends View<Model, Msg> {
 
     .cancel-btn:hover {
       background-color: #e0e0e0;
-      transform: translateY(-2px);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
@@ -413,12 +398,6 @@ export class DishEditViewElement extends View<Model, Msg> {
     .delete-confirm-modal p strong {
       color: var(--color-header);
       font-weight: var(--font-weight-bold);
-    }
-
-    .delete-confirm-modal .warning {
-      color: #dc3545;
-      font-style: italic;
-      margin-bottom: var(--spacing-lg);
     }
 
     .modal-buttons {
