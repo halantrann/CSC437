@@ -327,15 +327,14 @@ export class DishEditViewElement extends View<Model, Msg> {
       font-family: var(--font-family-heading);
     }
 
-
     .cancel-btn {
-      background-color: var(--color-section);
+      background-color: #ebebebff;
       color: var(--color-header);
       border: 1px solid var(--color-border);
     }
 
     .cancel-btn:hover {
-      background-color: #e0e0e0;
+      background-color: var(--color-link);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 

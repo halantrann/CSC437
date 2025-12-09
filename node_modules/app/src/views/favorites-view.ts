@@ -78,8 +78,7 @@ export class FavoritesViewElement extends View<Model, Msg> {
 
         <footer class="favorites-footer">
           <a href="/app" class="back-btn">
-            <span class="btn-icon">←</span>
-            <span>Back to Menu</span>
+            <span>← Back to Menu</span>
           </a>
         </footer>
       </div>
@@ -231,6 +230,7 @@ export class FavoritesViewElement extends View<Model, Msg> {
         border: 1px solid var(--color-border);
         border-radius: var(--radius-md);
         font-weight: 600;
+        font-family: var(--font-family-heading);
         transition: all var(--transition-fast);
       }
 
@@ -239,10 +239,6 @@ export class FavoritesViewElement extends View<Model, Msg> {
         border-color: var(--color-link);
         color: var(--color-link);
         box-shadow: var(--shadow-md);
-      }
-
-      .btn-icon {
-        font-size: 1.2rem;
       }
 
       @media (max-width: 768px) {

@@ -108,7 +108,7 @@ export class DishCreateViewElement extends View<Model, Msg> {
             <input name="imgAlt" placeholder="Describe your image" />
           </label>
 
-          <div class="form-row">
+          <div>
             <label>
               <span>Meal Type *</span>
               <select name="mealType" required>
@@ -184,9 +184,6 @@ export class DishCreateViewElement extends View<Model, Msg> {
           </label>
 
           <div class="button-group">
-            <button type="submit" class="save-btn">
-              Create Recipe
-            </button>
             <a href="/app" class="cancel-btn">
               Cancel
             </a>
@@ -298,19 +295,12 @@ export class DishCreateViewElement extends View<Model, Msg> {
       cursor: pointer;
     }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--spacing-md);
-    }
-
     .button-group {
       display: flex;
       gap: var(--spacing-md);
       margin-top: var(--spacing-lg);
     }
 
-    .save-btn,
     .cancel-btn {
       flex: 1;
       padding: var(--spacing-md);
@@ -328,37 +318,21 @@ export class DishCreateViewElement extends View<Model, Msg> {
       font-family: var(--font-family-heading);
     }
 
-    .save-btn {
-      background-color: var(--color-link);
-      color: white;
-      box-shadow: 0 2px 8px rgba(202, 60, 37, 0.3);
-    }
-
-    .save-btn:hover {
-      background-color: var(--color-emphasistext);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(202, 60, 37, 0.4);
-    }
-
-    .save-btn:active {
-      transform: translateY(0);
-    }
-
     .cancel-btn {
-      background-color: var(--color-section);
+      background-color: #ebebebff;
       color: var(--color-header);
       border: 1px solid var(--color-border);
     }
 
     .cancel-btn:hover {
-      background-color: #e0e0e0;
-      transform: translateY(-2px);
+      background-color: var(--color-link);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .cancel-btn:active {
       transform: translateY(0);
     }
+
 
     .create-footer {
       border-top: 1px solid var(--color-border);
@@ -393,10 +367,6 @@ export class DishCreateViewElement extends View<Model, Msg> {
     }
 
     @media (max-width: 768px) {
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
       .create-header h1 {
         font-size: 2.5rem;
       }

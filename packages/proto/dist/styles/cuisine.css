@@ -1,7 +1,0 @@
-main {
-	margin-top: 125px; /* to compensate for header height */
-}
-
-body{ 
-	background-color: var(--color-background3);
-}

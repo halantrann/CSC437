@@ -401,6 +401,7 @@ export class AllRecipesViewElement extends View<Model, Msg> {
       border: 1px solid var(--color-border);
       border-radius: var(--radius-md);
       font-weight: 600;
+      font-family: var(--font-family-heading);
       transition: all var(--transition-fast);
     }
 
