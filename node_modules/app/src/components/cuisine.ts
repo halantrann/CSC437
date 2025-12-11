@@ -192,7 +192,12 @@ export class CuisineElement extends LitElement {
                   </a>
                 `
         ) :
-        html`<p class="no-recipes">Sign in to see what ${this.cuisineType} you saved!</p>`
+        html`<p class="no-recipes">
+    ${this._user?.authenticated
+            ? html`No ${this.cuisineType} recipes yet! <a href="/app/dish/new"> Add a recipe</a> to build your collection.`
+            : `Sign in to see what ${this.cuisineType} you saved!`
+          }
+  </p>`
       }
           </div>
         </section>
@@ -371,6 +376,17 @@ export class CuisineElement extends LitElement {
       font-size: 0.9rem;
       margin-top: var(--spacing-xs);
       color: var(--color-text);
+    }
+
+    .no-recipes a {
+      color: var(--color-header);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .no-recipes a:hover {
+      color: var(--color-link);
+      text-decoration: underline;
     }
 
     .footer-nav {

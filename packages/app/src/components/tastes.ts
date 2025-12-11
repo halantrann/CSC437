@@ -54,7 +54,7 @@ export class TastesElement extends LitElement {
   // Watch for category changes
   override updated(changedProperties: Map<string, any>) {
     super.updated(changedProperties);
-    
+
     // Load recipes when category is set/changed and user is authenticated
     if (changedProperties.has('category') && this.category && this._user?.authenticated) {
       this.loadRecipes();
@@ -176,7 +176,12 @@ export class TastesElement extends LitElement {
                   </a>
                 `
         ) :
-        html`<p class="no-recipes">No ${this.tastesType} recipes at the moment...Perhaps you need to sign in?</p>`
+        html`<p class="no-recipes">
+    ${this._user?.authenticated
+            ? html`No ${this.tastesType} recipes yet! <a href="/app/dish/new"> Create your first ${this.tastesType} recipe</a>.`
+            : 'No recipes at the moment. Sign in to see your saved recipes!'
+          }
+  </p>`
       }
           </div>
         </section>
@@ -330,6 +335,17 @@ export class TastesElement extends LitElement {
       font-size: 0.9rem;
       margin-top: var(--spacing-xs);
       color: var(--color-text);
+    }
+
+    .no-recipes a {
+      color: var(--color-header);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .no-recipes a:hover {
+      color: var(--color-link);
+      text-decoration: underline;
     }
 
      .footer-nav {

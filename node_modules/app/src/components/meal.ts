@@ -20,7 +20,7 @@ interface Recipe {
 
 export class MealElement extends LitElement {
   @property()
-  dialogue?: string; 
+  dialogue?: string;
 
   @property()
   mealType?: string;
@@ -43,14 +43,14 @@ export class MealElement extends LitElement {
   // AUTH OBSERVER 
   _authObserver = new Observer<Auth.Model>(this, "melonbowl:auth");
   _user?: Auth.User;
-  
+
   override connectedCallback() {
     super.connectedCallback();
 
     // Observe auth state
     this._authObserver.observe((auth: Auth.Model) => {
       this._user = auth.user;
-      
+
       // Load recipes when authenticated AND category is set
       if (this._user?.authenticated && this.category) {
         this.loadRecipes();
@@ -61,7 +61,7 @@ export class MealElement extends LitElement {
   // Watch for category changes
   override updated(changedProperties: Map<string, any>) {
     super.updated(changedProperties);
-    
+
     // Load recipes when category is set/changed and user is authenticated
     if (changedProperties.has('category') && this.category && this._user?.authenticated) {
       this.loadRecipes();
@@ -146,10 +146,10 @@ export class MealElement extends LitElement {
         <div class="recipe-box">
           <div class="error-message">
             <p>${this.error}</p>
-            ${!this._user?.authenticated ? 
-              html`<a href="/login.html" class="login-link">Login to view recipes</a>` : 
-              null
-            }
+            ${!this._user?.authenticated ?
+          html`<a href="/login.html" class="login-link">Login to view recipes</a>` :
+          null
+        }
           </div>
         </div>
       `;
@@ -177,15 +177,20 @@ export class MealElement extends LitElement {
             <h2>${this.mealType} Recipes:</h2>
             <ul class="meals-list">
               ${this.recipes.length > 0
-                ? this.recipes.map(
-                    (r) => html`
+        ? this.recipes.map(
+          (r) => html`
                       <li>
                         <a href="/app/dish/${r._id || r.id}">${r.name}</a>
                       </li>
                     `
-                  )
-                : html`<li>Sign in to see ${this.mealType} recipes!</li>`
-              }
+        )
+        : html` <li class="empty-message">
+    ${this._user?.authenticated
+            ? html`No ${this.mealType} recipes yet! <a href="/app/dish/new">Add your first recipe</a> to get started.`
+            : 'Sign in to see saved recipes!'
+          }
+  </li>`
+      }
             </ul>
           </section>
           
@@ -298,6 +303,17 @@ export class MealElement extends LitElement {
     .box:hover {
       transform: translateY(-5px);
       box-shadow: var(--shadow-lg);
+    }
+
+    .empty-message a {
+      color: var(--color-header);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .empty-message a:hover {
+      color: var(--color-link);
+      text-decoration: underline;
     }
       
     #character-box {
